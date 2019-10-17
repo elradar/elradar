@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>salud on El Radar</title>
+    <link>/categories/salud/</link>
+    <description>Recent content in salud on El Radar</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-ar</language>
+    <lastBuildDate>Thu, 17 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/salud/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nuestro dataset favorito</title>
+      <link>/2019/10/17/nuestro-dataset-favorito/</link>
+      <pubDate>Thu, 17 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/10/17/nuestro-dataset-favorito/</guid>
+      <description>Nos encanta..este dataset!
+swiss## Fertility Agriculture Examination Education Catholic## Courtelary 80.2 17.0 15 12 9.96## Delemont 83.1 45.1 6 9 84.84## Franches-Mnt 92.5 39.7 5 5 93.40## Moutier 85.8 36.5 12 7 33.77## Neuveville 76.9 43.5 17 15 5.16## Porrentruy 76.1 35.3 9 7 90.57## Broye 83.8 70.2 16 7 92.85## Glane 92.4 67.8 14 8 97.16## Gruyere 82.</description>
+    </item>
+    
+  </channel>
+</rss>

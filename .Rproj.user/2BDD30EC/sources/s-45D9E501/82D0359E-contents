@@ -1,0 +1,26 @@
+---
+title: Nuestro dataset favorito
+author: HAVB
+date: '2019-10-17'
+slug: nuestro-dataset-favorito
+categories:
+  - salud
+tags:
+  - elbien
+  - calidaddeaire
+---
+
+## Nos encanta..
+
+este dataset!
+
+```{r}
+swiss
+```
+
+Swiss cheese, swiss guard!
+
+
+![](https://ichef.bbci.co.uk/news/660/cpsprodpb/1DBA/production/_105301670_gettyimages-687544696-594x594.jpg)
+
+
