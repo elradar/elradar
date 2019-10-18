@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1671536303",
+    "hash" : "0",
     "id" : "D75820DC",
     "lastKnownWriteTime" : 1571407722,
-    "last_content_update" : 1571407722928,
-    "path" : "~/elradar/config.toml",
-    "project_path" : "config.toml",
+    "last_content_update" : 1571407722,
+    "path" : "~/elradar.github.io/config.toml",
+    "project_path" : null,
     "properties" : {
-        "cursorPosition" : "25,22",
-        "scrollLine" : "15"
+        "cursorPosition" : "30,31",
+        "scrollLine" : "4"
     },
     "relative_order" : 1,
     "source_on_save" : false,

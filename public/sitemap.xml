@@ -3,6 +3,21 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2019/10/18/natsu-eph/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2019-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/calidaddeaire/</loc>
     <lastmod>2019-10-17T00:00:00+00:00</lastmod>
   </url>
@@ -13,22 +28,12 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/tags/elbien/</loc>
     <lastmod>2019-10-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/2019/10/17/nuestro-dataset-favorito/</loc>
-    <lastmod>2019-10-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
     <lastmod>2019-10-17T00:00:00+00:00</lastmod>
   </url>
   
