@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "D75820DC",
-    "lastKnownWriteTime" : 1571344021,
-    "last_content_update" : 1571344021,
+    "lastKnownWriteTime" : 1571406039,
+    "last_content_update" : 1571406039359,
     "path" : "~/elradar/config.toml",
     "project_path" : "config.toml",
     "properties" : {
-        "cursorPosition" : "0,7",
-        "scrollLine" : "2"
+        "cursorPosition" : "44,0",
+        "scrollLine" : "22"
     },
     "relative_order" : 1,
     "source_on_save" : false,
