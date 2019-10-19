@@ -3,8 +3,8 @@ title: 'Un CRAN a la vez: janitor'
 author: ~
 date: '2019-10-19'
 slug: un-cran-a-la-vez-janitor
-categories: [uncranalavez, janitor]
-tags: [limpieza, etl, datawrangling]
+categories: [uncranalavez]
+tags: [limpieza]
 publishdate: '2019-10-19T16:38:25-03:00'
 comments: yes
 ---
