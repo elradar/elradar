@@ -2,23 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on el RadaR</title>
-    <link>https://elradar.github.io/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on el RadaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el RadaR</copyright>
-    <lastBuildDate>Fri, 18 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://elradar.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Un CRAN a la vez: janitor</title>
+      <link>/2019/10/19/un-cran-a-la-vez-janitor/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/10/19/un-cran-a-la-vez-janitor/</guid>
+      <description>Así damos inicio a la sección dada a llamar Un CRAN a la vez (inspirada en este proyecto de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida aqui, en conjunción con nuestro querido tidyverse.</description>
+    </item>
+    
+    <item>
       <title>Otro post, con un clásico inolvidable</title>
-      <link>https://elradar.github.io/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</link>
+      <link>/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</link>
       <pubDate>Fri, 18 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.</description>
+      <guid>/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</guid>
+      <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/1/01/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/01/</guid>
+      <description>Un CRAN a la vez: janitorcode{white-space: pre;}pre:not([class]) {background-color: white;}if (window.hljs) {hljs.configure({languages: []});hljs.</description>
     </item>
     
   </channel>
