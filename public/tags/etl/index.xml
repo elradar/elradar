@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ETL on el RadaR</title>
+    <title>ETL on el radaR</title>
     <link>/tags/etl/</link>
-    <description>Recent content in ETL on el RadaR</description>
+    <description>Recent content in ETL on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
-    <copyright>equipo el RadaR</copyright>
+    <copyright>equipo el radaR</copyright>
     <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/etl/index.xml" rel="self" type="application/rss+xml" />

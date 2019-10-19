@@ -1,8 +1,8 @@
 baseurl = "https://elradar.github.io"
 languageCode = "es-ar"
-copyright = "equipo el RadaR"
+copyright = "equipo el radaR"
 summaryLength = 25
-title = "el RadaR"
+title = "el radaR"
 theme = "mediumish-gohugo-theme"
 googleAnalytics = ""
 #disqusShortname = ""
@@ -39,7 +39,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     logo = "/images/logo.png"
     
     author = "equipo el RadaR"
-	description = "detectando los paquetes y proyectos en R que tenes que conocer"
+	description = "detectando los paquetes y proyectos en R que tenés que conocer"
 	
 [params.social]
 #  github = "<username>"
