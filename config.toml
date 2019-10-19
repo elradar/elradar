@@ -1,30 +1,30 @@
-baseurl = "/"
+baseurl = "https://elradar.github.io"
 languageCode = "es-ar"
-title = "El Radar"
-theme = "hugo-theme-terminal"
+copyright = "equipo el RadaR"
+summaryLength = 25
+title = "el RadaR"
+theme = "mediumish-gohugo-theme"
 googleAnalytics = ""
-disqusShortname = ""
+#disqusShortname = ""
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+
+# Add additional social link entries underneath
+[social]
+	twitter-square = "https://www.twitter.com/nodejh"
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
 [[menu.main]]
-    name = "Acerca de"
-    url = "/about/"
-[[menu.main]]
-    name = "Twitter"
-    url = "https://twitter.com/_elradar_"
+    name = "posts"
+    weight = 200
+    identifier = "bog"
+    url = "/post"
+
 
 [params]
-    description = "Proyectos basados en R que tenés que conocer"
-    fullWidthTheme = false
-    centerTheme = false
-    
-    # opciones del theme terminal
-    # ["orange", "blue", "red", "green", "pink"]
-    themeColor = "blue"
-    # options for highlight.js (version, additional languages, and theme)
+ # options for highlight.js (version, additional languages, and theme)
     highlightjsVersion = "9.12.0"
     highlightjsCDN = "//cdnjs.cloudflare.com/ajax/libs"
     highlightjsLang = ["r", "yaml"]
@@ -35,10 +35,27 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
     # path to the favicon, under "static"
     favicon = "favicon.ico"
+    
+    logo = "/images/logo.png"
+    
+    author = "equipo el RadaR"
+	description = "detectando los paquetes y proyectos en R que tenes que conocer"
+	
+[params.social]
+#  github = "<username>"
+#  linkedin = "<username>"
+#  xing = "<username>"
+#  medium = "<username>"
+   twitter = "_elradar_"
+#  instagram = "<username>"
 
-    [params.logo]
-    url = "logo.png"
-    width = 50
-    height = 50
-    alt = "Logo"
 
+[params.index]
+  picture = "/images/elradar_logo.png"
+  title = "esto es el RadaR"
+  subtitle = "detectando los paquetes y proyectos en R que tenes que conocer"
+  mdtext = '''
+Bienvenides a nuestra landing page. Pronto tendrá uno o dos links a cosas muy geniales\
+
+'''
+  alertbar = false
