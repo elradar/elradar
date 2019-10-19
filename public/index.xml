@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>el RadaR</title>
-    <link>/</link>
+    <link>https://elradar.github.io/</link>
     <description>Recent content on el RadaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el RadaR</copyright>
     <lastBuildDate>Fri, 18 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://elradar.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Otro post, con un clásico inolvidable</title>
-      <link>/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</link>
+      <link>https://elradar.github.io/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</link>
       <pubDate>Fri, 18 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</guid>
+      <guid>https://elradar.github.io/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</guid>
       <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://elradar.github.io/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>/about/</guid>
+      <guid>https://elradar.github.io/about/</guid>
       <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
     </item>
     
