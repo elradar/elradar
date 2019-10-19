@@ -13,11 +13,47 @@
     
     
     <item>
+      <title>data-wrangling</title>
+      <link>/tags/data-wrangling/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/data-wrangling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>datawrangling</title>
+      <link>/tags/datawrangling/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/datawrangling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ETL</title>
+      <link>/tags/etl/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/etl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>limpieza</title>
       <link>/tags/limpieza/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/tags/limpieza/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>transformacion</title>
+      <link>/tags/transformacion/</link>
+      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/transformacion/</guid>
       <description></description>
     </item>
     
