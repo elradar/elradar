@@ -30,7 +30,9 @@ Veamos un ejemplo (real) de un dataset, truncado por temas de confidencialidad, 
 ```{r levanto la base, message=FALSE, warning=FALSE}
 
 
-datos_originales <- read.csv("https://elradar.github.io/data/data_janitor.csv")
+datos_originales <- read.csv("https://elradar.github.io/data/data_janitor.csv", encoding = "latin1")
+
+datos_originales
 
 ```
 

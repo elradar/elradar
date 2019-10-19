@@ -22,24 +22,6 @@
     </item>
     
     <item>
-      <title>Un CRAN a la vez: janitor</title>
-      <link>/2019/10/19/un-cran-a-la-vez-janitor/</link>
-      <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/10/19/un-cran-a-la-vez-janitor/</guid>
-      <description>Así damos inicio a la sección dada a llamar Un CRAN a la vez (inspirada en este proyecto de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida aqui, en conjunción con nuestro querido tidyverse.</description>
-    </item>
-    
-    <item>
-      <title>Otro post, con un clásico inolvidable</title>
-      <link>/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</link>
-      <pubDate>Fri, 18 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.</description>
-    </item>
-    
-    <item>
       <title>About</title>
       <link>/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
