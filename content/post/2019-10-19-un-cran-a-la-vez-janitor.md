@@ -18,7 +18,7 @@ library(tidyverse)
 library(janitor)
 
 ```
-janitor es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma no óptima para el análisis de datos en R. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. 
+janitor es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. 
 
 
 ![](https://pbs.twimg.com/media/ED1UxS4U8AEh31k?format=jpg&name=medium)
