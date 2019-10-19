@@ -131,7 +131,7 @@ library(janitor)
 
 </code></pre>
 
-<p>janitor es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas.</p>
+<p>janitor es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. Para aquellos que saben inglés, Alison Hill (/apresshill en Twitter) hizo una ilustración sobre este paquete que es bastante informativa:</p>
 
 <p><img src="https://pbs.twimg.com/media/ED1UxS4U8AEh31k?format=jpg&amp;name=medium" alt="" /></p>
 
@@ -143,8 +143,8 @@ datos_originales &lt;- read.csv(&quot;https://elradar.github.io/data/data_janito
 
 </code></pre>
 
-<p>Al husmear la estructura del dataset, vemos que las columnas <em>Género</em> y <em>Teléfono</em> tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de columnas puede afectar muchas operaciones que se encuentran penadas y adaptadas al inglés, o el esperanto de la era digital.
-Por otro lado, podemos ver que en muchas de las columnas han decidido usar el punto como separador. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad: pero en general se prefiere utilizar el guión bajo o underscore como separador. Por último, que todo esté en minúscula no nos vendría del todo mal tampoco en caso de que querramos ahorrar tiempo si tipeamos (el viaje de ida y vuelta al Caps Lock).</p>
+<p>Al husmear la estructura del dataset, vemos que las columnas <em>Género</em> y <em>Teléfono</em> tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de  lascolumnas puede afectar muchas operaciones (que se encuentran penadas y adaptadas al inglés, o el esperanto de la era digital).
+Por otro lado, podemos ver que en muchas de las columnas han decidido usar el punto como separador de palabras. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad pero en general se prefiere utilizar el guión bajo o underscore como separador. Por último, que los nombres de las columnas se encuentren enteramente en minúscula no nos vendría mal para ahorrar tiempo si tipeamos (el viaje de ida y vuelta al Caps Lock).</p>
 
 <pre><code class="language-r">
 datos_limpios &lt;- datos_originales %&gt;% 
@@ -186,7 +186,7 @@ datos_limpios &lt;- datos_limpios %&gt;%
 
 </code></pre>
 
-<p>Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y pipe compatible. Vamos a cruzar la variable género con apoyo espiritual.</p>
+<p>Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y compatibles con el pipe de magrittr (%&gt;%) que popularizó el tidyverse. Vamos a cruzar la variable género con apoyo espiritual.</p>
 
 <pre><code class="language-r">
 datos_limpios %&gt;% 
@@ -222,12 +222,26 @@ datos_limpios %&gt;%
                         <a href="/tags/limpieza">limpieza</a>
                         </li>
                         
+                        <li>
+                        <a href="/tags/transformacion">transformacion</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/etl">ETL</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/datawrangling">datawrangling</a>
+                        </li>
+                        
                         </ul>
                     </div>
                     
                     
                     
                     <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                        <a class="d-block col-md-6" href="/2019/10/19/un-cran-a-la-vez-janitor/"> &laquo; Un CRAN a la vez: janitor</a>
                     
                     
                         <a class="d-block col-md-6 text-lg-right" href="/2019/10/18/otro-post-con-un-cl%C3%A1sico-inolvidable/">Otro post, con un clásico inolvidable &raquo;</a>
@@ -262,7 +276,15 @@ datos_limpios %&gt;%
 		</div>
 		<div class="col-md-8 p-5 align-self-center text-center">
 			
+			<a class="mt-1 mb-1" href="/tags/data-wrangling">data-wrangling</a>
+			
+			<a class="mt-1 mb-1" href="/tags/datawrangling">datawrangling</a>
+			
+			<a class="mt-1 mb-1" href="/tags/etl">etl</a>
+			
 			<a class="mt-1 mb-1" href="/tags/limpieza">limpieza</a>
+			
+			<a class="mt-1 mb-1" href="/tags/transformacion">transformacion</a>
 			
 		</div>
 	</div>

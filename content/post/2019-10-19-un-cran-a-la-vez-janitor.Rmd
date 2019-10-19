@@ -4,7 +4,7 @@ author: ~
 date: '2019-10-19'
 slug: un-cran-a-la-vez-janitor
 categories: [uncranalavez, janitor, bibliotecas]
-tags: [limpieza, transformacion, ETL, datawrangling]
+tags: [limpieza, transformacion, ETL, data-wrangling]
 publishdate: '2019-10-19T16:38:25-03:00'
 comments: yes
 ---
@@ -49,7 +49,7 @@ colnames(datos_limpios)
  Lo primero que salta a la vista es que janitor y tidyverse se llevan increíblemente bien. Lo segundo, es que con una simple función todas las variables perdieron los caracteres especiales (en nuestro caso las tildes), los puntos fueron reemplazador por "_" como separadores y todo está en bella letra minúscula.
  Vamos a ver si hay filas enteramente vacías (todo es posible cuando viene de Excel), que tengan siempre el mismo valor (categoría constante) y si hay alguna línea duplicada.
  
-```{r remuevo_filas, message=FALSE, warning=FALSE}
+```{r remuevo_filas, warning=FALSE}
 
 datos_limpios <- datos_originales %>% 
   clean_names() %>% 
@@ -67,10 +67,11 @@ dim(duplicados)
 ```
  
 No tenemos filas vacías ni duplicados (tenemos la misma cantidad de observaciones) aunque sí encontró una fila con todos valores constantes y la removió (fecha_ult_ingreso). 
+Lo que nos va a interesar en este caso es hacer un análisis de las variables género y apoyo espiritual. Ahora, ¿no sería más útil tener en vez de categorías A y B más información sobre las categorías? Consultando el libro de código de esta base (si, esa prolijidad por favor para documentar todes) sé que A significa hombre en género (ninguna sorpresa por aquí) y B mujer (nosotres no la hicimos les juro). Además, que en apoyo espiritual A significa que no lo solicitó y B que sí lo solicitó y lo tuvo (existe otra categoría que lo solicitó y no lo tuvo pero no nos tocaron casos). Vamos a usar la función recode() del tidyverse para emprolijarla.
+Por último, vimos que había muchas celdas vacías que no eran tomadas como casos perdidos aunque conceptualmente lo son. Vamos a ayudarnos con mutate_all() y na_if() para resolver eso.
 
 
-
-```{r recodear, message=FALSE, warning=FALSE}
+```{r recodear, warning=FALSE}
 
 datos_limpios <- datos_limpios %>% 
   mutate(genero = recode(genero,
@@ -78,7 +79,10 @@ datos_limpios <- datos_limpios %>%
                            "B" = "mujer"),
          apoyo_espiritual = recode(apoyo_espiritual,
                            "A" = "no quiso",
-                           "B" = "tuvo apoyo"))
+                           "B" = "tuvo apoyo")) %>% 
+  mutate_all(na_if,"")
+
+head(datos_limpios)
 
 ```
 
@@ -87,7 +91,7 @@ datos_limpios <- datos_limpios %>%
 Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y compatibles con el pipe de magrittr (%>%) que popularizó el tidyverse. Vamos a cruzar la variable género con apoyo espiritual.
 
 
-```{r tablas, message=FALSE, warning=FALSE}
+```{r tablas}
 
 datos_limpios %>% 
   tabyl(genero, apoyo_espiritual)
