@@ -12,7 +12,7 @@ comments: yes
 Así damos inicio a la sección dada a llamar **Un CRAN a la vez** (inspirada en [este proyecto](https://djnavarro.net/post/a-random-walk-on-cran/) de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida [aqui](https://github.com/sfirke/janitor), en conjunción con nuestro querido tidyverse.
 
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 library(tidyverse)
 library(janitor)
@@ -30,7 +30,9 @@ Veamos un ejemplo (real) de un dataset, truncado por temas de confidencialidad, 
 ```{r levanto la base, message=FALSE, warning=FALSE}
 
 
-datos_originales <- read.csv("https://elradar.github.io/data/data_janitor.csv")
+datos_originales <- read.csv("https://elradar.github.io/data/data_janitor.csv", encoding = "latin1")
+
+datos_originales
 
 ```
 
