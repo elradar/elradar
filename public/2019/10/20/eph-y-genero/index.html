@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es-ar"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.58.3" />
+	
+	<link rel="icon" href="/images/logo.png">
+	
+	<title>EPH y género | el radaR</title>
+	
+	
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="EPH y género"/>
+<meta name="twitter:description" content="Este genial proyecto sobre inequidades de género según datos de la EPH fue hecho por la gran Natsumi Shokida y está alojado en su página de RPubs, desde donde se puede descargar el código en formato ."/>
+
+	<meta property="og:title" content="EPH y género" />
+<meta property="og:description" content="Este genial proyecto sobre inequidades de género según datos de la EPH fue hecho por la gran Natsumi Shokida y está alojado en su página de RPubs, desde donde se puede descargar el código en formato ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2019/10/20/eph-y-genero/" />
+<meta property="article:published_time" content="2019-10-20T07:54:16-03:00" />
+<meta property="article:modified_time" content="2019-10-20T00:00:00+00:00" />
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://elradar.github.io/">
+
+            
+            <img src="/images/logo.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/post">Posts</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle">el radaR</h1>
+    <p class="lead">
+         detectando los paquetes y proyectos en R que tenés que conocer
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Compartir</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=EPH%20y%20g%c3%a9nero&url=%2f2019%2f10%2f20%2feph-y-genero%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=%2f2019%2f10%2f20%2feph-y-genero%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=%2f2019%2f10%2f20%2feph-y-genero%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+        <div class="sep">
+        </div>				
+        <ul>
+            <li> 
+            <a  class="small smoothscroll" href="#disqus_thread"></a>
+            </li>
+        </ul>
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                                                
+                        
+                        <h1 class="posttitle">EPH y género</h1> 
+                    </div>
+
+                    
+                    
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p><em>Este genial proyecto sobre inequidades de género según datos de la EPH fue hecho por la gran <a href="https://twitter.com/NatsuSh">Natsumi Shokida</a> y está alojado en su página de <a href="https://rpubs.com/natsumi_shokida/tercer_trim_2018">RPubs</a>, desde donde se puede descargar el código en formato .Rmd</em></p>
+<div id="presentación" class="section level2">
+<h2>Presentación</h2>
+<p>En este informe se presentan una serie de indicadores sociales, desagregados por sexo, calculados con bases públicas de la EPH (Encuesta Permanente de Hogares - INDEC - Argentina). El objetivo de esta presentación es visibilizar la desigualdad de género en la composición del mercado de trabajo, la percepción de ingresos, entre otras cuestiones, en un formato amigable.<br />
+Todos los datos refieren a los 31 aglomerados urbanos relevados en la EPH y en esta ocasión corresponden al 3er trimestre 2018.</p>
+</div>
+<div id="composición-del-mercado-de-trabajo" class="section level2">
+<h2>Composición del Mercado de Trabajo</h2>
+</div>
+<div id="inserción-laboral" class="section level2">
+<h2>Inserción laboral</h2>
+<p>En primer lugar se presentan algunos indicadores clásicos (utilizados a nivel internacional) que caracterizan la composición del mercado de trabajo, desagregados según el sexo.<br />
+La tasa de Actividad es la relación entre aquellos que participan en el mercado de trabajo (ya sea como ocupados o como desocupados) y la población total. En este caso, dicha tasa es ampliamente mayor entre los varones (la diferencia supera los 20 puntos porcentuales). Esto sucede porque existe una importante porción de las mujeres en edad laboral que dedican su tiempo a realizar tareas domésticas, hacia el interior de sus hogares, en lugar de tener una actividad en el mercado de trabajo.<br />
+La tasa de Empleo exhibe la proporción de ocupados entre la población total. La diferencia entre varones y mujeres en este caso también supera los 20 puntos, denotando el mismo fenómeno anteriormente mencionado.<br />
+A diferencia de las tasas anteriores, las tasas de desocupación y subocupación expresan la proporción que estos grupos representan en la Población Económicamente Activa. En este caso, ambas tasas son mayores para las mujeres que para los varones. Esto expresa que, incluso siendo minoría en el mercado de trabajo, las mujeres tienen más dificultades para conseguir trabajo y/o para trabajar una jornada completa.<br />
+En su conjunto, estos cuatro indicadores nos presentan una primera imagen de la masculinización del mercado de trabajo argentino.</p>
+<p><strong>Gráfico 1.</strong> <em>Población de 14 años y más. Tasas de Actividad y de Empleo por sexo. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><strong>Gráfico 2.</strong> <em>Población de 14 años y más. Tasas de Desocupación y de Subocupación por sexo. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="por-grupos-de-edad-y-sexo" class="section level2">
+<h2>Por grupos de edad y sexo</h2>
+<p>Asimismo se exponen las mismas tasas, pero desagregadas por grupos de edad además de por sexo. En este caso, llama la atención que son las mujeres más jóvenes las que presentan menores tasas de Actividad y Empleo, en simultáneo con las mayores tasas de Desocupación y Subocupación.<br />
+Para dar un ejemplo, un 21,5% de las mujeres de 14 a 29 años está desocupada, es decir que, no teniendo ocupación, están buscando activamente un trabajo y no lo consiguen.</p>
+<strong>Cuadro 1.</strong> <em>Población de 14 a 64 años. Principales Tasas del Mercado de Trabajo, por grupos de edad y sexo. En porcentajes. Total de aglomerados urbanos. 3er trimestre 2018.</em>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="1">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+de 14 a 29 años
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+de 30 a 64 años
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:right;">
+Indicadores
+</th>
+<th style="text-align:right;">
+Mujeres
+</th>
+<th style="text-align:right;">
+Varones
+</th>
+<th style="text-align:right;">
+Mujeres
+</th>
+<th style="text-align:right;">
+Varones
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+Tasa Actividad
+</td>
+<td style="text-align:right;">
+39,8
+</td>
+<td style="text-align:right;">
+55,1
+</td>
+<td style="text-align:right;">
+68,4
+</td>
+<td style="text-align:right;">
+91,4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Tasa Empleo
+</td>
+<td style="text-align:right;">
+31,3
+</td>
+<td style="text-align:right;">
+47,1
+</td>
+<td style="text-align:right;">
+63,6
+</td>
+<td style="text-align:right;">
+86,6
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Tasa Desocupación
+</td>
+<td style="text-align:right;">
+21,5
+</td>
+<td style="text-align:right;">
+14,5
+</td>
+<td style="text-align:right;">
+7,1
+</td>
+<td style="text-align:right;">
+5,3
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Tasa Subocupación
+</td>
+<td style="text-align:right;">
+15,1
+</td>
+<td style="text-align:right;">
+12,9
+</td>
+<td style="text-align:right;">
+14,2
+</td>
+<td style="text-align:right;">
+8,5
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="empleo-no-registrado" class="section level2">
+<h2>Empleo no registrado</h2>
+<p>A su vez, las ocupadas asalariadas están expuestas a una tasa de empleo no registrado mayor que la de sus compañeros varones. Hay un 37,0% de las asalariadas a quienes sus empleadores no inscriben en la seguridad social, mientras que para los asalariados varones esta tasa de no registro es del 32,1%.</p>
+<strong>Cuadro 2.</strong> <em>Ocupadas/os asalariadas/os. Tasas de empleo no registrado por sexo. Total de aglomerados urbanos. 3er trimestre 2018.</em>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Sexo
+</th>
+<th style="text-align:right;">
+Proporción de no Registrados
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+Mujeres
+</td>
+<td style="text-align:right;">
+37,0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Varones
+</td>
+<td style="text-align:right;">
+32,1
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="acceso-a-cargos-jerárquicos" class="section level2">
+<h2>Acceso a Cargos jerárquicos</h2>
+<p>Además de tener una participación más restringida en el mercado de trabajo, las ocupadas encuentran más obstáculos para acceder a cargos jerárquicos: mientras que un 8,0% de los ocupados varones tienen cargos de dirección o son jefes, un 5,5% de las ocupadas ejercen puestos de esas características. Al mismo tiempo, las ocupadas se encuentran más concentradas en los puestos asalariados, es decir, en relación de dependencia.</p>
+<p><strong>Gráfico 3.</strong> <em>Ocupadas/os. Mujeres y Varones según Jerarquía de la ocupación, en porcentaje (escalas libres). Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="brechas-de-ingresos-mensuales" class="section level2">
+<h2>Brechas de ingresos mensuales</h2>
+<p>A continuación se hace foco en las diferencias de montos de ingresos que perciben los varones y las mujeres. Estos ingresos pueden provenir de diversas fuentes y al mismo tiempo pueden desagregarse según características adicionales de las personas o los puestos que desempeñan. Incluso pueden distinguirse los ingresos mensuales y los ingresos horarios.<br />
+Para dimensionar estas diferencias hacemos uso del concepto de “brecha”, que en este caso se calcula como la diferencia entre los ingresos promedios de los varones y las mujeres, expresada en términos del ingreso más alto. Es decir, que puede leerse como “las mujeres perciben ingresos que, en promedio, son un …% menores que los de los varones”.</p>
+<div id="brecha-de-ingresos-totales-mensuales" class="section level3">
+<h3>Brecha de ingresos totales mensuales</h3>
+<p>Observando los ingresos totales individuales de toda la población, se observa que la brecha entre varones y mujeres en este caso es de 26,2 puntos porcentuales. Es decir, contemplando todos los ingresos que se perciben, sean de origen laboral o no laboral (como jubilaciones y pensiones, cuotas alimentarias, subsidios, etc.), las mujeres perciben ingresos que, en promedio, son un 26,2% menores que los de los varones.</p>
+<strong>Cuadro 3.</strong> <em>Población perceptora de ingresos. Media de ingresos totales individuales y brecha de ingresos (en porcentaje) por sexo. Total de aglomerados urbanos. 3er trimestre 2018.</em>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Media de ingresos de las Mujeres
+</th>
+<th style="text-align:right;">
+Media de ingresos de los Varones
+</th>
+<th style="text-align:right;">
+Brecha del Ingreso Total Individual
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+$15.460,70
+</td>
+<td style="text-align:right;">
+$20.963,20
+</td>
+<td style="text-align:right;">
+26,2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="brecha-de-ingresos-mensuales-de-lasos-ocupadasos" class="section level3">
+<h3>Brecha de ingresos mensuales de las/os ocupadas/os</h3>
+<p>Simultáneamente, en el mercado de trabajo, las mujeres ganan en promedio un 25,2% menos que los varones ($13.860,60 vs. $18.537,90 ). Estos datos corresponden a la totalidad de ocupadas/os, cualquiera sea su categoría ocupacional, calificación o jerarquía, y observando en este caso los ingresos provenientes de la ocupación principal.</p>
+<strong>Cuadro 4.</strong> <em>Ocupadas/os. Media de ingresos de la ocupación principal y brecha de ingresos (en porcentaje) por sexo. Total de aglomerados urbanos. 3er trimestre 2018.</em>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Media de ingresos de las Mujeres
+</th>
+<th style="text-align:right;">
+Media de ingresos de los Varones
+</th>
+<th style="text-align:right;">
+Brecha de ingresos de la ocupación principal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+$13.860,60
+</td>
+<td style="text-align:right;">
+$18.537,90
+</td>
+<td style="text-align:right;">
+25,2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="brecha-de-ingresos-mensuales-entre-asalariadasos-no-registrados" class="section level3">
+<h3>Brecha de ingresos mensuales entre asalariadas/os no registrados</h3>
+<p>Anteriormente se observó que las asalariadas están expuestas a una tasa de no registro más alta que la que presentan los asalariados varones. Pero además, las asalariadas de este sector, el no registrado, ganan en promedio un 37,2% menos que sus pares. Es decir que la brecha de ingresos de las/os ocupadas/os se amplía cuando vemos a aquellas/os asalariadas/os que tienen peores condiciones de trabajo.</p>
+<strong>Cuadro 5.</strong> <em>Ocupadas/os Asalariadas/os no registrados. Media de ingresos de la ocupación principal y brecha de ingresos (en porcentaje) por sexo. Total de aglomerados urbanos. 3er trimestre 2018.</em>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Media de ingresos de las Mujeres
+</th>
+<th style="text-align:right;">
+Media de ingresos de los Varones
+</th>
+<th style="text-align:right;">
+Brecha de ingresos de la ocupacion principal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+$7.050,30
+</td>
+<td style="text-align:right;">
+$11.225,10
+</td>
+<td style="text-align:right;">
+37,2
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="brecha-de-ingresos-mensuales-por-calificación-del-puesto-de-trabajo" class="section level3">
+<h3>Brecha de ingresos mensuales por calificación del puesto de trabajo</h3>
+<p>La brecha de ingresos mensuales de las/os ocupadas/os se mantiene incluso a iguales niveles de calificación del puesto de trabajo. Por ejemplo, mientras que los varones que trabajan en ocupaciones profesionales tienen un ingreso medio de $35.218, las mujeres ocupadas en ese mismo segmento perciben un ingreso medio de $28.036, es decir, un 20,4% menos que los varones.<br />
+En los puestos no calificados, los varones ganan $12.055 en promedio, al tiempo que las mujeres ganan alrededor de $7.404. Esta brecha es del 38,6%.</p>
+<p><strong>Gráfico 4.</strong> <em>Ocupadas/os. Brecha de ingresos mensuales de la ocupación principal, por sexo y calificación ocupacional. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="brecha-de-ingresos-mensuales-por-nivel-educativo" class="section level3">
+<h3>Brecha de ingresos mensuales por nivel educativo</h3>
+<p>Las mujeres ocupadas están en promedio más formadas que los varones que participan en el mercado de trabajo (hay una mayor proporción de mujeres con niveles educativos más altos). Sin embargo, a igual nivel educativo, los ingresos laborales de las mujeres trabajadoras son inferiores a los de los varones. Esta diferencia de ingresos es del 26,9% para las de nivel universitario/superior, y del 46,2% para las que cuentan con nivel primario.</p>
+<strong>Cuadro 6.</strong> <em>Ocupadas/os. Mujeres y Varones según nivel educativo (Porcentaje por columnas). Total de aglomerados urbanos. 3er trimestre 2018.</em>
+<table class="table table-striped table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+Nivel Educativo
+</th>
+<th style="text-align:right;">
+% de Mujeres
+</th>
+<th style="text-align:right;">
+% de Varones
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+Sin Instrucción
+</td>
+<td style="text-align:right;">
+2,7
+</td>
+<td style="text-align:right;">
+4,5
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Primaria
+</td>
+<td style="text-align:right;">
+24,1
+</td>
+<td style="text-align:right;">
+35,9
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Secundaria
+</td>
+<td style="text-align:right;">
+42,9
+</td>
+<td style="text-align:right;">
+42,2
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Superior
+</td>
+<td style="text-align:right;">
+30,3
+</td>
+<td style="text-align:right;">
+17,3
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Gráfico 5.</strong> <em>Ocupadas/os. Brecha de ingresos mensuales de la ocupación principal, por sexo y nivel educativo. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+</div>
+<div id="brechas-de-ingresos-horarios" class="section level2">
+<h2>Brechas de ingresos horarios</h2>
+<div id="brecha-de-ingresos-horarios-por-calificación-del-puesto-de-trabajo" class="section level3">
+<h3>Brecha de ingresos horarios por calificación del puesto de trabajo</h3>
+<p>Si en lugar de comparar ingresos mensuales tomamos el ingreso por hora de las personas, la historia es un poco diferente. Al recalcular el gráfico 4 (por calificación del puesto de trabajo) la brecha disminuye considerablemente.</p>
+<p><strong>Gráfico 6.</strong> <em>Ocupadas/os. Brecha de ingresos horarios de la ocupación principal, por sexo y calificación ocupacional. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="brecha-de-ingresos-horarios-por-nivel-educativo" class="section level3">
+<h3>Brecha de ingresos horarios por nivel educativo</h3>
+<p>Si esos mismos ingresos horarios de las/os ocupadas/os se comparan según su nivel educativo, la brecha se mantiene, aunque a niveles más bajos, para la mayoría de los niveles. Sin embargo, cabe señalar que estos indicadores están sujetos a cierta volatilidad en las horas de trabajo captadas en la encuesta y una muestra reducida para los niveles Primario y Sin Instrucción.</p>
+<p><strong>Gráfico 7.</strong> <em>Ocupadas/os. Brecha de ingresos horarios de la ocupación principal, por sexo y nivel educativo. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>Al incorporar la extensión de las jornadas laborales al análisis, la magnitud de la brecha disminuye notablemente. De aquí se desprende que, en promedio, las mujeres trabajan menos horas que los varones, y esto explica una parte importante de (aunque no toda) la brecha de ingresos mensuales. Cabe cuestionarse entonces respecto al porqué de la diferencia de horas trabajadas por mujeres y por hombres. ¿Existe una falta de voluntad de las mujeres para trabajar? ¿son más holgazanas? ¿o en realidad existe otro motivo por el cual las mujeres deben relegar sus trabajos, del cual los hombres están exentos?</p>
+</div>
+</div>
+<div id="distribución-de-las-tareas-del-hogar" class="section level2">
+<h2>Distribución de las tareas del hogar</h2>
+<p>Generalmente, las mujeres deben además dedicar su tiempo al trabajo doméstico. Es decir, realizan tareas de cuidado y reproducción para otros miembros de su hogar. Este trabajo no se comercia en el mercado y por tanto no es remunerado. A modo ilustrativo, se señala que: del total de personas que realizan las tareas de la casa, un 75% son mujeres y un 25% son varones. Esto considerando todos los hogares, y seguramente se agravaría la diferencia si quitáramos los hogares unipersonales del conteo y/o incluyéramos a las trabajadoras de servicio doméstico.<br />
+Este reparto desigual de las tareas domésticas entre varones y mujeres puede asociarse a las desigualdades vistas en la composición del mercado de trabajo y la diferencia de la extensión de la jornada laboral.</p>
+<p><strong>Gráfico 8.</strong> <em>Personas que realizan las tareas domésticas del hogar, según sexo (no incluye trabajadoras de servicio doméstico). Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>A esto se suma el hecho de que prácticamente todas las personas que se dedican al servicio doméstico (es decir, que sí venden este trabajo en el mercado) son mujeres, un 97,6%. Asimismo, del total de mujeres ocupadas, un 17% se dedica a esta ocupación, conformando entonces una salida laboral popular.</p>
+<p><strong>Gráfico 9.</strong> <em>Ocupadas, según si prestan o no servicios domésticos en hogares particulares. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+<div id="distribución-del-ingreso" class="section level2">
+<h2>Distribución del ingreso</h2>
+<p>Por último, podemos ver el efecto de estas diferencias en la distribución de los ingresos. En primer lugar, se ordena por deciles a las personas según su ingreso per cápita familiar (el ingreso total del hogar dividido por la cantidad de personas que lo componen). Es decir, se forman diez grupos de individuos, de igual tamaño, ordenados según el nivel de ingresos que le corresponden por el hogar al que pertenece. En el gráfico 10 se puede observar la proporción de mujeres y de varones que finalmente componen cada decil. En este caso, no hay diferencias destacables más allá de una leve preponderancia de las mujeres en todos los deciles, explicable por cuestiones demográficas (hay más mujeres que varones en la población general).</p>
+<p><strong>Gráfico 10.</strong> <em>Total de la población. Composición según sexo de los deciles del ingreso per cápita familiar. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>En segundo lugar, se separa a la población en deciles según el ingreso total individual. Es decir, los ordenamos según el nivel de ingresos que percibe cada individuo, no ya según lo que percibía su hogar. En este caso puede verse que los deciles más bajos de ingresos están compuestos mayoritariamente por mujeres y, en paralelo, los deciles de mayores ingresos se componen mayoritariamente por varones. Decimos entonces que los estratos de menores ingresos están feminizados, al tiempo que los estratos de mayores ingresos se encuentran masculinizados. ¿Cuál es la diferencia respecto del gráfico anterior?</p>
+<p><strong>Gráfico 11.</strong> <em>Población perceptora de ingresos. Composición según sexo de los deciles de ingresos totales individuales. Total de aglomerados urbanos. 3er trimestre 2018.</em> <img src="/post/EPH-y-genero_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>En el gráfico 10, las unidades de análisis son los hogares, sólo que luego se distribuyeron de forma “pareja” sus ingresos entre los miembros. De esta forma, la composición por sexo de los estratos de menores ingresos no tiene mayores diferencias respecto a la de los estratos de mayores ingresos. Sin embargo, en el gráfico 11 vemos lo que pasa a nivel individual, lo cual es una forma de “abrir” lo que pasa hacia el interior de los hogares. La unidad familiar parece resolver la diferencia entre sexos, pero es dentro de ésta que se mantiene la diferencia: de acuerdo a todo lo visto anteriormente, los varones tienen más probabilidades de ganar más que las mujeres del mismo hogar. La distribución de los ingresos de las mujeres, sesgada hacia los menores ingresos, se compensa en la estructura familiar con la distribución de los ingresos de los varones, sesgada hacia los mayores ingresos. Entonces, la familia como unidad de reproducción esconde y resuelve debajo de la superficie (la distribución aparentemente equitativa según los ingresos per cápita) la inequitativa distribución de las tareas de reproducción y las dificultades asociadas que tienen las mujeres para participar de forma plena en el mercado de trabajo y por tanto percibir ingresos semejantes a los de los varones.</p>
+</div>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/genero">genero</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/eph">EPH</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/inequidad">inequidad</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="/2019/10/19/un-cran-a-la-vez-janitor/">Un CRAN a la vez: janitor &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">              
+                           
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light"> Ver también <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/data-wrangling">data-wrangling</a>
+			
+			<a class="mt-1 mb-1" href="/tags/eph">eph</a>
+			
+			<a class="mt-1 mb-1" href="/tags/etl">etl</a>
+			
+			<a class="mt-1 mb-1" href="/tags/genero">genero</a>
+			
+			<a class="mt-1 mb-1" href="/tags/inequidad">inequidad</a>
+			
+			<a class="mt-1 mb-1" href="/tags/limpieza">limpieza</a>
+			
+			<a class="mt-1 mb-1" href="/tags/transformacion">transformacion</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright equipo el radaR
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
+                Mediumish Theme por WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+    </body>
+</html>
