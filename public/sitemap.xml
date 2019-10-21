@@ -68,12 +68,17 @@
   </url>
   
   <url>
-    <loc>/categories/janitor/</loc>
+    <loc>/tags/janitor/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>/tags/limpieza/</loc>
+    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/paquetes/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
