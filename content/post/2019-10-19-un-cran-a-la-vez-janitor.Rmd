@@ -3,13 +3,13 @@ title: 'Un CRAN a la vez: janitor'
 author: ~
 date: '2019-10-19'
 slug: un-cran-a-la-vez-janitor
-categories: [uncranalavez, janitor, bibliotecas]
-tags: [limpieza, transformacion, ETL, data-wrangling]
+categories: [uncranalavez, bibliotecas, paquetes]
+tags: [limpieza, transformacion, ETL, data-wrangling, janitor]
 publishdate: '2019-10-19T16:38:25-03:00'
 comments: yes
 ---
 
-Así damos inicio a la sección dada a llamar **Un CRAN a la vez** (inspirada en [este proyecto](https://djnavarro.net/post/a-random-walk-on-cran/) de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida [aqui](https://github.com/sfirke/janitor), en conjunción con nuestro querido tidyverse.
+Así damos inicio a la sección dada a llamar **Un CRAN a la vez** (inspirada en [este proyecto](https://djnavarro.net/post/a-random-walk-on-cran/) de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada **janitor**, hecha por Sam Firke y subida [aqui](https://github.com/sfirke/janitor), en conjunción con nuestro querido, y ya clásico, **tidyverse**.
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -18,26 +18,26 @@ library(tidyverse)
 library(janitor)
 
 ```
-janitor es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. Para aquellos que saben inglés, Alison Hill (/apresshill en Twitter) hizo una ilustración sobre este paquete que es bastante informativa:
+
+**janitor** es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. Para aquellos que saben inglés, Alison Hill (/apresshill en Twitter) hizo una ilustración sobre este paquete que es bastante informativa:
 
 
 ![](https://pbs.twimg.com/media/ED1UxS4U8AEh31k?format=jpg&name=medium)
 
 
-Veamos un ejemplo (real) de un dataset, truncado por temas de confidencialidad, en el que una biblioteca como janitor nos vino al pelo.
+Veamos un ejemplo de un dataset real, truncado por temas de confidencialidad, en el que una biblioteca como janitor nos vino al pelo para volverlo más ameno para su procesamiento.
 
 
 ```{r levanto la base, message=FALSE, warning=FALSE}
 
 
 datos_originales <- read.csv("https://elradar.github.io/data/data_janitor.csv", encoding = "latin1")
-
-datos_originales
+glimpse(datos_originales)
 
 ```
 
-Al husmear la estructura del dataset, vemos que las columnas *Género* y *Teléfono* tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de  lascolumnas puede afectar muchas operaciones (que se encuentran penadas y adaptadas al inglés, o el esperanto de la era digital).
-Por otro lado, podemos ver que en muchas de las columnas han decidido usar el punto como separador de palabras. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad pero en general se prefiere utilizar el guión bajo o underscore como separador. Por último, que los nombres de las columnas se encuentren enteramente en minúscula no nos vendría mal para ahorrar tiempo si tipeamos (el viaje de ida y vuelta al Caps Lock).
+Al husmear la estructura del dataset, vemos que las columnas *Género* y *Teléfono* tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de  las columnas puede afectar muchas operaciones (que se encuentran penadas y adaptadas al inglés o el esperanto de la era digital). <br/>
+Por otro lado, podemos ver que en muchos de los nombres de columnas han decidido usar el punto como separador de palabras. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad, pero en general se prefiere utilizar el guión bajo o "underscore" como separador. Por último, que los nombres de las columnas se encuentren enteramente en minúscula no nos vendría nada mal para ahorrar tiempo al tipear (el viaje de ida y vuelta al Caps Lock).
 
 ```{r nombres_columnas, warning=FALSE}
 
@@ -68,14 +68,15 @@ dim(duplicados)
 
 ```
  
-No tenemos filas vacías ni duplicados (tenemos la misma cantidad de observaciones) aunque sí encontró una fila con todos valores constantes y la removió (fecha_ult_ingreso). 
-Lo que nos va a interesar en este caso es hacer un análisis de las variables género y apoyo espiritual. Ahora, ¿no sería más útil tener en vez de categorías A y B más información sobre las categorías? Consultando el libro de código de esta base (si, esa prolijidad por favor para documentar todes) sé que A significa hombre en género (ninguna sorpresa por aquí) y B mujer (nosotres no la hicimos les juro). Además, que en apoyo espiritual A significa que no lo solicitó y B que sí lo solicitó y lo tuvo (existe otra categoría que lo solicitó y no lo tuvo pero no nos tocaron casos). Vamos a usar la función recode() del tidyverse para emprolijarla.
-Por último, vimos que había muchas celdas vacías que no eran tomadas como casos perdidos aunque conceptualmente lo son. Vamos a ayudarnos con mutate_all() y na_if() para resolver eso.
+No tenemos filas vacías ni duplicados (tenemos la misma cantidad de observaciones) aunque sí encontró una fila con todos valores constantes y la removió (fecha_ult_ingreso). <br/>
+Lo que nos va a interesar en este caso es hacer un análisis de las variables género y apoyo espiritual. Ahora, ¿no sería más útil tener en vez de categorías *A* y *B* más información sobre las categorías? Consultando el libro de código de esta base (qué linda esa prolijidad) sé que *A* significa *hombre* en la variable género (ninguna sorpresa por aquí) y *B* significa *mujer*. Además, que en la columna apoyo espiritual *A* representa que *no solicitó apoyo espiritual* y *B* que *sí lo solicitó y lo tuvo* (existe otra categoría que lo solicitó y no lo tuvo pero no nos tocaron casos en la muestra). Vamos a usar la función recode() del tidyverse para emprolijarla. <br/>
+Por último, vimos que había muchas celdas vacías que no eran tomadas como casos perdidos aunque conceptualmente lo son. Vamos a ayudarnos con mutate_all() y na_if() para resolver eso; y vamos a sacarnos de encima esa variable *X* que viene de guardar archivos en excel sin ninguna modificación de argumento.
 
 
 ```{r recodear, warning=FALSE}
 
 datos_limpios <- datos_limpios %>% 
+  select(-x) %>% 
   mutate(genero = recode(genero,
                            "A" = "hombre",
                            "B" = "mujer"),
@@ -84,13 +85,13 @@ datos_limpios <- datos_limpios %>%
                            "B" = "tuvo apoyo")) %>% 
   mutate_all(na_if,"")
 
-head(datos_limpios)
+glimpse(datos_limpios)
 
 ```
 
 
 
-Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y compatibles con el pipe de magrittr (%>%) que popularizó el tidyverse. Vamos a cruzar la variable género con apoyo espiritual.
+Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y compatibles con el pipe de magrittr (%>%) que popularizó el tidyverse. En esta ocasión vamos a cruzar la variable género con apoyo espiritual que fue lo que definimos más arriba que nos interesaba analizar.
 
 
 ```{r tablas}
@@ -117,6 +118,6 @@ datos_limpios %>%
 ```
 
 
-Y así tenemos una tabla bastante linda, con bastante margen de formateo y sin salir del universo tidyverse (yey). Por supuesto que no sacaremos ninguna conclusión sobre estos datos ya que forman parte de una muestra no aleatoria ni representativa de un conjunto de información no disponible (aún) para su publicación. 
+Y así tenemos una tabla bastante linda, con bastante flexibilidad de formateo y sin salir en ningún momento del universo tidyverse (yey). Por supuesto que no sacaremos ninguna conclusión sobre estos datos ya que forman parte de una muestra no aleatoria ni representativa de un conjunto de información no disponible (aún) para su publicación. <br/>
 
 **BONUS TRACK**: Otra joyita que tiene esta biblioteca janitor es la función excel_numeric_to_date() para hacer ingeniería inversa de aquellas fechas de Excel que llegan como enteros a R (si les pasó alguna vez reconocerán rápido este problema)
