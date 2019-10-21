@@ -1,17 +1,16 @@
 ---
-title: ¿Existen suficientes vacantes escolares para los niños de la Villa 21-24?
-date: '2019-10-21'
-slug: existen-suficientes-vacantes-escolares-para-los-niños-de-la-villa-21-24
-categories:
-  - reporte
-tags:
-  - inequidad
-  - educación
-publishdate: '2019-10-21T16:24:37-03:00'
+title: "¿Existen suficientes vacantes escolares para los niños de la Villa 21-24?"
 comments: yes
+date: '2019-10-21'
+publishdate: '2019-10-21T16:24:37-03:00'
+slug: existen-suficientes-vacantes-escolares-para-los-niños-de-la-villa-21-24
+tags:
+- inequidad
+- educación
+categories: reporte
 ---
 
-_Presentamos un análisis, aún en proceso, desarrollado por [Demian Zayat](https://twitter.com/demzayat), abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes._
+_Presentamos el análisis (aún en proceso) desarrollado por [Demian Zayat](https://twitter.com/demzayat), abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes._
 
 _Demian trabaja con R desde 2008, cuando hizo su tesis de maestría para la Universidad de Stanford sobre concursos y selección de jueces. Sin embargo, el interés -luego de varios años dormido- reapareció en el 2018 con la ciencia de datos. Armó el sitio www.antidiscriminacion.org y está cursando el [posgrado de FLACSO sobre Big Data e Inteligencia Territorial](https://www.flacso.org.ar/formacion-academica/big-data-e-inteligencia-territorial/)._
 
@@ -49,10 +48,7 @@ Y por último habrá que calcular las distancias de las escuelas al barrio infor
 ## Geolocalización de los datos del censo 2010
 
 ```{r setup, include=FALSE}
-#Carga de librerías
-
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
-
 ```
 
 ```{r}
@@ -63,7 +59,7 @@ library(sf)
 library(leaflet)
 library(kableExtra)
 library(mapdeck)
-
+library(widgetframe)
 ```
 
 
@@ -328,10 +324,17 @@ mapa_escuelas <- leaflet() %>%
                lat = primarios_comuna_4$lat,
                label = ~paste0(primarios_comuna_4$NOMBRE_ABR, ": ",as.character(primarios_comuna_4$total)) )
 
+```
 
+```{r eval=FALSE, echo=FALSE}
+htmlwidgets::saveWidget(mapa_escuelas, file = "../../public/widgets/demian_mapa_escuelas.html")
+```
+
+```{r eval=FALSE}
 mapa_escuelas
 ```
 
+<iframe height=400 width=1200 src='/widgets/demian_mapa_escuelas.html'> </iframe>
 
 Para ver qué escuelas están dentro del radio de diez cuadras de la villa  --que es la distancia para obtener prioridad en la inscripción, de acuerdo al artículo 29 del Reglamento de inscripciones^[Véase en línea el [reglamento](http://www.ademys.org.ar/v2/wp-content/uploads/2015/10/Reglamento-del-Sistema-de-Inscripciones-y-Asignaci%C3%B3n-de-Vacantes.pdf).]-- podemos ampliar el perímetro de la villa con un `st_buffer` y graficarlo.
 
@@ -351,8 +354,19 @@ escuelas_buffer <- leaflet() %>%
                lat = primarios_comuna_4$lat,
                label = ~paste0(primarios_comuna_4$NOMBRE_ABR, ": ",as.character(primarios_comuna_4$total)) )
 
-escuelas_buffer 
 ```
+
+```{r eval=FALSE, echo=FALSE}
+htmlwidgets::saveWidget(escuelas_buffer, file = "../../public/widgets/demian_escuelas_buffer.html")
+```
+
+
+```{r eval=FALSE}
+escuelas_buffer
+```
+
+<iframe height=400 width=1200 src='/widgets/demian_escuelas_buffer.html'> </iframe>
+
 
 Ahora podemos identificar las escuelas que están en el radio de 10 cuadras, que pueden darle vacantes a los niños de la Villa 21-24, y calcular su cantidad de vacantes.
 
@@ -438,9 +452,17 @@ escuelas_arcos <- mapdeck(style = mapdeck_style("streets"),
              destination = c("lon_salida", "lat_salida"),
              origin  = c("lon_llegada", "lat_llegada")) %>% 
     add_polygon(data = comuna4_villa2124)
+```
 
+```{r eval=FALSE, echo=FALSE}
+htmlwidgets::saveWidget(escuelas_arcos, file = "../../public/widgets/demian_escuelas_arcos.html")
+```
+
+```{r eval=FALSE}
 escuelas_arcos
 ```
+
+<iframe height=400 width=1200 src='/widgets/demian_escuelas_arcos.html'> </iframe>
 
 
 # Conclusiones
