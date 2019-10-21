@@ -2,49 +2,49 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>el radaR</title>
-    <link>https://elradar.github.io/</link>
+    <link>/</link>
     <description>Recent content on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://elradar.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>¿Existen suficientes vacantes escolares para los niños de la Villa 21-24?</title>
-      <link>https://elradar.github.io/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</link>
+      <link>/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</guid>
-      <description>Presentamos un análisis, aún en proceso, desarrollado por Demian Zayat, abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes.</description>
+      <guid>/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</guid>
+      <description>Presentamos el análisis (aún en proceso) desarrollado por Demian Zayat, abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes.</description>
     </item>
     
     <item>
       <title>EPH y género</title>
-      <link>https://elradar.github.io/2019/10/20/eph-y-genero/</link>
+      <link>/2019/10/20/eph-y-genero/</link>
       <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/2019/10/20/eph-y-genero/</guid>
+      <guid>/2019/10/20/eph-y-genero/</guid>
       <description>Este genial proyecto sobre inequidades de género según datos de la EPH fue hecho por la gran Natsumi Shokida y está alojado en su página de RPubs, desde donde se puede descargar el código en formato .</description>
     </item>
     
     <item>
       <title>Un CRAN a la vez: janitor</title>
-      <link>https://elradar.github.io/2019/10/19/un-cran-a-la-vez-janitor/</link>
+      <link>/2019/10/19/un-cran-a-la-vez-janitor/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/2019/10/19/un-cran-a-la-vez-janitor/</guid>
+      <guid>/2019/10/19/un-cran-a-la-vez-janitor/</guid>
       <description>Así damos inicio a la sección dada a llamar Un CRAN a la vez (inspirada en este proyecto de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida aqui, en conjunción con nuestro querido, y ya clásico, tidyverse.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://elradar.github.io/about/</link>
+      <link>/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>https://elradar.github.io/about/</guid>
+      <guid>/about/</guid>
       <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
     </item>
     
