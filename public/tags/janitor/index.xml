@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>janitor on el radaR</title>
@@ -9,7 +8,7 @@
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/janitor/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/janitor/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,7 +17,97 @@
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/10/19/un-cran-a-la-vez-janitor/</guid>
-      <description>Así damos inicio a la sección dada a llamar Un CRAN a la vez (inspirada en este proyecto de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida aqui, en conjunción con nuestro querido, y ya clásico, tidyverse.</description>
+      <description>
+
+
+&lt;p&gt;Así damos inicio a la sección dada a llamar &lt;strong&gt;Un CRAN a la vez&lt;/strong&gt; (inspirada en &lt;a href=&#34;https://djnavarro.net/post/a-random-walk-on-cran/&#34;&gt;este proyecto&lt;/a&gt; de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada &lt;strong&gt;janitor&lt;/strong&gt;, hecha por Sam Firke y subida &lt;a href=&#34;https://github.com/sfirke/janitor&#34;&gt;aqui&lt;/a&gt;, en conjunción con nuestro querido, y ya clásico, &lt;strong&gt;tidyverse&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(janitor)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;janitor&lt;/strong&gt; es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. Para aquellos que saben inglés, Alison Hill (/apresshill en Twitter) hizo una ilustración sobre este paquete que es bastante informativa:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pbs.twimg.com/media/ED1UxS4U8AEh31k?format=jpg&amp;amp;name=medium&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Veamos un ejemplo de un dataset real, truncado por temas de confidencialidad, en el que una biblioteca como janitor nos vino al pelo para volverlo más ameno para su procesamiento.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_originales &amp;lt;- read.csv(&amp;quot;https://elradar.github.io/data/data_janitor.csv&amp;quot;, encoding = &amp;quot;latin1&amp;quot;)
+glimpse(datos_originales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 17
+## Variables: 8
+## $ X                   &amp;lt;int&amp;gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1…
+## $ Edad                &amp;lt;int&amp;gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46, …
+## $ Género              &amp;lt;fct&amp;gt; B, B, A, A, B, A, B, B, B, A, B, A, B, B, B,…
+## $ DNI                 &amp;lt;fct&amp;gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, B,…
+## $ Sabe.leer.y.escribi &amp;lt;fct&amp;gt; B, A, , A, A, A, A, A, A, A, A, A, A, A, A, …
+## $ Teléfono            &amp;lt;fct&amp;gt; , A, A, A, A, A, , , A, A, C, A, A, A, A, A,…
+## $ Visitas             &amp;lt;fct&amp;gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, A,…
+## $ Apoyo.espiritual    &amp;lt;fct&amp;gt; A, A, A, A, B, A, A, A, A, B, B, B, A, A, A,…&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Al husmear la estructura del dataset, vemos que las columnas &lt;em&gt;Género&lt;/em&gt; y &lt;em&gt;Teléfono&lt;/em&gt; tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de las columnas puede afectar muchas operaciones (que se encuentran penadas y adaptadas al inglés o el esperanto de la era digital). &lt;br/&gt;
+Por otro lado, podemos ver que en muchos de los nombres de columnas han decidido usar el punto como separador de palabras. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad, pero en general se prefiere utilizar el guión bajo o “underscore” como separador. Por último, que los nombres de las columnas se encuentren enteramente en minúscula no nos vendría nada mal para ahorrar tiempo al tipear (el viaje de ida y vuelta al Caps Lock).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios &amp;lt;- datos_originales %&amp;gt;% 
+  clean_names()
+  
+colnames(datos_limpios)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;x&amp;quot;                   &amp;quot;edad&amp;quot;                &amp;quot;genero&amp;quot;             
+## [4] &amp;quot;dni&amp;quot;                 &amp;quot;sabe_leer_y_escribi&amp;quot; &amp;quot;telefono&amp;quot;           
+## [7] &amp;quot;visitas&amp;quot;             &amp;quot;apoyo_espiritual&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lo primero que salta a la vista es que janitor y tidyverse se llevan increíblemente bien. Lo segundo, es que con una simple función todas las variables perdieron los caracteres especiales (en nuestro caso las tildes), los puntos fueron reemplazador por &amp;quot;_&amp;quot; como separadores y todo está en bella letra minúscula.
+Vamos a ver si hay filas enteramente vacías (todo es posible cuando viene de Excel), que tengan siempre el mismo valor (categoría constante) y si hay alguna línea duplicada.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios &amp;lt;- datos_originales %&amp;gt;% 
+  clean_names() %&amp;gt;% 
+  remove_empty(&amp;quot;rows&amp;quot;) %&amp;gt;% 
+  remove_constant() %&amp;gt;% 
+  convert_to_NA(&amp;quot;factor&amp;quot;)
+
+duplicados &amp;lt;- datos_limpios %&amp;gt;% 
+  get_dupes()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## No variable names specified - using all columns.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## No duplicate combinations found of: x, edad, genero, dni, sabe_leer_y_escribi, telefono, visitas, apoyo_espiritual&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(datos_limpios)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 17  8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(duplicados)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0 9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No tenemos filas vacías ni duplicados (tenemos la misma cantidad de observaciones) aunque sí encontró una fila con todos valores constantes y la removió (fecha_ult_ingreso). &lt;br/&gt;
+Lo que nos va a interesar en este caso es hacer un análisis de las variables género y apoyo espiritual. Ahora, ¿no sería más útil tener en vez de categorías &lt;em&gt;A&lt;/em&gt; y &lt;em&gt;B&lt;/em&gt; más información sobre las categorías? Consultando el libro de código de esta base (qué linda esa prolijidad) sé que &lt;em&gt;A&lt;/em&gt; significa &lt;em&gt;hombre&lt;/em&gt; en la variable género (ninguna sorpresa por aquí) y &lt;em&gt;B&lt;/em&gt; significa &lt;em&gt;mujer&lt;/em&gt;. Además, que en la columna apoyo espiritual &lt;em&gt;A&lt;/em&gt; representa que &lt;em&gt;no solicitó apoyo espiritual&lt;/em&gt; y &lt;em&gt;B&lt;/em&gt; que &lt;em&gt;sí lo solicitó y lo tuvo&lt;/em&gt; (existe otra categoría que lo solicitó y no lo tuvo pero no nos tocaron casos en la muestra). Vamos a usar la función recode() del tidyverse para emprolijarla. &lt;br/&gt;
+Por último, vimos que había muchas celdas vacías que no eran tomadas como casos perdidos aunque conceptualmente lo son. Vamos a ayudarnos con mutate_all() y na_if() para resolver eso; y vamos a sacarnos de encima esa variable &lt;em&gt;X&lt;/em&gt; que viene de guardar archivos en excel sin ninguna modificación de argumento.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios &amp;lt;- datos_limpios %&amp;gt;% 
+  select(-x) %&amp;gt;% 
+  mutate(genero = recode(genero,
+                           &amp;quot;A&amp;quot; = &amp;quot;hombre&amp;quot;,
+                           &amp;quot;B&amp;quot; = &amp;quot;mujer&amp;quot;),
+         apoyo_espiritual = recode(apoyo_espiritual,
+                           &amp;quot;A&amp;quot; = &amp;quot;no quiso&amp;quot;,
+                           &amp;quot;B&amp;quot; = &amp;quot;tuvo apoyo&amp;quot;)) %&amp;gt;% 
+  mutate_all(na_if,&amp;quot;&amp;quot;)
+
+glimpse(datos_limpios)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 17
+## Variables: 7
+## $ edad                &amp;lt;int&amp;gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46, …
+## $ genero              &amp;lt;fct&amp;gt; mujer, mujer, hombre, hombre, mujer, hombre,…
+## $ dni                 &amp;lt;fct&amp;gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, B,…
+## $ sabe_leer_y_escribi &amp;lt;fct&amp;gt; B, A, NA, A, A, A, A, A, A, A, A, A, A, A, A…
+## $ telefono            &amp;lt;fct&amp;gt; NA, A, A, A, A, A, NA, NA, A, A, C, A, A, A,…
+## $ visitas             &amp;lt;fct&amp;gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, A,…
+## $ apoyo_espiritual    &amp;lt;fct&amp;gt; no quiso, no quiso, no quiso, no quiso, tuvo…&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y compatibles con el pipe de magrittr (%&amp;gt;%) que popularizó el tidyverse. En esta ocasión vamos a cruzar la variable género con apoyo espiritual que fue lo que definimos más arriba que nos interesaba analizar.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios %&amp;gt;% 
+  tabyl(genero, apoyo_espiritual)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  genero no quiso tuvo apoyo
+##  hombre        3          3
+##   mujer        9          2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Genial, tenemos la cantidad de casos en cada celda. Pero, ¿no nos interesaría mucho más poder ver estos mismos datos como porcentajes?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios %&amp;gt;% 
+  tabyl(genero, apoyo_espiritual) %&amp;gt;% 
+  adorn_totals(&amp;quot;row&amp;quot;) %&amp;gt;%   ##muestra el total por categoria de columna
+  adorn_percentages(&amp;quot;row&amp;quot;) %&amp;gt;% ##nos muestra las celdas en porcentajes
+  adorn_pct_formatting() %&amp;gt;% ##formatea el porcentaje de manera legible
+  adorn_ns() %&amp;gt;% ##le suma a cada celda el número de casos absolutos entre paréntesis
+  adorn_title() ##le suma el título del cruce en la esquina superior izquierda&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         apoyo_espiritual           
+##  genero         no quiso tuvo apoyo
+##  hombre       50.0%  (3)  50.0% (3)
+##   mujer       81.8%  (9)  18.2% (2)
+##   Total       70.6% (12)  29.4% (5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y así tenemos una tabla bastante linda, con bastante flexibilidad de formateo y sin salir en ningún momento del universo tidyverse (yey). Por supuesto que no sacaremos ninguna conclusión sobre estos datos ya que forman parte de una muestra no aleatoria ni representativa de un conjunto de información no disponible (aún) para su publicación. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BONUS TRACK&lt;/strong&gt;: Otra joyita que tiene esta biblioteca janitor es la función excel_numeric_to_date() para hacer ingeniería inversa de aquellas fechas de Excel que llegan como enteros a R (si les pasó alguna vez reconocerán rápido este problema)&lt;/p&gt;
+</description>
     </item>
     
   </channel>

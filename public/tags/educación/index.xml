@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>educación on el radaR</title>
@@ -9,7 +8,7 @@
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/educaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/tags/educaci%C3%B3n/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,7 +17,431 @@
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</guid>
-      <description>Presentamos el análisis (aún en proceso) desarrollado por Demian Zayat, abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes.</description>
+      <description>
+&lt;script src=&#34;2019-10-21-existen-suficientes-vacantes-escolares-para-los-niños-de-la-villa-21-24_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;em&gt;Presentamos el análisis (aún en proceso) desarrollado por &lt;a href=&#34;https://twitter.com/demzayat&#34;&gt;Demian Zayat&lt;/a&gt;, abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Demian trabaja con R desde 2008, cuando hizo su tesis de maestría para la Universidad de Stanford sobre concursos y selección de jueces. Sin embargo, el interés -luego de varios años dormido- reapareció en el 2018 con la ciencia de datos. Armó el sitio www.antidiscriminacion.org y está cursando el &lt;a href=&#34;https://www.flacso.org.ar/formacion-academica/big-data-e-inteligencia-territorial/&#34;&gt;posgrado de FLACSO sobre Big Data e Inteligencia Territorial&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;En mayo de 2011 un grupo de madres de niños en edad escolar primaria que habitan en la Villa 21-24, con el patrocinio letrado de la Defensoría General Adjunta en lo Contencioso Administrativo y Tributario, interpusieron una acción de amparo contra el Gobierno de la Ciudad de Buenos Aires, en tanto entendían que no existían vacantes escolares suficientes para todos los niños del barrio.&lt;/p&gt;
+&lt;p&gt;Dentro de ese amparo se le solicitó al GCBA que hiciera un censo para saber cuántos niños vivían en la Villa 21-24 y que informase la cantidad de vacantes existentes dentro de un radio de 10 cuadras a la redonda, para saber si eran suficientes o no. En caso de que no lo fueran, se le solicitó al Gobierno que indicase cuáles eran las medidas que podía adoptar, en el corto y mediano plazo, para revertir esta situación.
+La jueza ordenó la realización del censo. Sin embargo, diversas reparticiones del Gobierno de la Ciudad empezaron a decir que no eran ellos los encargados de realizarlos: La dirección de Estadísticas y Censo dijo que debía ser Educación, Educación dijo que debía ser la Unidad de Gestión Intervención Social (UGIS), y la UGIS decía que debía ser la Dirección de Estadísticas y Censos. Frente a este escenario, la jueza ordenó la realización al Gobienro bajo pena de tener por válidos los datos que recopilara la Defensoría General de la Ciudad.&lt;/p&gt;
+&lt;p&gt;Desde la Defensoría General iniciamos la realización de un censo de niños en edad escolar. Así, varios equipos de censistas rastrillaron la villa para ver cuántos niños vivían allí. Se pudo censar a algunos niños, y proyectar la respuesta para los que no fueron hallados. Al mismo tiempo, se le solicitaron informes al INDEC, para que enviase la información que tuvieran disponible.&lt;/p&gt;
+&lt;p&gt;Luego de esta información se contrastó con la cantidad de vacantes que informó el GCBA que había disponibles en la zona. Allí la discusión pasaba por saber a qué distancia estaban las escuelas que podían proveer las vacantes, y en caso de estar a más de 10 cuadras, ofrecer un servicio de transporte escolar.&lt;/p&gt;
+&lt;p&gt;Durante el trámite de la causa, se creó un sistema de tansporte escolar y se inauguró una escuela en la calle “Los Patos 3042”, que proveyó vacantes para los niños del barrio. El caso está aún en trámite, y hay un compromiso de construir dos escuelas más en la zona.&lt;/p&gt;
+&lt;p&gt;En este trabajo pretendo realizar el análisis sobre la cantidad de niños y de vacantes existentes, para ver si esta relación es adecuada o no. El objetivo es ver si desde la Ciencia de Datos puede proveerse este tipo de información para este o para casos similares a realizar en otros barrios. Si este análisis es facilmente replicable, podrá pensarse en construir esta evidencia antes de recurrir a la Justicia, o en su caso, recurrir a la justicia para contrastarla y discutirla, pero evitando toda la discusión sobre quién hará el censo.&lt;/p&gt;
+&lt;p&gt;Para esto, voy a analizar la cantidad de niños que viven en la Villa 21-24 de la Ciudad, en edad escolar, partiendo de los microdatos del Censo 2010, asumiendo que esta población es más o menos estable a lo largo del tiempo. Luego, analizaré cuántas escuelas hay en la comuna 4, para filtrar aquellas que están en un radio de 10 cuadras a la redonda de la Villa y calcular sus vacantes, de acuerdo a la información públcia existente.&lt;/p&gt;
+&lt;p&gt;Este trabajo puede ser parte de un proyecto mayor que analice la disponiblidad de bienes y servicios cercanos a los barrios informales de la Ciudad. En concreto aquí analizaré vacantes escolares primarias, pero podría pensarse también en hacer un estudio comparativo sobre otro tipo de bienes y servicios, como serían clubes deportivos, centros culturales, restaurantes, servicios de salud, etc.&lt;/p&gt;
+&lt;div id=&#34;metodologia&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Metodología&lt;/h1&gt;
+&lt;p&gt;La metodología de este trabajo será el análisis de bases de datos públicas estatales y no estatales, y su modelado y visualización con el lenguaje R. No hay que olvidar que este es un trabajo práctico para el Módulo 3 del posgrado sobre “Big Data e Inteligencia Territorial” que se cursa en FLACSO, Buenos Aires.&lt;/p&gt;
+&lt;p&gt;Iré explicando la metodología que siga para obtener los datos, y el código respectivo, tanto para el procesamiento como para la visualización respectiva.&lt;/p&gt;
+&lt;p&gt;Los datos muchas veces no están disponibles y hay que construirlos. Esto trae mayores complicaciones, pero el desafío es interesante. Por ejemplo, el primer dato que habrá que contruir es la cantidad de población por barrio informal, lo que suele ser complicado y controversial. Existen datos fidedignos del censo de 2010, pero ya han pasado nueve años de dicho censo. Habrá que ver si este dato sigue siendo válido o no. Sería ideal contar con esta información por radio censal, o lo más desagregada posible. Es importante poder contar con esta información desagregada por edad.&lt;/p&gt;
+&lt;p&gt;Lo segundo que también hay que construir es la cantidad de vacantes por escuelas. Esa es información podría estar disponible, pero no consta en los repositorios oficiales. Lo qué sí está disponible son las vacantes asignadas (de modo anonimizado por supuesto) en los años 2015, 2016 y 2017. Esos datos podrán darnos una idea de la cantidad de vacantes que se asignaron por año por escuela, por lo que podemos tener una aproximación razonable a la cantidad de vacantes que hay en cada escuela.&lt;/p&gt;
+&lt;p&gt;Y por último habrá que calcular las distancias de las escuelas al barrio informal donde viven los niños. Y ver si esas escuelas también ofrecen vacantes a los niños de los alrededores del barrio informal.&lt;/p&gt;
+&lt;div id=&#34;geolocalizacion-de-los-datos-del-censo-2010&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Geolocalización de los datos del censo 2010&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Paquetes a utilizar:
+
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(kableExtra)
+library(mapdeck)
+library(widgetframe)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Conocer la cantidad de niños en edad escolar que viven en los barrios informales no es sencillo. Si bien el GCBA realiza censos en los distintos barrios, en general en cumplimiento de órdenes judiciales, esos datos no son públicos. Por ello, habrá que recurrir a las fuentes &lt;em&gt;disponibles&lt;/em&gt;, o al menos a las &lt;em&gt;existentes&lt;/em&gt;. Esto es, los datos del Censo Nacional 2010.&lt;/p&gt;
+&lt;p&gt;En primer lugar voy a cargar los datos del censo 2010 de la Ciudad de Buenos Aires, por persona.&lt;/p&gt;
+&lt;p&gt;Asimismo, construiré la variable &lt;code&gt;CO_FRAC_RA&lt;/code&gt; por la que voy a unir, en primer lugar el shapefile de los radios censales de la Ciudad, y luego, recortaré aquellos radios censales de la Comuna 4 y de los barrios informales de dicha comuna.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Cargamos datos del censo 2010 para la Ciudad Autónoma de Buenos Aires.
+# son casi 3 millones de registros, va a tomar un rato!
+
+load(file = &amp;quot;https://elradar.github.io/data/radio_persona_caba.rdata&amp;quot;)
+
+radio_persona_caba &amp;lt;- radio_persona_caba %&amp;gt;% 
+  rename(&amp;quot;relacion_jefe&amp;quot; = P01,
+         &amp;quot;sexo&amp;quot; = P02,
+         &amp;quot;edad&amp;quot; = P03,
+         &amp;quot;nacimiento&amp;quot; = P05,
+         &amp;quot;pais&amp;quot; = P06,
+         &amp;quot;lee_escribe&amp;quot; = P07,
+         &amp;quot;usa_comput&amp;quot; = P12,
+         &amp;quot;escolaridad&amp;quot; = P08,
+         &amp;quot;nivel&amp;quot; = P09,
+         &amp;quot;completo&amp;quot; = P10,
+         &amp;quot;actividad&amp;quot; = CONDACT,
+         &amp;quot;material_piso&amp;quot; = H05,
+         &amp;quot;material_techo&amp;quot; = H06,
+         &amp;quot;revestimientos&amp;quot; = H07)
+
+#creando CO_FRAC_RA, desde las variables DPTO_REF_ID, IDFRAC e IDRADIO, sacandole los ceros de adelante. 
+radio_persona_caba &amp;lt;- radio_persona_caba %&amp;gt;% 
+  mutate(IDFRAC = as.numeric(IDFRAC),
+         IDRADIO = as.numeric(IDRADIO)) %&amp;gt;% 
+  unite(CO_FRAC_RA, DPTO_REF_ID, IDFRAC, IDRADIO, sep = &amp;quot;_&amp;quot;, remove = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora cargo los shapefiles de los radios censales de la Ciudad, para unirlos a los datos del censo de personas.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#descargo del repositorio de datos abiertos de Ciudad
+censo_geo &amp;lt;- st_read (&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/informacion-censal-por-radio/CABA_rc.geojson&amp;quot;, quiet = TRUE)
+
+#selecciono la variable que me sirve
+censo_geo_radio &amp;lt;- censo_geo %&amp;gt;% 
+  select(CO_FRAC_RA = RADIO_ID)
+
+#lo uno al censo de personas
+radio_persona_caba &amp;lt;- radio_persona_caba %&amp;gt;% 
+  left_join(censo_geo_radio, by = &amp;quot;CO_FRAC_RA&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora tenemos los datos del censo de personas, y su radio censal geolocalizado. Con esto vamos a poder clasificar a las personas por edad, para saber quiénes asisten o deben asistir a las escuelas primarias. Pero primero comencemos con el piloto de la Comuna 4.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;analisis-de-la-villa-21-24&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Analisis de la Villa 21-24&lt;/h1&gt;
+&lt;div id=&#34;cuantos-ninos-en-edad-escolar-hay&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Cuántos niños en edad escolar hay?&lt;/h2&gt;
+&lt;p&gt;Para saber cuántos niños en edad escolar hay en el barrio informal Villa 21-24, filtraré los datos del censo de personas por este barrio informal. Para ello, deberé identificar los radios censales del barrio y cruzarlo con los datos de los radios censales del Censo 2010. En primer lugar, filtraré los datos del censo para la Comuna 4, y luego lo cruzaré con los de la Villa 21-24.&lt;/p&gt;
+&lt;p&gt;Una vez realizado eso, deberé analizar la base de datos de Barrios informales de la Ciudad. En el sitio de la [Plataforma Abierta Nacional del Hábitat] (&lt;a href=&#34;https://panh.mininterior.gob.ar/#/&#34; class=&#34;uri&#34;&gt;https://panh.mininterior.gob.ar/#/&lt;/a&gt;) se puede buscar información sobre los barrios informales de la Ciudad y descargar el [shapefile] (&lt;a href=&#34;https://panh-backoffice.mininterior.gob.ar/api/relevamientos/28/dataset/caba-datos.zip&#34; class=&#34;uri&#34;&gt;https://panh-backoffice.mininterior.gob.ar/api/relevamientos/28/dataset/caba-datos.zip&lt;/a&gt;).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;comuna4_geo &amp;lt;- censo_geo%&amp;gt;% 
+  filter(COMUNA == 4) %&amp;gt;% 
+  select(RADIO_ID)
+
+barrios &amp;lt;- st_read(&amp;quot;https://elradar.github.io/data/barrios_populares.geojson&amp;quot;, quiet = TRUE)
+
+comuna4_villa2124 &amp;lt;- barrios %&amp;gt;% 
+  filter(FNA == &amp;quot;Villa 21-24&amp;quot;) %&amp;gt;% 
+  select(FNA)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y hacemos un primer mapa para ver cómo vienen los datos de los radios censales de la Villa 21-24 tanto del shapefile de la Plataforma Abierta Nacional del Hábitat, como del shapefile del Censo 2010.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot()+
+  geom_sf(data = comuna4_geo, fill = NA, col = &amp;quot;grey40&amp;quot;)+
+  geom_sf(data = comuna4_villa2124, fill = &amp;quot;green&amp;quot;)+
+  labs(title = &amp;quot;Comuna 4. Radios censales y Asentamientos&amp;quot;)+
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-21-existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Puede verse que el mapa de los barrios está apenas corrido con el de los radios censales. Esto puede deberse a que al ser de distintas fuentes, puede diferir en alguna localización, o que se están juntando dos proyecciones similares pero sutilmente diferentes&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;De este modo, habrá que hacer una sutil corrección manual del shapefile de los barrios informales, para que quede exacto. También voy a reducir un 1% el tamaño del barrio para que no exceda los límites de los barrios. Veamoslo en el mapa&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;barrios_bis &amp;lt;- st_geometry(barrios)
+barrios_bis &amp;lt;- barrios_bis + c(0.00055,-0.0004)
+barrios_bis_centroides &amp;lt;- st_centroid(barrios_bis)
+barrios_bis &amp;lt;- (barrios_bis - barrios_bis_centroides)*0.99 + barrios_bis_centroides
+barrios_bis &amp;lt;- st_sf(barrios_bis, crs = 4326)
+barrios$geometry &amp;lt;- st_geometry(barrios_bis)
+
+comuna4_villa2124 &amp;lt;- barrios %&amp;gt;%  #filtro por comuna 4
+  filter(FNA == &amp;quot;Villa 21-24&amp;quot;) %&amp;gt;% 
+  select(FNA)
+
+ggplot()+ #graficamos
+  geom_sf(data = comuna4_geo, fill = NA, col = &amp;quot;grey40&amp;quot;)+
+  geom_sf(data = comuna4_villa2124, fill = &amp;quot;green&amp;quot;)+
+  labs(title = &amp;quot;Comuna 4. Radios censales y Asentamientos&amp;quot;)+
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-21-existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;¡Mucho mejor! Ahora, vamos a seleccionar ahora los radios censales donde está la villa 21-24 del Censo 2010.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# función para detectar en qué radios censales está cierto objeto
+
+cuales_radios &amp;lt;- function(x = comuna4_geo, y){
+  radios &amp;lt;- st_intersects(x, y)
+  radios &amp;lt;- lengths(radios)&amp;gt;0
+  cbind(x, radios) %&amp;gt;% 
+    filter(radios == TRUE)
+}
+
+radios_villa_2124 &amp;lt;- cuales_radios(comuna4_geo, comuna4_villa2124)
+
+ggplot()+
+  geom_sf(data = radios_villa_2124, fill = &amp;quot;red&amp;quot;)+
+  geom_sf(data = comuna4_geo, fill = NA)+
+  geom_sf(data = comuna4_villa2124, fill = &amp;quot;green&amp;quot;)+
+  labs(title = &amp;quot;Comuna 4. Radios censales de la Villa 21-24&amp;quot;)+
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-21-existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24_files/figure-html/villa_2124_radios-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En el mapa, lo verde es la Villa 21-24 y lo rojo son los radios censales seleccionados, donde hay alguna parte de la Villa. La zona roja es un poco más amplia que la verde, pero habrá que ver los datos para ver si esto es preocupante o no.&lt;/p&gt;
+&lt;p&gt;Al unir estos radios con el dataset del censo, podemos saber cuántas personas viven en los barrios informales, o sus radios censales contiguos. En base a esto, averiguar cuántos niños requieren una escuela cercana. Habrá una pequeña sobreestimación de los datos por los tamaños de los radios censales.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;radio_persona_caba$CO_FRAC_RA &amp;lt;- factor(radio_persona_caba$CO_FRAC_RA)
+
+villa_2124_censo &amp;lt;- radio_persona_caba %&amp;gt;% 
+  filter(CO_FRAC_RA %in% radios_villa_2124$RADIO_ID)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Según este filtrado, en los 21 radios censales viven (o vivían al 2010) 33327 personas.&lt;/p&gt;
+&lt;p&gt;Este resultado que obtuvimos (al filtrar el censo geolocalizado) es similar al que publicó la Dirección de Estadísticas y Censos de la Ciudad, en el informe de resultados 856 de Abril de 2015 &lt;a href=&#34;https://estadisticaciudad.gob.ar/eyc/wp-content/uploads/2015/05/ir_2015_856.pdf&#34;&gt;en el siguiente link&lt;/a&gt;. Para la Villa 21-24 y el NHT Zavaleta&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, el documento oficial informa 33.245, un número muy similar al de 33327 que obtuve. La diferencia puede deberse al radio censal superior, que si bien está prácticamente despoblado (existen en dicho lugar vías de tren, depósitos ferroviarios y fiscales, junto al estadio del club Huracán) puede ser que incluya a las 82 personas de diferencia. A falta de mejores datos, vamos a asumir que esos valores son actuales. Esta congruencia de datos nos permite validar la asunción de que la población de este barrio es relativamente estable en el tiempo, ya que entre 2010 y 2015 no hubo variaciones significativas.&lt;/p&gt;
+&lt;p&gt;Y ahora sí, con estos datos, podemos estimar cuántos niños en edad escolar primaria existen. Para ello deberemos filtrar los niños entre 6 y 12 años de edad, ambos inclusive.&lt;/p&gt;
+&lt;p&gt;Como modo de control, podemos filtrar también por el campo &lt;code&gt;P09&lt;/code&gt; que he renombrado como &lt;code&gt;nivel&lt;/code&gt; que indica el nivel educativo que cursa o cursó, junto con la variable &lt;code&gt;P08&lt;/code&gt; que renombre &lt;code&gt;escolaridad&lt;/code&gt; e indica &lt;em&gt;condición de asistencia escolar&lt;/em&gt;, pudiendo seleccionar sólo aquellos que son de valor &lt;code&gt;1&lt;/code&gt;, es decir, que &lt;code&gt;asiste&lt;/code&gt; a ese nivel.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;edad_escolar &amp;lt;- villa_2124_censo %&amp;gt;% 
+  filter(edad &amp;gt;= 6 &amp;amp; edad &amp;lt;= 12)
+
+nivel_primario &amp;lt;- villa_2124_censo %&amp;gt;% 
+  filter(nivel == 2 &amp;amp; escolaridad == 1)
+
+edad_noasiste &amp;lt;- edad_escolar %&amp;gt;% 
+  filter(escolaridad == 2 | escolaridad == 3) %&amp;gt;% 
+  filter(completo == 2| completo == 0)
+
+repitencia &amp;lt;- nivel_primario %&amp;gt;% 
+  filter(edad &amp;gt; 13 &amp;amp; edad &amp;lt;= 18) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Según los datos del Censo 2010, en la Villa 21-24 habitan 4434 niños en edad escolar primaria. Sin embargo, contestaron que asisten al nivel primario 5461 personas, por lo que puede observarse que muchas personas cursan el nivel primario luego de la edad establecida. También pudimos filtrar cuántos niños en edad escolar no asisten a la primaria, lo que no da un total de 56, ya sea porque abandonaron (32 personas) o porque nunca lo iniciaron (28 personas).&lt;/p&gt;
+&lt;p&gt;De este modo, el total de niños en edad escolar que requieren vacantes en escuelas de la Ciudad es de 4434 niños.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cuantas-vacantes-escolares-hay&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Cuántas vacantes escolares hay?&lt;/h2&gt;
+&lt;p&gt;Ahora habrá que sumar las escuelas y sus vacantes, para ver si son suficientes para los 4434 niños de la Villa 21-24.&lt;/p&gt;
+&lt;p&gt;Para ello descargamos el shapefile del repositorio oficial del GCBA y filtramos las escuelas públicas y primarias. Luego las proyectaremos en el mapa y seleccionaremos aquellas a una distancia razonable de los radios censales del barrio informal seleccionado.&lt;/p&gt;
+&lt;p&gt;También será necesario calcular cuántas vacantes hay en cada escuela. Esto no está disponible facilmente, pero podrá calcularse en razón de las inscripciones realizadas por escuela, lo que sí está disponible en el &lt;a href=&#34;https://data.buenosaires.gob.ar/dataset/inscripcion-escolar/archivo/123.3&#34;&gt;repositorio&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;De ese repositorio pude descargar las inscripciones para primer grado de los años 2016 y 2017. Cómo son similares, pero no idénticos, sacaré el promedio y multiplicaré por siete para saber la cantidad total de vacantes por escuela.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Escuelas Geo
+escuelas &amp;lt;-  read_csv(&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/establecimientos-educativos/establecimientos-educativos.csv&amp;quot;) %&amp;gt;% st_as_sf(coords = c(&amp;quot;long&amp;quot;, &amp;quot;lat&amp;quot;), crs = 4326) 
+
+primarios &amp;lt;- escuelas %&amp;gt;% 
+  filter(nivmod == &amp;quot;PriCom&amp;quot;) %&amp;gt;% 
+  mutate(cueanexo = as.numeric(as.character(cueanexo)))
+
+#Escuelas vacantes
+vacantes17 &amp;lt;- read_csv2(&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/inscripcion-escolar/preinscripciones-escolares-2017.csv&amp;quot;, locale = locale(encoding = &amp;quot;latin1&amp;quot;) ) %&amp;gt;% 
+  filter(NIVEL == &amp;quot;PRIMARIO&amp;quot;) %&amp;gt;% 
+  group_by(ESTABLECIMIENTO, CUE_ANEXO) %&amp;gt;% 
+  summarise(primero_17 = n())
+
+vacantes16 &amp;lt;- read_csv2(&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/inscripcion-escolar/inscripciones-escolares-2016.csv&amp;quot;, locale = locale(encoding = &amp;quot;UTF-8&amp;quot;) )%&amp;gt;% 
+  filter(NIVEL == &amp;quot;PRIMARIO&amp;quot;) %&amp;gt;% 
+  group_by(ESTABLECIMIENTO) %&amp;gt;% 
+  summarise(primero_16 = n())  
+
+
+vacantes_prom &amp;lt;- vacantes17 %&amp;gt;% 
+  bind_cols(., vacantes16) %&amp;gt;% 
+  select(-ESTABLECIMIENTO1) %&amp;gt;% 
+  mutate(total = round((primero_17+primero_16)/2*7,0)) %&amp;gt;% 
+  ungroup() %&amp;gt;% 
+  select(-primero_17, -primero_16, -ESTABLECIMIENTO)
+
+primarios_vacantes &amp;lt;- primarios %&amp;gt;% 
+  left_join(vacantes_prom, by = c(&amp;quot;cueanexo&amp;quot; = &amp;quot;CUE_ANEXO&amp;quot;)) %&amp;gt;% 
+  select(cueanexo, dom_edific, nombre_abrev, de, comunas, total)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y graficamos los de la COMUNA 4 en un mapa interactivo, con el centro en el límite de la Villa 21-24. Cuando pasamos el puntero vemos el nombre de la escuela y la cantidad de vacantes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;primarios_comuna_4 &amp;lt;- primarios_vacantes %&amp;gt;% 
+    mutate(long = st_coordinates(primarios_vacantes)[,1],
+           lat = st_coordinates(primarios_vacantes)[,2]) %&amp;gt;% 
+    filter(comunas == 4)
+
+mapa_escuelas &amp;lt;- leaflet() %&amp;gt;% 
+    setView(lng =-58.399685,lat = -34.654402, zoom = 13) %&amp;gt;% 
+    addTiles() %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_geo)) %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_villa2124), color = &amp;quot;red&amp;quot;) %&amp;gt;% 
+    addMarkers(data = primarios_comuna_4,
+               lng = primarios_comuna_4$long,
+               lat = primarios_comuna_4$lat,
+               label = ~paste0(primarios_comuna_4$NOMBRE_ABR, &amp;quot;: &amp;quot;,as.character(primarios_comuna_4$total)) )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mapa_escuelas&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe height=&#34;400&#34; width=&#34;1200&#34; src=&#34;/widgets/demian_mapa_escuelas.html&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Para ver qué escuelas están dentro del radio de diez cuadras de la villa –que es la distancia para obtener prioridad en la inscripción, de acuerdo al artículo 29 del Reglamento de inscripciones&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;– podemos ampliar el perímetro de la villa con un &lt;code&gt;st_buffer&lt;/code&gt; y graficarlo.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;comuna4_villa2124_buffer&amp;lt;- comuna4_villa2124 %&amp;gt;% 
+  st_buffer(.,0.007) 
+
+escuelas_buffer &amp;lt;- leaflet() %&amp;gt;% 
+    setView(lng =-58.399685,lat = -34.654402, zoom = 13) %&amp;gt;% 
+    addTiles() %&amp;gt;% 
+    addPolygons(data = comuna4_villa2124_buffer, color = &amp;quot;green&amp;quot;) %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_geo)) %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_villa2124), color = &amp;quot;red&amp;quot;) %&amp;gt;% 
+    addMarkers(data = primarios_comuna_4,
+               lng = primarios_comuna_4$long,
+               lat = primarios_comuna_4$lat,
+               label = ~paste0(primarios_comuna_4$NOMBRE_ABR, &amp;quot;: &amp;quot;,as.character(primarios_comuna_4$total)) )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;escuelas_buffer&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe height=&#34;400&#34; width=&#34;1200&#34; src=&#34;/widgets/demian_escuelas_buffer.html&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Ahora podemos identificar las escuelas que están en el radio de 10 cuadras, que pueden darle vacantes a los niños de la Villa 21-24, y calcular su cantidad de vacantes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;escuelas_villa &amp;lt;- st_intersects(primarios_vacantes, comuna4_villa2124_buffer, sparse = FALSE) 
+
+escuelas_villa &amp;lt;- data.frame(escuelas_villa) %&amp;gt;% 
+    rename(villa = escuelas_villa)
+
+primarias_villa &amp;lt;-cbind(primarios_vacantes, escuelas_villa$villa) %&amp;gt;% 
+    rename(villa = escuelas_villa.villa)
+
+primarias_villa &amp;lt;- primarias_villa %&amp;gt;% 
+    filter(villa == TRUE)
+
+primarias_villa &amp;lt;- primarias_villa %&amp;gt;% 
+    mutate ( distancia = st_distance(primarias_villa, st_centroid(comuna4_villa2124)) ) %&amp;gt;% 
+    select(-cueanexo, -de, -comunas, villa)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;De este modo, hay 7 escuelas que están dentro de un radio menor a 10 cuadras del centro de la villa que pueden ofrecer vacantes para estos niños. Ellas son las siguientes:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;primarias_villa %&amp;gt;% 
+  st_set_geometry(NULL) %&amp;gt;% 
+  select(-villa) %&amp;gt;% 
+  kable() %&amp;gt;% 
+  kable_styling(bootstrap_options = &amp;quot;striped&amp;quot;, full_width = F)&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+dom_edific
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+nombre_abrev
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+total
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+distancia
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Lynch 3536
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 24
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+410
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1130.2710 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Avda. Amancio Alcorta 2502
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjc 25
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+224
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1374.9064 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Luzuriaga 1571
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 09
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+452
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+993.0795 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Iguazú 1110
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjc 10
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+413
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+817.8860 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Lafayette 1879
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 11
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+791
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+723.1405 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Rio Cuarto y Montesquieu
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 12
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1026
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+288.1783 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Avda. Amancio Alcorta 3402
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjc 16
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+410
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+918.8865 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Si estas escuelas sólo le dan vacantes a los niños de la villa 21-24, habría un total de 3726 vacantes, para los 4434 niños. Sin embargo, no hay que dejar de tener en cuenta que hay otros niños en los alrededores de la Villa 21-24 que también requieren vacantes escolares.&lt;/p&gt;
+&lt;p&gt;Podemos calcular cuántos niños hay en esos radios censales, del mismo modo que lo hicimos con los niños de la villa 21-24.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;alrededores &amp;lt;- cuales_radios(comuna4_geo, comuna4_villa2124_buffer)
+
+alrededores_censo &amp;lt;- radio_persona_caba %&amp;gt;% 
+  filter(CO_FRAC_RA %in% alrededores$RADIO_ID)
+
+alrededores_edad_escolar &amp;lt;- alrededores_censo %&amp;gt;% 
+  filter(edad &amp;gt;= 6 &amp;amp; edad &amp;lt;= 12)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cuando sumamos los alrededores, vemos que la cantidad de vacantes es sensiblemente inferior a la requerida. Así, las 7 escuelas cercanas a la Villa 21-24, con sus 3726, vacantes, deben proveerle educación primaria a 6915, lo que es llamativamente insuficiente.&lt;/p&gt;
+&lt;p&gt;Es cierto que, como vimos en el mapa interactivo anterior, hay más escuelas disponibles en &lt;em&gt;los alrededores&lt;/em&gt; de &lt;em&gt;los alrededores de la villa&lt;/em&gt;, y esto nos podría llevar a un loop. Podría ser que en la Comuna (o en realidad en el Distrito Escolar, que es la unidad territorial para las escuelas) en total haya vacantes disponibles para todos los niños del lugar. Pero no es poco importante cómo estan distribuidas las vacantes, que es lo que queríamos analizar, sobre si las escuelas dentro o cercanas a la Villa 21-24 tiene vacantes para todos los niños de la zona.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;las-escuelas-estan-realmente-a-10-cuadras-de-la-villa&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Las escuelas están realmente a 10 cuadras de la villa?&lt;/h2&gt;
+&lt;p&gt;Por último, deberíamos ver si estas escuelas están realemente a 10 cuadras de la villa o si el calculo de la distancia lineal es menor que el trayecto realizado por cuadras.&lt;/p&gt;
+&lt;p&gt;En primer lugar, habrá que aclarar que la distancia la medimos desde el centroide de la Villa, que estimamos como promedio de la vivienda de cada niño. De este modo, habra algunos niños más cerca y otros más lejos que lo medido.&lt;/p&gt;
+&lt;p&gt;En segundo lugar habrá que calcular los recorridos, y ello aún no lo sé hacer (🙈). Pero sí puedo calcular cómo sería el arco….&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;key &amp;lt;- &amp;quot;API key de Mapbox aqui&amp;quot; # ver https://docs.mapbox.com/help/how-mapbox-works/access-tokens/
+mapdeck(token = key)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;caminos &amp;lt;- primarias_villa %&amp;gt;% 
+    mutate(lon_salida = st_coordinates(st_centroid(comuna4_villa2124))[1],
+           lat_salida = st_coordinates(st_centroid(comuna4_villa2124))[2])
+
+caminos &amp;lt;- caminos %&amp;gt;% 
+    mutate(lon_llegada = st_coordinates(caminos)[,1],
+           lat_llegada = st_coordinates(primarias_villa)[,2]) %&amp;gt;% 
+    st_set_geometry(NULL)
+
+escuelas_arcos &amp;lt;- mapdeck(style = mapdeck_style(&amp;quot;streets&amp;quot;),
+        location = c(-58.399685, -34.654402), zoom = 10, token = key, pitch = 60) %&amp;gt;% 
+    add_arc(data = caminos,
+             layer_id = &amp;quot;caminos_escuelas&amp;quot;,
+             destination = c(&amp;quot;lon_salida&amp;quot;, &amp;quot;lat_salida&amp;quot;),
+             origin  = c(&amp;quot;lon_llegada&amp;quot;, &amp;quot;lat_llegada&amp;quot;)) %&amp;gt;% 
+    add_polygon(data = comuna4_villa2124)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;escuelas_arcos&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe height=&#34;400&#34; width=&#34;1200&#34; src=&#34;/widgets/demian_escuelas_arcos.html&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusiones&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusiones&lt;/h1&gt;
+&lt;p&gt;Con este ejercicio pudimos ver qué es facilmente calculable si la cantidad de vacantes escolares es suficiente o no para cierto barrio informal. Primero filtramos el shapefile del barrio informal con los radios censales del censo 2010 para identificar en qué radios está ubicado. Con ello, filtramos la cantidad de niños en edad escolar que hay en esos radios censales.&lt;/p&gt;
+&lt;p&gt;Luego buscamos qué escuelas están a un radio de 10 cuadras a la redonda del barrio. Y calculamos sus vacantes, de acuerdo a la cantidad de inscripciones que tuvo en los últimos años para primer grado. Y luego calculamos a qué distancia están. Despues podremos calcular trayectorias (cuando aprenda a hacerlo).&lt;/p&gt;
+&lt;p&gt;Con estos pasos podemos pensar en ampliar el trabajo a otros barrios informales, y también podremos utilizar los datos del censo 2020 cuando estén disponibles. Creo que este tipo de metodología puede ser util para mapear necesidades de los barrios informales y pensar políticas públicas que podrá adoptar por sí el gobierno, o que podrá solicitarselo a la Justicia si no se cumplen.&lt;/p&gt;
+&lt;p&gt;El código de este Rmarkdown está disponible &lt;a href=&#34;https://raw.githubusercontent.com/Demzayat/varios/master/Modulo%203/trabajopractico.Rmd&#34;&gt;aca&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Sin embargo, al hacer &lt;code&gt;st_crs(censo_geo) == st_crs(barrios)&lt;/code&gt; la respuesta es TRUE.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Si bien son dos centros diferenciados por cuestiones históricas, están contigüos geográficamente, y comparten radios censales, por lo que también quedó incluido en mi análisis&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Véase en línea el &lt;a href=&#34;http://www.ademys.org.ar/v2/wp-content/uploads/2015/10/Reglamento-del-Sistema-de-Inscripciones-y-Asignaci%C3%B3n-de-Vacantes.pdf&#34;&gt;reglamento&lt;/a&gt;.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>

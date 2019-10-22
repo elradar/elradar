@@ -19,7 +19,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 [[menu.main]]
     name = "posts"
     weight = 200
-    identifier = "bog"
+    identifier = "blog"
     url = "/post"
 
 

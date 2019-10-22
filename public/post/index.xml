@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on el radaR</title>
@@ -9,7 +8,7 @@
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,7 +17,431 @@
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</guid>
-      <description>Presentamos el análisis (aún en proceso) desarrollado por Demian Zayat, abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes.</description>
+      <description>
+&lt;script src=&#34;2019-10-21-existen-suficientes-vacantes-escolares-para-los-niños-de-la-villa-21-24_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;em&gt;Presentamos el análisis (aún en proceso) desarrollado por &lt;a href=&#34;https://twitter.com/demzayat&#34;&gt;Demian Zayat&lt;/a&gt;, abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Demian trabaja con R desde 2008, cuando hizo su tesis de maestría para la Universidad de Stanford sobre concursos y selección de jueces. Sin embargo, el interés -luego de varios años dormido- reapareció en el 2018 con la ciencia de datos. Armó el sitio www.antidiscriminacion.org y está cursando el &lt;a href=&#34;https://www.flacso.org.ar/formacion-academica/big-data-e-inteligencia-territorial/&#34;&gt;posgrado de FLACSO sobre Big Data e Inteligencia Territorial&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;En mayo de 2011 un grupo de madres de niños en edad escolar primaria que habitan en la Villa 21-24, con el patrocinio letrado de la Defensoría General Adjunta en lo Contencioso Administrativo y Tributario, interpusieron una acción de amparo contra el Gobierno de la Ciudad de Buenos Aires, en tanto entendían que no existían vacantes escolares suficientes para todos los niños del barrio.&lt;/p&gt;
+&lt;p&gt;Dentro de ese amparo se le solicitó al GCBA que hiciera un censo para saber cuántos niños vivían en la Villa 21-24 y que informase la cantidad de vacantes existentes dentro de un radio de 10 cuadras a la redonda, para saber si eran suficientes o no. En caso de que no lo fueran, se le solicitó al Gobierno que indicase cuáles eran las medidas que podía adoptar, en el corto y mediano plazo, para revertir esta situación.
+La jueza ordenó la realización del censo. Sin embargo, diversas reparticiones del Gobierno de la Ciudad empezaron a decir que no eran ellos los encargados de realizarlos: La dirección de Estadísticas y Censo dijo que debía ser Educación, Educación dijo que debía ser la Unidad de Gestión Intervención Social (UGIS), y la UGIS decía que debía ser la Dirección de Estadísticas y Censos. Frente a este escenario, la jueza ordenó la realización al Gobienro bajo pena de tener por válidos los datos que recopilara la Defensoría General de la Ciudad.&lt;/p&gt;
+&lt;p&gt;Desde la Defensoría General iniciamos la realización de un censo de niños en edad escolar. Así, varios equipos de censistas rastrillaron la villa para ver cuántos niños vivían allí. Se pudo censar a algunos niños, y proyectar la respuesta para los que no fueron hallados. Al mismo tiempo, se le solicitaron informes al INDEC, para que enviase la información que tuvieran disponible.&lt;/p&gt;
+&lt;p&gt;Luego de esta información se contrastó con la cantidad de vacantes que informó el GCBA que había disponibles en la zona. Allí la discusión pasaba por saber a qué distancia estaban las escuelas que podían proveer las vacantes, y en caso de estar a más de 10 cuadras, ofrecer un servicio de transporte escolar.&lt;/p&gt;
+&lt;p&gt;Durante el trámite de la causa, se creó un sistema de tansporte escolar y se inauguró una escuela en la calle “Los Patos 3042”, que proveyó vacantes para los niños del barrio. El caso está aún en trámite, y hay un compromiso de construir dos escuelas más en la zona.&lt;/p&gt;
+&lt;p&gt;En este trabajo pretendo realizar el análisis sobre la cantidad de niños y de vacantes existentes, para ver si esta relación es adecuada o no. El objetivo es ver si desde la Ciencia de Datos puede proveerse este tipo de información para este o para casos similares a realizar en otros barrios. Si este análisis es facilmente replicable, podrá pensarse en construir esta evidencia antes de recurrir a la Justicia, o en su caso, recurrir a la justicia para contrastarla y discutirla, pero evitando toda la discusión sobre quién hará el censo.&lt;/p&gt;
+&lt;p&gt;Para esto, voy a analizar la cantidad de niños que viven en la Villa 21-24 de la Ciudad, en edad escolar, partiendo de los microdatos del Censo 2010, asumiendo que esta población es más o menos estable a lo largo del tiempo. Luego, analizaré cuántas escuelas hay en la comuna 4, para filtrar aquellas que están en un radio de 10 cuadras a la redonda de la Villa y calcular sus vacantes, de acuerdo a la información públcia existente.&lt;/p&gt;
+&lt;p&gt;Este trabajo puede ser parte de un proyecto mayor que analice la disponiblidad de bienes y servicios cercanos a los barrios informales de la Ciudad. En concreto aquí analizaré vacantes escolares primarias, pero podría pensarse también en hacer un estudio comparativo sobre otro tipo de bienes y servicios, como serían clubes deportivos, centros culturales, restaurantes, servicios de salud, etc.&lt;/p&gt;
+&lt;div id=&#34;metodologia&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Metodología&lt;/h1&gt;
+&lt;p&gt;La metodología de este trabajo será el análisis de bases de datos públicas estatales y no estatales, y su modelado y visualización con el lenguaje R. No hay que olvidar que este es un trabajo práctico para el Módulo 3 del posgrado sobre “Big Data e Inteligencia Territorial” que se cursa en FLACSO, Buenos Aires.&lt;/p&gt;
+&lt;p&gt;Iré explicando la metodología que siga para obtener los datos, y el código respectivo, tanto para el procesamiento como para la visualización respectiva.&lt;/p&gt;
+&lt;p&gt;Los datos muchas veces no están disponibles y hay que construirlos. Esto trae mayores complicaciones, pero el desafío es interesante. Por ejemplo, el primer dato que habrá que contruir es la cantidad de población por barrio informal, lo que suele ser complicado y controversial. Existen datos fidedignos del censo de 2010, pero ya han pasado nueve años de dicho censo. Habrá que ver si este dato sigue siendo válido o no. Sería ideal contar con esta información por radio censal, o lo más desagregada posible. Es importante poder contar con esta información desagregada por edad.&lt;/p&gt;
+&lt;p&gt;Lo segundo que también hay que construir es la cantidad de vacantes por escuelas. Esa es información podría estar disponible, pero no consta en los repositorios oficiales. Lo qué sí está disponible son las vacantes asignadas (de modo anonimizado por supuesto) en los años 2015, 2016 y 2017. Esos datos podrán darnos una idea de la cantidad de vacantes que se asignaron por año por escuela, por lo que podemos tener una aproximación razonable a la cantidad de vacantes que hay en cada escuela.&lt;/p&gt;
+&lt;p&gt;Y por último habrá que calcular las distancias de las escuelas al barrio informal donde viven los niños. Y ver si esas escuelas también ofrecen vacantes a los niños de los alrededores del barrio informal.&lt;/p&gt;
+&lt;div id=&#34;geolocalizacion-de-los-datos-del-censo-2010&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Geolocalización de los datos del censo 2010&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Paquetes a utilizar:
+
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(kableExtra)
+library(mapdeck)
+library(widgetframe)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Conocer la cantidad de niños en edad escolar que viven en los barrios informales no es sencillo. Si bien el GCBA realiza censos en los distintos barrios, en general en cumplimiento de órdenes judiciales, esos datos no son públicos. Por ello, habrá que recurrir a las fuentes &lt;em&gt;disponibles&lt;/em&gt;, o al menos a las &lt;em&gt;existentes&lt;/em&gt;. Esto es, los datos del Censo Nacional 2010.&lt;/p&gt;
+&lt;p&gt;En primer lugar voy a cargar los datos del censo 2010 de la Ciudad de Buenos Aires, por persona.&lt;/p&gt;
+&lt;p&gt;Asimismo, construiré la variable &lt;code&gt;CO_FRAC_RA&lt;/code&gt; por la que voy a unir, en primer lugar el shapefile de los radios censales de la Ciudad, y luego, recortaré aquellos radios censales de la Comuna 4 y de los barrios informales de dicha comuna.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Cargamos datos del censo 2010 para la Ciudad Autónoma de Buenos Aires.
+# son casi 3 millones de registros, va a tomar un rato!
+
+load(file = &amp;quot;https://elradar.github.io/data/radio_persona_caba.rdata&amp;quot;)
+
+radio_persona_caba &amp;lt;- radio_persona_caba %&amp;gt;% 
+  rename(&amp;quot;relacion_jefe&amp;quot; = P01,
+         &amp;quot;sexo&amp;quot; = P02,
+         &amp;quot;edad&amp;quot; = P03,
+         &amp;quot;nacimiento&amp;quot; = P05,
+         &amp;quot;pais&amp;quot; = P06,
+         &amp;quot;lee_escribe&amp;quot; = P07,
+         &amp;quot;usa_comput&amp;quot; = P12,
+         &amp;quot;escolaridad&amp;quot; = P08,
+         &amp;quot;nivel&amp;quot; = P09,
+         &amp;quot;completo&amp;quot; = P10,
+         &amp;quot;actividad&amp;quot; = CONDACT,
+         &amp;quot;material_piso&amp;quot; = H05,
+         &amp;quot;material_techo&amp;quot; = H06,
+         &amp;quot;revestimientos&amp;quot; = H07)
+
+#creando CO_FRAC_RA, desde las variables DPTO_REF_ID, IDFRAC e IDRADIO, sacandole los ceros de adelante. 
+radio_persona_caba &amp;lt;- radio_persona_caba %&amp;gt;% 
+  mutate(IDFRAC = as.numeric(IDFRAC),
+         IDRADIO = as.numeric(IDRADIO)) %&amp;gt;% 
+  unite(CO_FRAC_RA, DPTO_REF_ID, IDFRAC, IDRADIO, sep = &amp;quot;_&amp;quot;, remove = FALSE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora cargo los shapefiles de los radios censales de la Ciudad, para unirlos a los datos del censo de personas.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#descargo del repositorio de datos abiertos de Ciudad
+censo_geo &amp;lt;- st_read (&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/informacion-censal-por-radio/CABA_rc.geojson&amp;quot;, quiet = TRUE)
+
+#selecciono la variable que me sirve
+censo_geo_radio &amp;lt;- censo_geo %&amp;gt;% 
+  select(CO_FRAC_RA = RADIO_ID)
+
+#lo uno al censo de personas
+radio_persona_caba &amp;lt;- radio_persona_caba %&amp;gt;% 
+  left_join(censo_geo_radio, by = &amp;quot;CO_FRAC_RA&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora tenemos los datos del censo de personas, y su radio censal geolocalizado. Con esto vamos a poder clasificar a las personas por edad, para saber quiénes asisten o deben asistir a las escuelas primarias. Pero primero comencemos con el piloto de la Comuna 4.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;analisis-de-la-villa-21-24&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Analisis de la Villa 21-24&lt;/h1&gt;
+&lt;div id=&#34;cuantos-ninos-en-edad-escolar-hay&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Cuántos niños en edad escolar hay?&lt;/h2&gt;
+&lt;p&gt;Para saber cuántos niños en edad escolar hay en el barrio informal Villa 21-24, filtraré los datos del censo de personas por este barrio informal. Para ello, deberé identificar los radios censales del barrio y cruzarlo con los datos de los radios censales del Censo 2010. En primer lugar, filtraré los datos del censo para la Comuna 4, y luego lo cruzaré con los de la Villa 21-24.&lt;/p&gt;
+&lt;p&gt;Una vez realizado eso, deberé analizar la base de datos de Barrios informales de la Ciudad. En el sitio de la [Plataforma Abierta Nacional del Hábitat] (&lt;a href=&#34;https://panh.mininterior.gob.ar/#/&#34; class=&#34;uri&#34;&gt;https://panh.mininterior.gob.ar/#/&lt;/a&gt;) se puede buscar información sobre los barrios informales de la Ciudad y descargar el [shapefile] (&lt;a href=&#34;https://panh-backoffice.mininterior.gob.ar/api/relevamientos/28/dataset/caba-datos.zip&#34; class=&#34;uri&#34;&gt;https://panh-backoffice.mininterior.gob.ar/api/relevamientos/28/dataset/caba-datos.zip&lt;/a&gt;).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;comuna4_geo &amp;lt;- censo_geo%&amp;gt;% 
+  filter(COMUNA == 4) %&amp;gt;% 
+  select(RADIO_ID)
+
+barrios &amp;lt;- st_read(&amp;quot;https://elradar.github.io/data/barrios_populares.geojson&amp;quot;, quiet = TRUE)
+
+comuna4_villa2124 &amp;lt;- barrios %&amp;gt;% 
+  filter(FNA == &amp;quot;Villa 21-24&amp;quot;) %&amp;gt;% 
+  select(FNA)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y hacemos un primer mapa para ver cómo vienen los datos de los radios censales de la Villa 21-24 tanto del shapefile de la Plataforma Abierta Nacional del Hábitat, como del shapefile del Censo 2010.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot()+
+  geom_sf(data = comuna4_geo, fill = NA, col = &amp;quot;grey40&amp;quot;)+
+  geom_sf(data = comuna4_villa2124, fill = &amp;quot;green&amp;quot;)+
+  labs(title = &amp;quot;Comuna 4. Radios censales y Asentamientos&amp;quot;)+
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-21-existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Puede verse que el mapa de los barrios está apenas corrido con el de los radios censales. Esto puede deberse a que al ser de distintas fuentes, puede diferir en alguna localización, o que se están juntando dos proyecciones similares pero sutilmente diferentes&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;De este modo, habrá que hacer una sutil corrección manual del shapefile de los barrios informales, para que quede exacto. También voy a reducir un 1% el tamaño del barrio para que no exceda los límites de los barrios. Veamoslo en el mapa&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;barrios_bis &amp;lt;- st_geometry(barrios)
+barrios_bis &amp;lt;- barrios_bis + c(0.00055,-0.0004)
+barrios_bis_centroides &amp;lt;- st_centroid(barrios_bis)
+barrios_bis &amp;lt;- (barrios_bis - barrios_bis_centroides)*0.99 + barrios_bis_centroides
+barrios_bis &amp;lt;- st_sf(barrios_bis, crs = 4326)
+barrios$geometry &amp;lt;- st_geometry(barrios_bis)
+
+comuna4_villa2124 &amp;lt;- barrios %&amp;gt;%  #filtro por comuna 4
+  filter(FNA == &amp;quot;Villa 21-24&amp;quot;) %&amp;gt;% 
+  select(FNA)
+
+ggplot()+ #graficamos
+  geom_sf(data = comuna4_geo, fill = NA, col = &amp;quot;grey40&amp;quot;)+
+  geom_sf(data = comuna4_villa2124, fill = &amp;quot;green&amp;quot;)+
+  labs(title = &amp;quot;Comuna 4. Radios censales y Asentamientos&amp;quot;)+
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-21-existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;¡Mucho mejor! Ahora, vamos a seleccionar ahora los radios censales donde está la villa 21-24 del Censo 2010.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# función para detectar en qué radios censales está cierto objeto
+
+cuales_radios &amp;lt;- function(x = comuna4_geo, y){
+  radios &amp;lt;- st_intersects(x, y)
+  radios &amp;lt;- lengths(radios)&amp;gt;0
+  cbind(x, radios) %&amp;gt;% 
+    filter(radios == TRUE)
+}
+
+radios_villa_2124 &amp;lt;- cuales_radios(comuna4_geo, comuna4_villa2124)
+
+ggplot()+
+  geom_sf(data = radios_villa_2124, fill = &amp;quot;red&amp;quot;)+
+  geom_sf(data = comuna4_geo, fill = NA)+
+  geom_sf(data = comuna4_villa2124, fill = &amp;quot;green&amp;quot;)+
+  labs(title = &amp;quot;Comuna 4. Radios censales de la Villa 21-24&amp;quot;)+
+  theme_minimal()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-10-21-existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24_files/figure-html/villa_2124_radios-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En el mapa, lo verde es la Villa 21-24 y lo rojo son los radios censales seleccionados, donde hay alguna parte de la Villa. La zona roja es un poco más amplia que la verde, pero habrá que ver los datos para ver si esto es preocupante o no.&lt;/p&gt;
+&lt;p&gt;Al unir estos radios con el dataset del censo, podemos saber cuántas personas viven en los barrios informales, o sus radios censales contiguos. En base a esto, averiguar cuántos niños requieren una escuela cercana. Habrá una pequeña sobreestimación de los datos por los tamaños de los radios censales.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;radio_persona_caba$CO_FRAC_RA &amp;lt;- factor(radio_persona_caba$CO_FRAC_RA)
+
+villa_2124_censo &amp;lt;- radio_persona_caba %&amp;gt;% 
+  filter(CO_FRAC_RA %in% radios_villa_2124$RADIO_ID)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Según este filtrado, en los 21 radios censales viven (o vivían al 2010) 33327 personas.&lt;/p&gt;
+&lt;p&gt;Este resultado que obtuvimos (al filtrar el censo geolocalizado) es similar al que publicó la Dirección de Estadísticas y Censos de la Ciudad, en el informe de resultados 856 de Abril de 2015 &lt;a href=&#34;https://estadisticaciudad.gob.ar/eyc/wp-content/uploads/2015/05/ir_2015_856.pdf&#34;&gt;en el siguiente link&lt;/a&gt;. Para la Villa 21-24 y el NHT Zavaleta&lt;a href=&#34;#fn2&#34; class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;, el documento oficial informa 33.245, un número muy similar al de 33327 que obtuve. La diferencia puede deberse al radio censal superior, que si bien está prácticamente despoblado (existen en dicho lugar vías de tren, depósitos ferroviarios y fiscales, junto al estadio del club Huracán) puede ser que incluya a las 82 personas de diferencia. A falta de mejores datos, vamos a asumir que esos valores son actuales. Esta congruencia de datos nos permite validar la asunción de que la población de este barrio es relativamente estable en el tiempo, ya que entre 2010 y 2015 no hubo variaciones significativas.&lt;/p&gt;
+&lt;p&gt;Y ahora sí, con estos datos, podemos estimar cuántos niños en edad escolar primaria existen. Para ello deberemos filtrar los niños entre 6 y 12 años de edad, ambos inclusive.&lt;/p&gt;
+&lt;p&gt;Como modo de control, podemos filtrar también por el campo &lt;code&gt;P09&lt;/code&gt; que he renombrado como &lt;code&gt;nivel&lt;/code&gt; que indica el nivel educativo que cursa o cursó, junto con la variable &lt;code&gt;P08&lt;/code&gt; que renombre &lt;code&gt;escolaridad&lt;/code&gt; e indica &lt;em&gt;condición de asistencia escolar&lt;/em&gt;, pudiendo seleccionar sólo aquellos que son de valor &lt;code&gt;1&lt;/code&gt;, es decir, que &lt;code&gt;asiste&lt;/code&gt; a ese nivel.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;edad_escolar &amp;lt;- villa_2124_censo %&amp;gt;% 
+  filter(edad &amp;gt;= 6 &amp;amp; edad &amp;lt;= 12)
+
+nivel_primario &amp;lt;- villa_2124_censo %&amp;gt;% 
+  filter(nivel == 2 &amp;amp; escolaridad == 1)
+
+edad_noasiste &amp;lt;- edad_escolar %&amp;gt;% 
+  filter(escolaridad == 2 | escolaridad == 3) %&amp;gt;% 
+  filter(completo == 2| completo == 0)
+
+repitencia &amp;lt;- nivel_primario %&amp;gt;% 
+  filter(edad &amp;gt; 13 &amp;amp; edad &amp;lt;= 18) &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Según los datos del Censo 2010, en la Villa 21-24 habitan 4434 niños en edad escolar primaria. Sin embargo, contestaron que asisten al nivel primario 5461 personas, por lo que puede observarse que muchas personas cursan el nivel primario luego de la edad establecida. También pudimos filtrar cuántos niños en edad escolar no asisten a la primaria, lo que no da un total de 56, ya sea porque abandonaron (32 personas) o porque nunca lo iniciaron (28 personas).&lt;/p&gt;
+&lt;p&gt;De este modo, el total de niños en edad escolar que requieren vacantes en escuelas de la Ciudad es de 4434 niños.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;cuantas-vacantes-escolares-hay&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Cuántas vacantes escolares hay?&lt;/h2&gt;
+&lt;p&gt;Ahora habrá que sumar las escuelas y sus vacantes, para ver si son suficientes para los 4434 niños de la Villa 21-24.&lt;/p&gt;
+&lt;p&gt;Para ello descargamos el shapefile del repositorio oficial del GCBA y filtramos las escuelas públicas y primarias. Luego las proyectaremos en el mapa y seleccionaremos aquellas a una distancia razonable de los radios censales del barrio informal seleccionado.&lt;/p&gt;
+&lt;p&gt;También será necesario calcular cuántas vacantes hay en cada escuela. Esto no está disponible facilmente, pero podrá calcularse en razón de las inscripciones realizadas por escuela, lo que sí está disponible en el &lt;a href=&#34;https://data.buenosaires.gob.ar/dataset/inscripcion-escolar/archivo/123.3&#34;&gt;repositorio&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;De ese repositorio pude descargar las inscripciones para primer grado de los años 2016 y 2017. Cómo son similares, pero no idénticos, sacaré el promedio y multiplicaré por siete para saber la cantidad total de vacantes por escuela.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;#Escuelas Geo
+escuelas &amp;lt;-  read_csv(&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/establecimientos-educativos/establecimientos-educativos.csv&amp;quot;) %&amp;gt;% st_as_sf(coords = c(&amp;quot;long&amp;quot;, &amp;quot;lat&amp;quot;), crs = 4326) 
+
+primarios &amp;lt;- escuelas %&amp;gt;% 
+  filter(nivmod == &amp;quot;PriCom&amp;quot;) %&amp;gt;% 
+  mutate(cueanexo = as.numeric(as.character(cueanexo)))
+
+#Escuelas vacantes
+vacantes17 &amp;lt;- read_csv2(&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/inscripcion-escolar/preinscripciones-escolares-2017.csv&amp;quot;, locale = locale(encoding = &amp;quot;latin1&amp;quot;) ) %&amp;gt;% 
+  filter(NIVEL == &amp;quot;PRIMARIO&amp;quot;) %&amp;gt;% 
+  group_by(ESTABLECIMIENTO, CUE_ANEXO) %&amp;gt;% 
+  summarise(primero_17 = n())
+
+vacantes16 &amp;lt;- read_csv2(&amp;quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/inscripcion-escolar/inscripciones-escolares-2016.csv&amp;quot;, locale = locale(encoding = &amp;quot;UTF-8&amp;quot;) )%&amp;gt;% 
+  filter(NIVEL == &amp;quot;PRIMARIO&amp;quot;) %&amp;gt;% 
+  group_by(ESTABLECIMIENTO) %&amp;gt;% 
+  summarise(primero_16 = n())  
+
+
+vacantes_prom &amp;lt;- vacantes17 %&amp;gt;% 
+  bind_cols(., vacantes16) %&amp;gt;% 
+  select(-ESTABLECIMIENTO1) %&amp;gt;% 
+  mutate(total = round((primero_17+primero_16)/2*7,0)) %&amp;gt;% 
+  ungroup() %&amp;gt;% 
+  select(-primero_17, -primero_16, -ESTABLECIMIENTO)
+
+primarios_vacantes &amp;lt;- primarios %&amp;gt;% 
+  left_join(vacantes_prom, by = c(&amp;quot;cueanexo&amp;quot; = &amp;quot;CUE_ANEXO&amp;quot;)) %&amp;gt;% 
+  select(cueanexo, dom_edific, nombre_abrev, de, comunas, total)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y graficamos los de la COMUNA 4 en un mapa interactivo, con el centro en el límite de la Villa 21-24. Cuando pasamos el puntero vemos el nombre de la escuela y la cantidad de vacantes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;primarios_comuna_4 &amp;lt;- primarios_vacantes %&amp;gt;% 
+    mutate(long = st_coordinates(primarios_vacantes)[,1],
+           lat = st_coordinates(primarios_vacantes)[,2]) %&amp;gt;% 
+    filter(comunas == 4)
+
+mapa_escuelas &amp;lt;- leaflet() %&amp;gt;% 
+    setView(lng =-58.399685,lat = -34.654402, zoom = 13) %&amp;gt;% 
+    addTiles() %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_geo)) %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_villa2124), color = &amp;quot;red&amp;quot;) %&amp;gt;% 
+    addMarkers(data = primarios_comuna_4,
+               lng = primarios_comuna_4$long,
+               lat = primarios_comuna_4$lat,
+               label = ~paste0(primarios_comuna_4$NOMBRE_ABR, &amp;quot;: &amp;quot;,as.character(primarios_comuna_4$total)) )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mapa_escuelas&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe height=&#34;400&#34; width=&#34;1200&#34; src=&#34;/widgets/demian_mapa_escuelas.html&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Para ver qué escuelas están dentro del radio de diez cuadras de la villa –que es la distancia para obtener prioridad en la inscripción, de acuerdo al artículo 29 del Reglamento de inscripciones&lt;a href=&#34;#fn3&#34; class=&#34;footnote-ref&#34; id=&#34;fnref3&#34;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt;– podemos ampliar el perímetro de la villa con un &lt;code&gt;st_buffer&lt;/code&gt; y graficarlo.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;comuna4_villa2124_buffer&amp;lt;- comuna4_villa2124 %&amp;gt;% 
+  st_buffer(.,0.007) 
+
+escuelas_buffer &amp;lt;- leaflet() %&amp;gt;% 
+    setView(lng =-58.399685,lat = -34.654402, zoom = 13) %&amp;gt;% 
+    addTiles() %&amp;gt;% 
+    addPolygons(data = comuna4_villa2124_buffer, color = &amp;quot;green&amp;quot;) %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_geo)) %&amp;gt;% 
+    addPolygons(data = st_union(comuna4_villa2124), color = &amp;quot;red&amp;quot;) %&amp;gt;% 
+    addMarkers(data = primarios_comuna_4,
+               lng = primarios_comuna_4$long,
+               lat = primarios_comuna_4$lat,
+               label = ~paste0(primarios_comuna_4$NOMBRE_ABR, &amp;quot;: &amp;quot;,as.character(primarios_comuna_4$total)) )&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;escuelas_buffer&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe height=&#34;400&#34; width=&#34;1200&#34; src=&#34;/widgets/demian_escuelas_buffer.html&#34;&gt;
+&lt;/iframe&gt;
+&lt;p&gt;Ahora podemos identificar las escuelas que están en el radio de 10 cuadras, que pueden darle vacantes a los niños de la Villa 21-24, y calcular su cantidad de vacantes.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;escuelas_villa &amp;lt;- st_intersects(primarios_vacantes, comuna4_villa2124_buffer, sparse = FALSE) 
+
+escuelas_villa &amp;lt;- data.frame(escuelas_villa) %&amp;gt;% 
+    rename(villa = escuelas_villa)
+
+primarias_villa &amp;lt;-cbind(primarios_vacantes, escuelas_villa$villa) %&amp;gt;% 
+    rename(villa = escuelas_villa.villa)
+
+primarias_villa &amp;lt;- primarias_villa %&amp;gt;% 
+    filter(villa == TRUE)
+
+primarias_villa &amp;lt;- primarias_villa %&amp;gt;% 
+    mutate ( distancia = st_distance(primarias_villa, st_centroid(comuna4_villa2124)) ) %&amp;gt;% 
+    select(-cueanexo, -de, -comunas, villa)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;De este modo, hay 7 escuelas que están dentro de un radio menor a 10 cuadras del centro de la villa que pueden ofrecer vacantes para estos niños. Ellas son las siguientes:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;primarias_villa %&amp;gt;% 
+  st_set_geometry(NULL) %&amp;gt;% 
+  select(-villa) %&amp;gt;% 
+  kable() %&amp;gt;% 
+  kable_styling(bootstrap_options = &amp;quot;striped&amp;quot;, full_width = F)&lt;/code&gt;&lt;/pre&gt;
+&lt;table class=&#34;table table-striped&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+dom_edific
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+nombre_abrev
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+total
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+distancia
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Lynch 3536
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 24
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+410
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1130.2710 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Avda. Amancio Alcorta 2502
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjc 25
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+224
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1374.9064 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Luzuriaga 1571
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 09
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+452
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+993.0795 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Iguazú 1110
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjc 10
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+413
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+817.8860 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Lafayette 1879
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 11
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+791
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+723.1405 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Rio Cuarto y Montesquieu
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjs 12
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+1026
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+288.1783 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Avda. Amancio Alcorta 3402
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+EPjc 16
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+410
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+918.8865 [m]
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Si estas escuelas sólo le dan vacantes a los niños de la villa 21-24, habría un total de 3726 vacantes, para los 4434 niños. Sin embargo, no hay que dejar de tener en cuenta que hay otros niños en los alrededores de la Villa 21-24 que también requieren vacantes escolares.&lt;/p&gt;
+&lt;p&gt;Podemos calcular cuántos niños hay en esos radios censales, del mismo modo que lo hicimos con los niños de la villa 21-24.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;alrededores &amp;lt;- cuales_radios(comuna4_geo, comuna4_villa2124_buffer)
+
+alrededores_censo &amp;lt;- radio_persona_caba %&amp;gt;% 
+  filter(CO_FRAC_RA %in% alrededores$RADIO_ID)
+
+alrededores_edad_escolar &amp;lt;- alrededores_censo %&amp;gt;% 
+  filter(edad &amp;gt;= 6 &amp;amp; edad &amp;lt;= 12)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cuando sumamos los alrededores, vemos que la cantidad de vacantes es sensiblemente inferior a la requerida. Así, las 7 escuelas cercanas a la Villa 21-24, con sus 3726, vacantes, deben proveerle educación primaria a 6915, lo que es llamativamente insuficiente.&lt;/p&gt;
+&lt;p&gt;Es cierto que, como vimos en el mapa interactivo anterior, hay más escuelas disponibles en &lt;em&gt;los alrededores&lt;/em&gt; de &lt;em&gt;los alrededores de la villa&lt;/em&gt;, y esto nos podría llevar a un loop. Podría ser que en la Comuna (o en realidad en el Distrito Escolar, que es la unidad territorial para las escuelas) en total haya vacantes disponibles para todos los niños del lugar. Pero no es poco importante cómo estan distribuidas las vacantes, que es lo que queríamos analizar, sobre si las escuelas dentro o cercanas a la Villa 21-24 tiene vacantes para todos los niños de la zona.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;las-escuelas-estan-realmente-a-10-cuadras-de-la-villa&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;¿Las escuelas están realmente a 10 cuadras de la villa?&lt;/h2&gt;
+&lt;p&gt;Por último, deberíamos ver si estas escuelas están realemente a 10 cuadras de la villa o si el calculo de la distancia lineal es menor que el trayecto realizado por cuadras.&lt;/p&gt;
+&lt;p&gt;En primer lugar, habrá que aclarar que la distancia la medimos desde el centroide de la Villa, que estimamos como promedio de la vivienda de cada niño. De este modo, habra algunos niños más cerca y otros más lejos que lo medido.&lt;/p&gt;
+&lt;p&gt;En segundo lugar habrá que calcular los recorridos, y ello aún no lo sé hacer (🙈). Pero sí puedo calcular cómo sería el arco….&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;key &amp;lt;- &amp;quot;API key de Mapbox aqui&amp;quot; # ver https://docs.mapbox.com/help/how-mapbox-works/access-tokens/
+mapdeck(token = key)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;caminos &amp;lt;- primarias_villa %&amp;gt;% 
+    mutate(lon_salida = st_coordinates(st_centroid(comuna4_villa2124))[1],
+           lat_salida = st_coordinates(st_centroid(comuna4_villa2124))[2])
+
+caminos &amp;lt;- caminos %&amp;gt;% 
+    mutate(lon_llegada = st_coordinates(caminos)[,1],
+           lat_llegada = st_coordinates(primarias_villa)[,2]) %&amp;gt;% 
+    st_set_geometry(NULL)
+
+escuelas_arcos &amp;lt;- mapdeck(style = mapdeck_style(&amp;quot;streets&amp;quot;),
+        location = c(-58.399685, -34.654402), zoom = 10, token = key, pitch = 60) %&amp;gt;% 
+    add_arc(data = caminos,
+             layer_id = &amp;quot;caminos_escuelas&amp;quot;,
+             destination = c(&amp;quot;lon_salida&amp;quot;, &amp;quot;lat_salida&amp;quot;),
+             origin  = c(&amp;quot;lon_llegada&amp;quot;, &amp;quot;lat_llegada&amp;quot;)) %&amp;gt;% 
+    add_polygon(data = comuna4_villa2124)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;escuelas_arcos&lt;/code&gt;&lt;/pre&gt;
+&lt;iframe height=&#34;400&#34; width=&#34;1200&#34; src=&#34;/widgets/demian_escuelas_arcos.html&#34;&gt;
+&lt;/iframe&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusiones&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Conclusiones&lt;/h1&gt;
+&lt;p&gt;Con este ejercicio pudimos ver qué es facilmente calculable si la cantidad de vacantes escolares es suficiente o no para cierto barrio informal. Primero filtramos el shapefile del barrio informal con los radios censales del censo 2010 para identificar en qué radios está ubicado. Con ello, filtramos la cantidad de niños en edad escolar que hay en esos radios censales.&lt;/p&gt;
+&lt;p&gt;Luego buscamos qué escuelas están a un radio de 10 cuadras a la redonda del barrio. Y calculamos sus vacantes, de acuerdo a la cantidad de inscripciones que tuvo en los últimos años para primer grado. Y luego calculamos a qué distancia están. Despues podremos calcular trayectorias (cuando aprenda a hacerlo).&lt;/p&gt;
+&lt;p&gt;Con estos pasos podemos pensar en ampliar el trabajo a otros barrios informales, y también podremos utilizar los datos del censo 2020 cuando estén disponibles. Creo que este tipo de metodología puede ser util para mapear necesidades de los barrios informales y pensar políticas públicas que podrá adoptar por sí el gobierno, o que podrá solicitarselo a la Justicia si no se cumplen.&lt;/p&gt;
+&lt;p&gt;El código de este Rmarkdown está disponible &lt;a href=&#34;https://raw.githubusercontent.com/Demzayat/varios/master/Modulo%203/trabajopractico.Rmd&#34;&gt;aca&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;Sin embargo, al hacer &lt;code&gt;st_crs(censo_geo) == st_crs(barrios)&lt;/code&gt; la respuesta es TRUE.&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;Si bien son dos centros diferenciados por cuestiones históricas, están contigüos geográficamente, y comparten radios censales, por lo que también quedó incluido en mi análisis&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn3&#34;&gt;&lt;p&gt;Véase en línea el &lt;a href=&#34;http://www.ademys.org.ar/v2/wp-content/uploads/2015/10/Reglamento-del-Sistema-de-Inscripciones-y-Asignaci%C3%B3n-de-Vacantes.pdf&#34;&gt;reglamento&lt;/a&gt;.&lt;a href=&#34;#fnref3&#34; class=&#34;footnote-back&#34;&gt;↩&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -27,7 +450,388 @@
       <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/10/20/eph-y-genero/</guid>
-      <description>Este genial proyecto sobre inequidades de género según datos de la EPH fue hecho por la gran Natsumi Shokida y está alojado en su página de RPubs, desde donde se puede descargar el código en formato .</description>
+      <description>
+&lt;script src=&#34;/rmarkdown-libs/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+
+
+&lt;p&gt;&lt;em&gt;Este genial proyecto sobre inequidades de género según datos de la EPH fue hecho por la gran &lt;a href=&#34;https://twitter.com/NatsuSh&#34;&gt;Natsumi Shokida&lt;/a&gt; y está alojado en su página de &lt;a href=&#34;https://rpubs.com/natsumi_shokida/tercer_trim_2018&#34;&gt;RPubs&lt;/a&gt;, desde donde se puede descargar el código en formato .Rmd&lt;/em&gt;&lt;/p&gt;
+&lt;div id=&#34;presentación&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Presentación&lt;/h2&gt;
+&lt;p&gt;En este informe se presentan una serie de indicadores sociales, desagregados por sexo, calculados con bases públicas de la EPH (Encuesta Permanente de Hogares - INDEC - Argentina). El objetivo de esta presentación es visibilizar la desigualdad de género en la composición del mercado de trabajo, la percepción de ingresos, entre otras cuestiones, en un formato amigable.&lt;br /&gt;
+Todos los datos refieren a los 31 aglomerados urbanos relevados en la EPH y en esta ocasión corresponden al 3er trimestre 2018.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;composición-del-mercado-de-trabajo&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Composición del Mercado de Trabajo&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;inserción-laboral&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Inserción laboral&lt;/h2&gt;
+&lt;p&gt;En primer lugar se presentan algunos indicadores clásicos (utilizados a nivel internacional) que caracterizan la composición del mercado de trabajo, desagregados según el sexo.&lt;br /&gt;
+La tasa de Actividad es la relación entre aquellos que participan en el mercado de trabajo (ya sea como ocupados o como desocupados) y la población total. En este caso, dicha tasa es ampliamente mayor entre los varones (la diferencia supera los 20 puntos porcentuales). Esto sucede porque existe una importante porción de las mujeres en edad laboral que dedican su tiempo a realizar tareas domésticas, hacia el interior de sus hogares, en lugar de tener una actividad en el mercado de trabajo.&lt;br /&gt;
+La tasa de Empleo exhibe la proporción de ocupados entre la población total. La diferencia entre varones y mujeres en este caso también supera los 20 puntos, denotando el mismo fenómeno anteriormente mencionado.&lt;br /&gt;
+A diferencia de las tasas anteriores, las tasas de desocupación y subocupación expresan la proporción que estos grupos representan en la Población Económicamente Activa. En este caso, ambas tasas son mayores para las mujeres que para los varones. Esto expresa que, incluso siendo minoría en el mercado de trabajo, las mujeres tienen más dificultades para conseguir trabajo y/o para trabajar una jornada completa.&lt;br /&gt;
+En su conjunto, estos cuatro indicadores nos presentan una primera imagen de la masculinización del mercado de trabajo argentino.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 1.&lt;/strong&gt; &lt;em&gt;Población de 14 años y más. Tasas de Actividad y de Empleo por sexo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 2.&lt;/strong&gt; &lt;em&gt;Población de 14 años y más. Tasas de Desocupación y de Subocupación por sexo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;por-grupos-de-edad-y-sexo&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Por grupos de edad y sexo&lt;/h2&gt;
+&lt;p&gt;Asimismo se exponen las mismas tasas, pero desagregadas por grupos de edad además de por sexo. En este caso, llama la atención que son las mujeres más jóvenes las que presentan menores tasas de Actividad y Empleo, en simultáneo con las mayores tasas de Desocupación y Subocupación.&lt;br /&gt;
+Para dar un ejemplo, un 21,5% de las mujeres de 14 a 29 años está desocupada, es decir que, no teniendo ocupación, están buscando activamente un trabajo y no lo consiguen.&lt;/p&gt;
+&lt;strong&gt;Cuadro 1.&lt;/strong&gt; &lt;em&gt;Población de 14 a 64 años. Principales Tasas del Mercado de Trabajo, por grupos de edad y sexo. En porcentajes. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt;
+&lt;table class=&#34;table table-striped table-hover&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;border-bottom:hidden&#34; colspan=&#34;1&#34;&gt;
+&lt;/th&gt;
+&lt;th style=&#34;border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; &#34; colspan=&#34;2&#34;&gt;
+&lt;div style=&#34;border-bottom: 1px solid #ddd; padding-bottom: 5px; &#34;&gt;
+de 14 a 29 años
+&lt;/div&gt;
+&lt;/th&gt;
+&lt;th style=&#34;border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; &#34; colspan=&#34;2&#34;&gt;
+&lt;div style=&#34;border-bottom: 1px solid #ddd; padding-bottom: 5px; &#34;&gt;
+de 30 a 64 años
+&lt;/div&gt;
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Indicadores
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Mujeres
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Varones
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Mujeres
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Varones
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Tasa Actividad
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+39,8
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+55,1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+68,4
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+91,4
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Tasa Empleo
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+31,3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+47,1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+63,6
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+86,6
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Tasa Desocupación
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+21,5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+14,5
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+7,1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+5,3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Tasa Subocupación
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+15,1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+12,9
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+14,2
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+8,5
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;empleo-no-registrado&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Empleo no registrado&lt;/h2&gt;
+&lt;p&gt;A su vez, las ocupadas asalariadas están expuestas a una tasa de empleo no registrado mayor que la de sus compañeros varones. Hay un 37,0% de las asalariadas a quienes sus empleadores no inscriben en la seguridad social, mientras que para los asalariados varones esta tasa de no registro es del 32,1%.&lt;/p&gt;
+&lt;strong&gt;Cuadro 2.&lt;/strong&gt; &lt;em&gt;Ocupadas/os asalariadas/os. Tasas de empleo no registrado por sexo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt;
+&lt;table class=&#34;table table-striped table-hover&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Sexo
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Proporción de no Registrados
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Mujeres
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+37,0
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Varones
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+32,1
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;acceso-a-cargos-jerárquicos&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Acceso a Cargos jerárquicos&lt;/h2&gt;
+&lt;p&gt;Además de tener una participación más restringida en el mercado de trabajo, las ocupadas encuentran más obstáculos para acceder a cargos jerárquicos: mientras que un 8,0% de los ocupados varones tienen cargos de dirección o son jefes, un 5,5% de las ocupadas ejercen puestos de esas características. Al mismo tiempo, las ocupadas se encuentran más concentradas en los puestos asalariados, es decir, en relación de dependencia.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 3.&lt;/strong&gt; &lt;em&gt;Ocupadas/os. Mujeres y Varones según Jerarquía de la ocupación, en porcentaje (escalas libres). Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;brechas-de-ingresos-mensuales&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Brechas de ingresos mensuales&lt;/h2&gt;
+&lt;p&gt;A continuación se hace foco en las diferencias de montos de ingresos que perciben los varones y las mujeres. Estos ingresos pueden provenir de diversas fuentes y al mismo tiempo pueden desagregarse según características adicionales de las personas o los puestos que desempeñan. Incluso pueden distinguirse los ingresos mensuales y los ingresos horarios.&lt;br /&gt;
+Para dimensionar estas diferencias hacemos uso del concepto de “brecha”, que en este caso se calcula como la diferencia entre los ingresos promedios de los varones y las mujeres, expresada en términos del ingreso más alto. Es decir, que puede leerse como “las mujeres perciben ingresos que, en promedio, son un …% menores que los de los varones”.&lt;/p&gt;
+&lt;div id=&#34;brecha-de-ingresos-totales-mensuales&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Brecha de ingresos totales mensuales&lt;/h3&gt;
+&lt;p&gt;Observando los ingresos totales individuales de toda la población, se observa que la brecha entre varones y mujeres en este caso es de 26,2 puntos porcentuales. Es decir, contemplando todos los ingresos que se perciben, sean de origen laboral o no laboral (como jubilaciones y pensiones, cuotas alimentarias, subsidios, etc.), las mujeres perciben ingresos que, en promedio, son un 26,2% menores que los de los varones.&lt;/p&gt;
+&lt;strong&gt;Cuadro 3.&lt;/strong&gt; &lt;em&gt;Población perceptora de ingresos. Media de ingresos totales individuales y brecha de ingresos (en porcentaje) por sexo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt;
+&lt;table class=&#34;table table-striped table-hover&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Media de ingresos de las Mujeres
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Media de ingresos de los Varones
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Brecha del Ingreso Total Individual
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+$15.460,70
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+$20.963,20
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+26,2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;brecha-de-ingresos-mensuales-de-lasos-ocupadasos&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Brecha de ingresos mensuales de las/os ocupadas/os&lt;/h3&gt;
+&lt;p&gt;Simultáneamente, en el mercado de trabajo, las mujeres ganan en promedio un 25,2% menos que los varones ($13.860,60 vs. $18.537,90 ). Estos datos corresponden a la totalidad de ocupadas/os, cualquiera sea su categoría ocupacional, calificación o jerarquía, y observando en este caso los ingresos provenientes de la ocupación principal.&lt;/p&gt;
+&lt;strong&gt;Cuadro 4.&lt;/strong&gt; &lt;em&gt;Ocupadas/os. Media de ingresos de la ocupación principal y brecha de ingresos (en porcentaje) por sexo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt;
+&lt;table class=&#34;table table-striped table-hover&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Media de ingresos de las Mujeres
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Media de ingresos de los Varones
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Brecha de ingresos de la ocupación principal
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+$13.860,60
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+$18.537,90
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+25,2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;brecha-de-ingresos-mensuales-entre-asalariadasos-no-registrados&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Brecha de ingresos mensuales entre asalariadas/os no registrados&lt;/h3&gt;
+&lt;p&gt;Anteriormente se observó que las asalariadas están expuestas a una tasa de no registro más alta que la que presentan los asalariados varones. Pero además, las asalariadas de este sector, el no registrado, ganan en promedio un 37,2% menos que sus pares. Es decir que la brecha de ingresos de las/os ocupadas/os se amplía cuando vemos a aquellas/os asalariadas/os que tienen peores condiciones de trabajo.&lt;/p&gt;
+&lt;strong&gt;Cuadro 5.&lt;/strong&gt; &lt;em&gt;Ocupadas/os Asalariadas/os no registrados. Media de ingresos de la ocupación principal y brecha de ingresos (en porcentaje) por sexo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt;
+&lt;table class=&#34;table table-striped table-hover&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Media de ingresos de las Mujeres
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Media de ingresos de los Varones
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Brecha de ingresos de la ocupacion principal
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+$7.050,30
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+$11.225,10
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+37,2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div id=&#34;brecha-de-ingresos-mensuales-por-calificación-del-puesto-de-trabajo&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Brecha de ingresos mensuales por calificación del puesto de trabajo&lt;/h3&gt;
+&lt;p&gt;La brecha de ingresos mensuales de las/os ocupadas/os se mantiene incluso a iguales niveles de calificación del puesto de trabajo. Por ejemplo, mientras que los varones que trabajan en ocupaciones profesionales tienen un ingreso medio de $35.218, las mujeres ocupadas en ese mismo segmento perciben un ingreso medio de $28.036, es decir, un 20,4% menos que los varones.&lt;br /&gt;
+En los puestos no calificados, los varones ganan $12.055 en promedio, al tiempo que las mujeres ganan alrededor de $7.404. Esta brecha es del 38,6%.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 4.&lt;/strong&gt; &lt;em&gt;Ocupadas/os. Brecha de ingresos mensuales de la ocupación principal, por sexo y calificación ocupacional. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-22-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;brecha-de-ingresos-mensuales-por-nivel-educativo&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Brecha de ingresos mensuales por nivel educativo&lt;/h3&gt;
+&lt;p&gt;Las mujeres ocupadas están en promedio más formadas que los varones que participan en el mercado de trabajo (hay una mayor proporción de mujeres con niveles educativos más altos). Sin embargo, a igual nivel educativo, los ingresos laborales de las mujeres trabajadoras son inferiores a los de los varones. Esta diferencia de ingresos es del 26,9% para las de nivel universitario/superior, y del 46,2% para las que cuentan con nivel primario.&lt;/p&gt;
+&lt;strong&gt;Cuadro 6.&lt;/strong&gt; &lt;em&gt;Ocupadas/os. Mujeres y Varones según nivel educativo (Porcentaje por columnas). Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt;
+&lt;table class=&#34;table table-striped table-hover&#34; style=&#34;width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+Nivel Educativo
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+% de Mujeres
+&lt;/th&gt;
+&lt;th style=&#34;text-align:right;&#34;&gt;
+% de Varones
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Sin Instrucción
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+2,7
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+4,5
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Primaria
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+24,1
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+35,9
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Secundaria
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+42,9
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+42,2
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+Superior
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+30,3
+&lt;/td&gt;
+&lt;td style=&#34;text-align:right;&#34;&gt;
+17,3
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 5.&lt;/strong&gt; &lt;em&gt;Ocupadas/os. Brecha de ingresos mensuales de la ocupación principal, por sexo y nivel educativo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-25-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;brechas-de-ingresos-horarios&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Brechas de ingresos horarios&lt;/h2&gt;
+&lt;div id=&#34;brecha-de-ingresos-horarios-por-calificación-del-puesto-de-trabajo&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Brecha de ingresos horarios por calificación del puesto de trabajo&lt;/h3&gt;
+&lt;p&gt;Si en lugar de comparar ingresos mensuales tomamos el ingreso por hora de las personas, la historia es un poco diferente. Al recalcular el gráfico 4 (por calificación del puesto de trabajo) la brecha disminuye considerablemente.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 6.&lt;/strong&gt; &lt;em&gt;Ocupadas/os. Brecha de ingresos horarios de la ocupación principal, por sexo y calificación ocupacional. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-27-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;brecha-de-ingresos-horarios-por-nivel-educativo&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Brecha de ingresos horarios por nivel educativo&lt;/h3&gt;
+&lt;p&gt;Si esos mismos ingresos horarios de las/os ocupadas/os se comparan según su nivel educativo, la brecha se mantiene, aunque a niveles más bajos, para la mayoría de los niveles. Sin embargo, cabe señalar que estos indicadores están sujetos a cierta volatilidad en las horas de trabajo captadas en la encuesta y una muestra reducida para los niveles Primario y Sin Instrucción.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 7.&lt;/strong&gt; &lt;em&gt;Ocupadas/os. Brecha de ingresos horarios de la ocupación principal, por sexo y nivel educativo. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-30-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Al incorporar la extensión de las jornadas laborales al análisis, la magnitud de la brecha disminuye notablemente. De aquí se desprende que, en promedio, las mujeres trabajan menos horas que los varones, y esto explica una parte importante de (aunque no toda) la brecha de ingresos mensuales. Cabe cuestionarse entonces respecto al porqué de la diferencia de horas trabajadas por mujeres y por hombres. ¿Existe una falta de voluntad de las mujeres para trabajar? ¿son más holgazanas? ¿o en realidad existe otro motivo por el cual las mujeres deben relegar sus trabajos, del cual los hombres están exentos?&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;distribución-de-las-tareas-del-hogar&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Distribución de las tareas del hogar&lt;/h2&gt;
+&lt;p&gt;Generalmente, las mujeres deben además dedicar su tiempo al trabajo doméstico. Es decir, realizan tareas de cuidado y reproducción para otros miembros de su hogar. Este trabajo no se comercia en el mercado y por tanto no es remunerado. A modo ilustrativo, se señala que: del total de personas que realizan las tareas de la casa, un 75% son mujeres y un 25% son varones. Esto considerando todos los hogares, y seguramente se agravaría la diferencia si quitáramos los hogares unipersonales del conteo y/o incluyéramos a las trabajadoras de servicio doméstico.&lt;br /&gt;
+Este reparto desigual de las tareas domésticas entre varones y mujeres puede asociarse a las desigualdades vistas en la composición del mercado de trabajo y la diferencia de la extensión de la jornada laboral.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 8.&lt;/strong&gt; &lt;em&gt;Personas que realizan las tareas domésticas del hogar, según sexo (no incluye trabajadoras de servicio doméstico). Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-33-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;A esto se suma el hecho de que prácticamente todas las personas que se dedican al servicio doméstico (es decir, que sí venden este trabajo en el mercado) son mujeres, un 97,6%. Asimismo, del total de mujeres ocupadas, un 17% se dedica a esta ocupación, conformando entonces una salida laboral popular.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 9.&lt;/strong&gt; &lt;em&gt;Ocupadas, según si prestan o no servicios domésticos en hogares particulares. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-36-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;distribución-del-ingreso&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Distribución del ingreso&lt;/h2&gt;
+&lt;p&gt;Por último, podemos ver el efecto de estas diferencias en la distribución de los ingresos. En primer lugar, se ordena por deciles a las personas según su ingreso per cápita familiar (el ingreso total del hogar dividido por la cantidad de personas que lo componen). Es decir, se forman diez grupos de individuos, de igual tamaño, ordenados según el nivel de ingresos que le corresponden por el hogar al que pertenece. En el gráfico 10 se puede observar la proporción de mujeres y de varones que finalmente componen cada decil. En este caso, no hay diferencias destacables más allá de una leve preponderancia de las mujeres en todos los deciles, explicable por cuestiones demográficas (hay más mujeres que varones en la población general).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 10.&lt;/strong&gt; &lt;em&gt;Total de la población. Composición según sexo de los deciles del ingreso per cápita familiar. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-38-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En segundo lugar, se separa a la población en deciles según el ingreso total individual. Es decir, los ordenamos según el nivel de ingresos que percibe cada individuo, no ya según lo que percibía su hogar. En este caso puede verse que los deciles más bajos de ingresos están compuestos mayoritariamente por mujeres y, en paralelo, los deciles de mayores ingresos se componen mayoritariamente por varones. Decimos entonces que los estratos de menores ingresos están feminizados, al tiempo que los estratos de mayores ingresos se encuentran masculinizados. ¿Cuál es la diferencia respecto del gráfico anterior?&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Gráfico 11.&lt;/strong&gt; &lt;em&gt;Población perceptora de ingresos. Composición según sexo de los deciles de ingresos totales individuales. Total de aglomerados urbanos. 3er trimestre 2018.&lt;/em&gt; &lt;img src=&#34;/post/EPH-y-genero_files/figure-html/unnamed-chunk-40-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;En el gráfico 10, las unidades de análisis son los hogares, sólo que luego se distribuyeron de forma “pareja” sus ingresos entre los miembros. De esta forma, la composición por sexo de los estratos de menores ingresos no tiene mayores diferencias respecto a la de los estratos de mayores ingresos. Sin embargo, en el gráfico 11 vemos lo que pasa a nivel individual, lo cual es una forma de “abrir” lo que pasa hacia el interior de los hogares. La unidad familiar parece resolver la diferencia entre sexos, pero es dentro de ésta que se mantiene la diferencia: de acuerdo a todo lo visto anteriormente, los varones tienen más probabilidades de ganar más que las mujeres del mismo hogar. La distribución de los ingresos de las mujeres, sesgada hacia los menores ingresos, se compensa en la estructura familiar con la distribución de los ingresos de los varones, sesgada hacia los mayores ingresos. Entonces, la familia como unidad de reproducción esconde y resuelve debajo de la superficie (la distribución aparentemente equitativa según los ingresos per cápita) la inequitativa distribución de las tareas de reproducción y las dificultades asociadas que tienen las mujeres para participar de forma plena en el mercado de trabajo y por tanto percibir ingresos semejantes a los de los varones.&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
     <item>
@@ -36,7 +840,97 @@
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/10/19/un-cran-a-la-vez-janitor/</guid>
-      <description>Así damos inicio a la sección dada a llamar Un CRAN a la vez (inspirada en este proyecto de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida aqui, en conjunción con nuestro querido, y ya clásico, tidyverse.</description>
+      <description>
+
+
+&lt;p&gt;Así damos inicio a la sección dada a llamar &lt;strong&gt;Un CRAN a la vez&lt;/strong&gt; (inspirada en &lt;a href=&#34;https://djnavarro.net/post/a-random-walk-on-cran/&#34;&gt;este proyecto&lt;/a&gt; de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada &lt;strong&gt;janitor&lt;/strong&gt;, hecha por Sam Firke y subida &lt;a href=&#34;https://github.com/sfirke/janitor&#34;&gt;aqui&lt;/a&gt;, en conjunción con nuestro querido, y ya clásico, &lt;strong&gt;tidyverse&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
+library(janitor)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;janitor&lt;/strong&gt; es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. Para aquellos que saben inglés, Alison Hill (/apresshill en Twitter) hizo una ilustración sobre este paquete que es bastante informativa:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://pbs.twimg.com/media/ED1UxS4U8AEh31k?format=jpg&amp;amp;name=medium&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Veamos un ejemplo de un dataset real, truncado por temas de confidencialidad, en el que una biblioteca como janitor nos vino al pelo para volverlo más ameno para su procesamiento.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_originales &amp;lt;- read.csv(&amp;quot;https://elradar.github.io/data/data_janitor.csv&amp;quot;, encoding = &amp;quot;latin1&amp;quot;)
+glimpse(datos_originales)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 17
+## Variables: 8
+## $ X                   &amp;lt;int&amp;gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1…
+## $ Edad                &amp;lt;int&amp;gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46, …
+## $ Género              &amp;lt;fct&amp;gt; B, B, A, A, B, A, B, B, B, A, B, A, B, B, B,…
+## $ DNI                 &amp;lt;fct&amp;gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, B,…
+## $ Sabe.leer.y.escribi &amp;lt;fct&amp;gt; B, A, , A, A, A, A, A, A, A, A, A, A, A, A, …
+## $ Teléfono            &amp;lt;fct&amp;gt; , A, A, A, A, A, , , A, A, C, A, A, A, A, A,…
+## $ Visitas             &amp;lt;fct&amp;gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, A,…
+## $ Apoyo.espiritual    &amp;lt;fct&amp;gt; A, A, A, A, B, A, A, A, A, B, B, B, A, A, A,…&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Al husmear la estructura del dataset, vemos que las columnas &lt;em&gt;Género&lt;/em&gt; y &lt;em&gt;Teléfono&lt;/em&gt; tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de las columnas puede afectar muchas operaciones (que se encuentran penadas y adaptadas al inglés o el esperanto de la era digital). &lt;br/&gt;
+Por otro lado, podemos ver que en muchos de los nombres de columnas han decidido usar el punto como separador de palabras. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad, pero en general se prefiere utilizar el guión bajo o “underscore” como separador. Por último, que los nombres de las columnas se encuentren enteramente en minúscula no nos vendría nada mal para ahorrar tiempo al tipear (el viaje de ida y vuelta al Caps Lock).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios &amp;lt;- datos_originales %&amp;gt;% 
+  clean_names()
+  
+colnames(datos_limpios)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;x&amp;quot;                   &amp;quot;edad&amp;quot;                &amp;quot;genero&amp;quot;             
+## [4] &amp;quot;dni&amp;quot;                 &amp;quot;sabe_leer_y_escribi&amp;quot; &amp;quot;telefono&amp;quot;           
+## [7] &amp;quot;visitas&amp;quot;             &amp;quot;apoyo_espiritual&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lo primero que salta a la vista es que janitor y tidyverse se llevan increíblemente bien. Lo segundo, es que con una simple función todas las variables perdieron los caracteres especiales (en nuestro caso las tildes), los puntos fueron reemplazador por &amp;quot;_&amp;quot; como separadores y todo está en bella letra minúscula.
+Vamos a ver si hay filas enteramente vacías (todo es posible cuando viene de Excel), que tengan siempre el mismo valor (categoría constante) y si hay alguna línea duplicada.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios &amp;lt;- datos_originales %&amp;gt;% 
+  clean_names() %&amp;gt;% 
+  remove_empty(&amp;quot;rows&amp;quot;) %&amp;gt;% 
+  remove_constant() %&amp;gt;% 
+  convert_to_NA(&amp;quot;factor&amp;quot;)
+
+duplicados &amp;lt;- datos_limpios %&amp;gt;% 
+  get_dupes()&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## No variable names specified - using all columns.&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## No duplicate combinations found of: x, edad, genero, dni, sabe_leer_y_escribi, telefono, visitas, apoyo_espiritual&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(datos_limpios)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 17  8&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dim(duplicados)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 0 9&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No tenemos filas vacías ni duplicados (tenemos la misma cantidad de observaciones) aunque sí encontró una fila con todos valores constantes y la removió (fecha_ult_ingreso). &lt;br/&gt;
+Lo que nos va a interesar en este caso es hacer un análisis de las variables género y apoyo espiritual. Ahora, ¿no sería más útil tener en vez de categorías &lt;em&gt;A&lt;/em&gt; y &lt;em&gt;B&lt;/em&gt; más información sobre las categorías? Consultando el libro de código de esta base (qué linda esa prolijidad) sé que &lt;em&gt;A&lt;/em&gt; significa &lt;em&gt;hombre&lt;/em&gt; en la variable género (ninguna sorpresa por aquí) y &lt;em&gt;B&lt;/em&gt; significa &lt;em&gt;mujer&lt;/em&gt;. Además, que en la columna apoyo espiritual &lt;em&gt;A&lt;/em&gt; representa que &lt;em&gt;no solicitó apoyo espiritual&lt;/em&gt; y &lt;em&gt;B&lt;/em&gt; que &lt;em&gt;sí lo solicitó y lo tuvo&lt;/em&gt; (existe otra categoría que lo solicitó y no lo tuvo pero no nos tocaron casos en la muestra). Vamos a usar la función recode() del tidyverse para emprolijarla. &lt;br/&gt;
+Por último, vimos que había muchas celdas vacías que no eran tomadas como casos perdidos aunque conceptualmente lo son. Vamos a ayudarnos con mutate_all() y na_if() para resolver eso; y vamos a sacarnos de encima esa variable &lt;em&gt;X&lt;/em&gt; que viene de guardar archivos en excel sin ninguna modificación de argumento.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios &amp;lt;- datos_limpios %&amp;gt;% 
+  select(-x) %&amp;gt;% 
+  mutate(genero = recode(genero,
+                           &amp;quot;A&amp;quot; = &amp;quot;hombre&amp;quot;,
+                           &amp;quot;B&amp;quot; = &amp;quot;mujer&amp;quot;),
+         apoyo_espiritual = recode(apoyo_espiritual,
+                           &amp;quot;A&amp;quot; = &amp;quot;no quiso&amp;quot;,
+                           &amp;quot;B&amp;quot; = &amp;quot;tuvo apoyo&amp;quot;)) %&amp;gt;% 
+  mutate_all(na_if,&amp;quot;&amp;quot;)
+
+glimpse(datos_limpios)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Observations: 17
+## Variables: 7
+## $ edad                &amp;lt;int&amp;gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46, …
+## $ genero              &amp;lt;fct&amp;gt; mujer, mujer, hombre, hombre, mujer, hombre,…
+## $ dni                 &amp;lt;fct&amp;gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, B,…
+## $ sabe_leer_y_escribi &amp;lt;fct&amp;gt; B, A, NA, A, A, A, A, A, A, A, A, A, A, A, A…
+## $ telefono            &amp;lt;fct&amp;gt; NA, A, A, A, A, A, NA, NA, A, A, C, A, A, A,…
+## $ visitas             &amp;lt;fct&amp;gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, A,…
+## $ apoyo_espiritual    &amp;lt;fct&amp;gt; no quiso, no quiso, no quiso, no quiso, tuvo…&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y compatibles con el pipe de magrittr (%&amp;gt;%) que popularizó el tidyverse. En esta ocasión vamos a cruzar la variable género con apoyo espiritual que fue lo que definimos más arriba que nos interesaba analizar.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios %&amp;gt;% 
+  tabyl(genero, apoyo_espiritual)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  genero no quiso tuvo apoyo
+##  hombre        3          3
+##   mujer        9          2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Genial, tenemos la cantidad de casos en cada celda. Pero, ¿no nos interesaría mucho más poder ver estos mismos datos como porcentajes?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;datos_limpios %&amp;gt;% 
+  tabyl(genero, apoyo_espiritual) %&amp;gt;% 
+  adorn_totals(&amp;quot;row&amp;quot;) %&amp;gt;%   ##muestra el total por categoria de columna
+  adorn_percentages(&amp;quot;row&amp;quot;) %&amp;gt;% ##nos muestra las celdas en porcentajes
+  adorn_pct_formatting() %&amp;gt;% ##formatea el porcentaje de manera legible
+  adorn_ns() %&amp;gt;% ##le suma a cada celda el número de casos absolutos entre paréntesis
+  adorn_title() ##le suma el título del cruce en la esquina superior izquierda&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         apoyo_espiritual           
+##  genero         no quiso tuvo apoyo
+##  hombre       50.0%  (3)  50.0% (3)
+##   mujer       81.8%  (9)  18.2% (2)
+##   Total       70.6% (12)  29.4% (5)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y así tenemos una tabla bastante linda, con bastante flexibilidad de formateo y sin salir en ningún momento del universo tidyverse (yey). Por supuesto que no sacaremos ninguna conclusión sobre estos datos ya que forman parte de una muestra no aleatoria ni representativa de un conjunto de información no disponible (aún) para su publicación. &lt;br/&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;BONUS TRACK&lt;/strong&gt;: Otra joyita que tiene esta biblioteca janitor es la función excel_numeric_to_date() para hacer ingeniería inversa de aquellas fechas de Excel que llegan como enteros a R (si les pasó alguna vez reconocerán rápido este problema)&lt;/p&gt;
+</description>
     </item>
     
   </channel>
