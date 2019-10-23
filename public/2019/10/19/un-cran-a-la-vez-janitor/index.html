@@ -17,7 +17,7 @@
 	<meta property="og:title" content="Un CRAN a la vez: janitor" />
 <meta property="og:description" content="Así damos inicio a la sección dada a llamar Un CRAN a la vez (inspirada en este proyecto de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida aqui, en conjunción con nuestro querido, y ya clásico, tidyverse." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://elradar.github.io/2019/10/19/un-cran-a-la-vez-janitor/" />
+<meta property="og:url" content="/2019/10/19/un-cran-a-la-vez-janitor/" />
 <meta property="article:published_time" content="2019-10-19T16:38:25-03:00" />
 <meta property="article:modified_time" content="2019-10-19T00:00:00+00:00" />
 
@@ -78,19 +78,19 @@
     <p>Compartir</p>
     <ul>
         <li class="ml-1 mr-1">
-        <a target="_blank" href="https://twitter.com/intent/tweet?text=Un%20CRAN%20a%20la%20vez%3a%20janitor&url=https%3a%2f%2felradar.github.io%2f2019%2f10%2f19%2fun-cran-a-la-vez-janitor%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Un%20CRAN%20a%20la%20vez%3a%20janitor&url=%2f2019%2f10%2f19%2fun-cran-a-la-vez-janitor%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
         <i class="fab fa-twitter"></i>
         </a>
         </li>
         
         <li class="ml-1 mr-1">
-        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2felradar.github.io%2f2019%2f10%2f19%2fun-cran-a-la-vez-janitor%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=%2f2019%2f10%2f19%2fun-cran-a-la-vez-janitor%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
         <i class="fab fa-facebook-f"></i>
         </a>
         </li>
 
         <li class="ml-1 mr-1">
-        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2felradar.github.io%2f2019%2f10%2f19%2fun-cran-a-la-vez-janitor%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=%2f2019%2f10%2f19%2fun-cran-a-la-vez-janitor%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
         <i class="fab fa-xing"></i>
         </a>
         </li>        
@@ -129,23 +129,25 @@
 <p>Así damos inicio a la sección dada a llamar <strong>Un CRAN a la vez</strong> (inspirada en <a href="https://djnavarro.net/post/a-random-walk-on-cran/">este proyecto</a> de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada <strong>janitor</strong>, hecha por Sam Firke y subida <a href="https://github.com/sfirke/janitor">aqui</a>, en conjunción con nuestro querido, y ya clásico, <strong>tidyverse</strong>.</p>
 <pre class="r"><code>library(tidyverse)
 library(janitor)</code></pre>
-<p><strong>janitor</strong> es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. Para aquellos que saben inglés, Alison Hill (/apresshill en Twitter) hizo una ilustración sobre este paquete que es bastante informativa:</p>
-<p><img src="https://pbs.twimg.com/media/ED1UxS4U8AEh31k?format=jpg&amp;name=medium" /></p>
+<p><strong>janitor</strong> es una biblioteca que ayuda a limpiar nombres de columnas que vienen formateados de forma subóptima (para ser generosos) para el análisis de datos. Generalmente sirve para aquellos Excel que nos pasan con nombres de columna con tildes, puntos como separadores, duplicados, entre otros problemillas. Para aquellos que saben inglés, Allison Horst (/allisonhorst en Twitter) hizo una ilustración sobre este paquete que es bastante informativa:</p>
+<div class="figure">
+<img src="https://pbs.twimg.com/media/ED1UxS4U8AEh31k?format=jpg&amp;name=medium" />
+
+</div>
 <p>Veamos un ejemplo de un dataset real, truncado por temas de confidencialidad, en el que una biblioteca como janitor nos vino al pelo para volverlo más ameno para su procesamiento.</p>
 <pre class="r"><code>datos_originales &lt;- read.csv(&quot;https://elradar.github.io/data/data_janitor.csv&quot;, encoding = &quot;latin1&quot;)
 glimpse(datos_originales)</code></pre>
 <pre><code>## Observations: 17
 ## Variables: 8
-## $ X                   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1…
-## $ Edad                &lt;int&gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46, …
-## $ Género              &lt;fct&gt; B, B, A, A, B, A, B, B, B, A, B, A, B, B, B,…
-## $ DNI                 &lt;fct&gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, B,…
-## $ Sabe.leer.y.escribi &lt;fct&gt; B, A, , A, A, A, A, A, A, A, A, A, A, A, A, …
-## $ Teléfono            &lt;fct&gt; , A, A, A, A, A, , , A, A, C, A, A, A, A, A,…
-## $ Visitas             &lt;fct&gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, A,…
-## $ Apoyo.espiritual    &lt;fct&gt; A, A, A, A, B, A, A, A, A, B, B, B, A, A, A,…</code></pre>
-<p>Al husmear la estructura del dataset, vemos que las columnas <em>Género</em> y <em>Teléfono</em> tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de las columnas puede afectar muchas operaciones (que se encuentran penadas y adaptadas al inglés o el esperanto de la era digital). <br/>
-Por otro lado, podemos ver que en muchos de los nombres de columnas han decidido usar el punto como separador de palabras. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad, pero en general se prefiere utilizar el guión bajo o “underscore” como separador. Por último, que los nombres de las columnas se encuentren enteramente en minúscula no nos vendría nada mal para ahorrar tiempo al tipear (el viaje de ida y vuelta al Caps Lock).</p>
+## $ X                   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,...
+## $ Edad                &lt;int&gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46...
+## $ Género              &lt;fct&gt; B, B, A, A, B, A, B, B, B, A, B, A, B, B, ...
+## $ DNI                 &lt;fct&gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, ...
+## $ Sabe.leer.y.escribi &lt;fct&gt; B, A, , A, A, A, A, A, A, A, A, A, A, A, A...
+## $ Teléfono            &lt;fct&gt; , A, A, A, A, A, , , A, A, C, A, A, A, A, ...
+## $ Visitas             &lt;fct&gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, ...
+## $ Apoyo.espiritual    &lt;fct&gt; A, A, A, A, B, A, A, A, A, B, B, B, A, A, ...</code></pre>
+<p>Al husmear la estructura del dataset, vemos que las columnas <em>Género</em> y <em>Teléfono</em> tienen tilde, lo cual es muy correcto a nivel idiomático pero muy desaconsejado a nivel pragmático ya que tener caracteres especiales en el nombre de las columnas puede afectar muchas operaciones (que se encuentran penadas y adaptadas al inglés o el esperanto de la era digital). <br/> Por otro lado, podemos ver que en muchos de los nombres de columnas han decidido usar el punto como separador de palabras. Esto tiene más que ver con convención (o hedonismo estético) que por utilidad, pero en general se prefiere utilizar el guión bajo o “underscore” como separador. Por último, que los nombres de las columnas se encuentren enteramente en minúscula no nos vendría nada mal para ahorrar tiempo al tipear (el viaje de ida y vuelta al Caps Lock).</p>
 <pre class="r"><code>datos_limpios &lt;- datos_originales %&gt;% 
   clean_names()
   
@@ -153,8 +155,7 @@ colnames(datos_limpios)</code></pre>
 <pre><code>## [1] &quot;x&quot;                   &quot;edad&quot;                &quot;genero&quot;             
 ## [4] &quot;dni&quot;                 &quot;sabe_leer_y_escribi&quot; &quot;telefono&quot;           
 ## [7] &quot;visitas&quot;             &quot;apoyo_espiritual&quot;</code></pre>
-<p>Lo primero que salta a la vista es que janitor y tidyverse se llevan increíblemente bien. Lo segundo, es que con una simple función todas las variables perdieron los caracteres especiales (en nuestro caso las tildes), los puntos fueron reemplazador por &quot;_&quot; como separadores y todo está en bella letra minúscula.
-Vamos a ver si hay filas enteramente vacías (todo es posible cuando viene de Excel), que tengan siempre el mismo valor (categoría constante) y si hay alguna línea duplicada.</p>
+<p>Lo primero que salta a la vista es que janitor y tidyverse se llevan increíblemente bien. Lo segundo, es que con una simple función todas las variables perdieron los caracteres especiales (en nuestro caso las tildes), los puntos fueron reemplazador por “_&quot; como separadores y todo está en bella letra minúscula. Vamos a ver si hay filas enteramente vacías (todo es posible cuando viene de Excel), que tengan siempre el mismo valor (categoría constante) y si hay alguna línea duplicada.</p>
 <pre class="r"><code>datos_limpios &lt;- datos_originales %&gt;% 
   clean_names() %&gt;% 
   remove_empty(&quot;rows&quot;) %&gt;% 
@@ -169,9 +170,7 @@ duplicados &lt;- datos_limpios %&gt;%
 <pre><code>## [1] 17  8</code></pre>
 <pre class="r"><code>dim(duplicados)</code></pre>
 <pre><code>## [1] 0 9</code></pre>
-<p>No tenemos filas vacías ni duplicados (tenemos la misma cantidad de observaciones) aunque sí encontró una fila con todos valores constantes y la removió (fecha_ult_ingreso). <br/>
-Lo que nos va a interesar en este caso es hacer un análisis de las variables género y apoyo espiritual. Ahora, ¿no sería más útil tener en vez de categorías <em>A</em> y <em>B</em> más información sobre las categorías? Consultando el libro de código de esta base (qué linda esa prolijidad) sé que <em>A</em> significa <em>hombre</em> en la variable género (ninguna sorpresa por aquí) y <em>B</em> significa <em>mujer</em>. Además, que en la columna apoyo espiritual <em>A</em> representa que <em>no solicitó apoyo espiritual</em> y <em>B</em> que <em>sí lo solicitó y lo tuvo</em> (existe otra categoría que lo solicitó y no lo tuvo pero no nos tocaron casos en la muestra). Vamos a usar la función recode() del tidyverse para emprolijarla. <br/>
-Por último, vimos que había muchas celdas vacías que no eran tomadas como casos perdidos aunque conceptualmente lo son. Vamos a ayudarnos con mutate_all() y na_if() para resolver eso; y vamos a sacarnos de encima esa variable <em>X</em> que viene de guardar archivos en excel sin ninguna modificación de argumento.</p>
+<p>No tenemos filas vacías ni duplicados (tenemos la misma cantidad de observaciones) aunque sí encontró una fila con todos valores constantes y la removió (fecha_ult_ingreso). <br/> Lo que nos va a interesar en este caso es hacer un análisis de las variables género y apoyo espiritual. Ahora, ¿no sería más útil tener en vez de categorías <em>A</em> y <em>B</em> más información sobre las categorías? Consultando el libro de código de esta base (qué linda esa prolijidad) sé que <em>A</em> significa <em>hombre</em> en la variable género (ninguna sorpresa por aquí) y <em>B</em> significa <em>mujer</em>. Además, que en la columna apoyo espiritual <em>A</em> representa que <em>no solicitó apoyo espiritual</em> y <em>B</em> que <em>sí lo solicitó y lo tuvo</em> (existe otra categoría que lo solicitó y no lo tuvo pero no nos tocaron casos en la muestra). Vamos a usar la función recode() del tidyverse para emprolijarla. <br/> Por último, vimos que había muchas celdas vacías que no eran tomadas como casos perdidos aunque conceptualmente lo son. Vamos a ayudarnos con mutate_all() y na_if() para resolver eso; y vamos a sacarnos de encima esa variable <em>X</em> que viene de guardar archivos en excel sin ninguna modificación de argumento.</p>
 <pre class="r"><code>datos_limpios &lt;- datos_limpios %&gt;% 
   select(-x) %&gt;% 
   mutate(genero = recode(genero,
@@ -185,13 +184,13 @@ Por último, vimos que había muchas celdas vacías que no eran tomadas como cas
 glimpse(datos_limpios)</code></pre>
 <pre><code>## Observations: 17
 ## Variables: 7
-## $ edad                &lt;int&gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46, …
-## $ genero              &lt;fct&gt; mujer, mujer, hombre, hombre, mujer, hombre,…
-## $ dni                 &lt;fct&gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, B,…
-## $ sabe_leer_y_escribi &lt;fct&gt; B, A, NA, A, A, A, A, A, A, A, A, A, A, A, A…
-## $ telefono            &lt;fct&gt; NA, A, A, A, A, A, NA, NA, A, A, C, A, A, A,…
-## $ visitas             &lt;fct&gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, A,…
-## $ apoyo_espiritual    &lt;fct&gt; no quiso, no quiso, no quiso, no quiso, tuvo…</code></pre>
+## $ edad                &lt;int&gt; 21, 51, 42, 56, 19, 78, 33, 38, NA, 58, 46...
+## $ genero              &lt;fct&gt; mujer, mujer, hombre, hombre, mujer, hombr...
+## $ dni                 &lt;fct&gt; B, A, A, A, B, A, B, A, B, B, B, B, A, A, ...
+## $ sabe_leer_y_escribi &lt;fct&gt; B, A, NA, A, A, A, A, A, A, A, A, A, A, A,...
+## $ telefono            &lt;fct&gt; NA, A, A, A, A, A, NA, NA, A, A, C, A, A, ...
+## $ visitas             &lt;fct&gt; A, B, A, A, B, A, A, A, A, A, A, B, A, A, ...
+## $ apoyo_espiritual    &lt;fct&gt; no quiso, no quiso, no quiso, no quiso, tu...</code></pre>
 <p>Una gran ventaja de janitor es que nos permite además es hacer tablas relativamente lindas de manera sencilla y compatibles con el pipe de magrittr (%&gt;%) que popularizó el tidyverse. En esta ocasión vamos a cruzar la variable género con apoyo espiritual que fue lo que definimos más arriba que nos interesaba analizar.</p>
 <pre class="r"><code>datos_limpios %&gt;% 
   tabyl(genero, apoyo_espiritual)</code></pre>
@@ -247,7 +246,7 @@ glimpse(datos_limpios)</code></pre>
                     
                     <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
                     
-                        <a class="d-block col-md-6" href="https://elradar.github.io/2019/10/20/eph-y-genero/"> &laquo; EPH y género</a>
+                        <a class="d-block col-md-6" href="/2019/10/20/eph-y-genero/"> &laquo; EPH y género</a>
                     
                     
                     <div class="clearfix"></div>
