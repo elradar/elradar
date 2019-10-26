@@ -1,6 +1,6 @@
 ---
 title: 'Un CRAN a la vez: janitor'
-author: ~
+author: "Victoria ODonnell"
 date: '2019-10-19'
 slug: un-cran-a-la-vez-janitor
 categories: [uncranalavez, bibliotecas, paquetes]
