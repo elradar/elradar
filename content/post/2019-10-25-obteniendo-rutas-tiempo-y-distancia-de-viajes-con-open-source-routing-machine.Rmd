@@ -12,9 +12,9 @@ publishdate: '2019-10-25T22:00:29-03:00'
 comments: yes
 ---
 
-_Agradecemos a [Angie Scetta](https://www.linkedin.com/in/mar%C3%ADa-de-los-%C3%A1ngeles-scetta-b7b82a80/), arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar `OSRM`, el paquete de R para estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo. 
+_Agradecemos a [Angie Scetta](https://www.linkedin.com/in/mar%C3%ADa-de-los-%C3%A1ngeles-scetta-b7b82a80/), arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar `OSRM`: el paquete de R que permite estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo._
 
-Angie se especializa en análisis de datos urbanos. Trabaja en el Gobierno de la Ciudad de Buenos Aires analizando el impacto en la ciudad de proyectos de diversas áras de gobierno, y como profesora asistente en Ciencia de Datos para Ciudades en UTDT_
+_Angie se especializa en análisis de datos urbanos. Trabaja en el Gobierno de la Ciudad de Buenos Aires analizando el impacto de proyectos de diversas áreas de gobierno, y como profesora asistente en la materia Ciencia de Datos para Ciudades en la Universidad Torcuato Di Tella_
 
 ### *Analizando recorridos y distancias en la Ciudad*
 
@@ -112,6 +112,7 @@ ggplot()+
 En el Mapa 1 podemos ver como se distribuyen los hospitales de la Ciudad (más de la mitad de los barrios no poseen hospitales) y donde se localizan los 2 centroides a analizar.
 
 Ahora sí, para los ruteos, vamos a necesitar crear una función con osrmRoute() que haga los cálculos entre nuestros puntos de origen (centroides de los 2 barrios) y los de destino (hospitales).
+
 ATENCIÓN: Como estamos usando 2 orígenes pero múltiples destinos, es necesario que creemos una función que haga los múltiples ruteos a la vez. Sino deberíamos hacer uno por uno a mano y sería muy engorroso.
 
 </div>
@@ -203,7 +204,7 @@ ruteo_centrico$DESTINO
 
 LISTO! Ya logramos lo que queríamos, y podemos decir a que distancia y tiempo de viaje está cada hospital. Pero, no nos conformemos con esto. Aprovechemos la magia de leaflet() para ver toda está información en un lindo mapa interactivo.
 
-__Mapa 2.__ _Rutas calculadas desde Palermo hasta los hospitales públicos de la Ciudad_
+__Mapa 2.__ _Rutas calculadas desde Palermo hasta los 10 hospitales públicos de la Ciudad más cercanos_
 ```{r warning=FALSE, error=FALSE, message=FALSE}
 paleta <- c(low="gold", high= "deeppink4")
 
@@ -222,7 +223,7 @@ labels <- sprintf(
   ruteo_centrico$RUTA, round(ruteo_centrico$distance, 2), round(ruteo_centrico$duration, 0)
 ) %>% lapply(htmltools::HTML)
 
-leaflet(ruteo_centrico) %>%
+mapa1 <- leaflet(ruteo_centrico) %>%
   addTiles() %>%
   addProviderTiles(providers$CartoDB) %>%
   addPolylines(color = ~colorNumeric(paleta, ruteo_centrico$distance)(distance),
@@ -241,6 +242,16 @@ leaflet(ruteo_centrico) %>%
   addAwesomeMarkers(~LON_DESTINO, ~LAT_DESTINO, popup = ~DESTINO, icon=icons_d)%>%
   addAwesomeMarkers(~LON_ORIGEN, ~LAT_ORIGEN, popup = ~ORIGEN, icon=icons_o)
 ```
+
+```{r eval=FALSE, echo=FALSE}
+htmlwidgets::saveWidget(mapa, file = "../../public/widgets/angie_mapa_palermo.html")
+```
+
+```{r eval=FALSE}
+mapa1
+```
+
+<iframe height=400 width=1200 src='/widgets/angie_mapa_palermo.html'> </iframe>
 
 __Ahora repitamos el proceso con Villa Lugano a ver que ocurre__
 
@@ -298,14 +309,14 @@ ruteo_periferico <- ruteo_periferico %>%
 ruteo_periferico$DESTINO
 ```
 
-__Mapa 3.__ _Rutas calculadas desde Villa Lugano hasta los hospitales públicos de la Ciudad_
+__Mapa 3.__ _Rutas calculadas desde Villa Lugano hasta los 10 hospitales públicos de la Ciudad más cercanos_
 ```{r warning=FALSE, error=FALSE, message=FALSE}
 labels <- sprintf(
   "<strong>%s</strong><br/>%g km <br/>%g min",
   ruteo_periferico$RUTA, round(ruteo_periferico$distance, 2), round(ruteo_periferico$duration, 0)
 ) %>% lapply(htmltools::HTML)
 
-leaflet(ruteo_periferico) %>%
+mapa2 <- leaflet(ruteo_periferico) %>%
   addTiles() %>%
   addProviderTiles(providers$CartoDB) %>%
   addPolylines(color = ~colorNumeric(paleta, ruteo_periferico$distance)(distance),
@@ -321,6 +332,17 @@ leaflet(ruteo_periferico) %>%
   addAwesomeMarkers(~LON_DESTINO, ~LAT_DESTINO, popup = ~DESTINO, icon=icons_d)%>%
   addAwesomeMarkers(~LON_ORIGEN, ~LAT_ORIGEN, popup = ~ORIGEN, icon=icons_o)
 ```
+
+```{r eval=FALSE, echo=FALSE}
+htmlwidgets::saveWidget(mapa, file = "../../public/widgets/angie_mapa_lugano.html")
+```
+
+```{r eval=FALSE}
+mapa2
+```
+
+<iframe height=400 width=1200 src='/widgets/angie_mapa_lugano.html'> </iframe>
+
 
 <div class=text-justify>
 

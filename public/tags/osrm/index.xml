@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>osrm on el radaR</title>
+    <link>https://elradar.github.io/tags/osrm/</link>
+    <description>Recent content in osrm on el radaR</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-ar</language>
+    <copyright>equipo el radaR</copyright>
+    <lastBuildDate>Fri, 25 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://elradar.github.io/tags/osrm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Obteniendo rutas, tiempo y distancia de viajes con Open Source Routing Machine</title>
+      <link>https://elradar.github.io/2019/10/25/obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine/</link>
+      <pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://elradar.github.io/2019/10/25/obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine/</guid>
+      <description>Agradecemos a Angie Scetta, arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar OSRM: el paquete de R que permite estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="es-ar"><head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="generator" content="Hugo 0.58.3" />
+	
+	<link rel="icon" href="/images/logo.png">
+	
+	<title>Obteniendo rutas, tiempo y distancia de viajes con Open Source Routing Machine | el radaR</title>
+	
+	
+
+	<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Obteniendo rutas, tiempo y distancia de viajes con Open Source Routing Machine"/>
+<meta name="twitter:description" content="Agradecemos a Angie Scetta, arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar OSRM: el paquete de R que permite estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo."/>
+
+	<meta property="og:title" content="Obteniendo rutas, tiempo y distancia de viajes con Open Source Routing Machine" />
+<meta property="og:description" content="Agradecemos a Angie Scetta, arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar OSRM: el paquete de R que permite estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://elradar.github.io/2019/10/25/obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine/" />
+<meta property="article:published_time" content="2019-10-25T22:00:29-03:00" />
+<meta property="article:modified_time" content="2019-10-25T00:00:00+00:00" />
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+	 crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
+	<link href="/css/medium.css" rel="stylesheet">
+	<link href="/css/additional.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
+    <div class="container pr-0">
+        
+        <a class="navbar-brand" href="https://elradar.github.io/">
+
+            
+            <img src="/images/logo.png" alt="logo">
+            
+        </a>
+        
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        
+        <div class="collapse navbar-collapse" id="navbarMediumish">
+            
+            <ul class="navbar-nav ml-auto">
+                 
+                <li class="nav-item ">
+                    <a class="nav-link" href="/post">Posts</a>
+                </li>
+                
+            </ul>
+        </div>
+        
+    </div>
+</nav>
+
+
+        <div class="site-content">   
+            <div class="container">
+<div class="mainheading">
+    <h1 class="sitetitle">el radaR</h1>
+    <p class="lead">
+         detectando los paquetes y proyectos en R que tenés que conocer
+    </p>
+</div><div class="main-content">
+        
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-md-2 pl-0"><div class="share sticky-top sticky-top-offset">
+    <p>Compartir</p>
+    <ul>
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Obteniendo%20rutas%2c%20tiempo%20y%20distancia%20de%20viajes%20con%20Open%20Source%20Routing%20Machine&url=https%3a%2f%2felradar.github.io%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <i class="fab fa-twitter"></i>
+        </a>
+        </li>
+        
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2felradar.github.io%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <i class="fab fa-facebook-f"></i>
+        </a>
+        </li>
+
+        <li class="ml-1 mr-1">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2felradar.github.io%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <i class="fab fa-xing"></i>
+        </a>
+        </li>        
+    </ul>
+
+    
+        <div class="sep">
+        </div>				
+        <ul>
+            <li> 
+            <a  class="small smoothscroll" href="#disqus_thread"></a>
+            </li>
+        </ul>
+    
+</div>
+</div>
+                                
+                <div class="col-md-9 flex-first flex-md-unordered">
+                    <div class="mainheading">
+                        	
+                                                
+                        
+                        <h1 class="posttitle">Obteniendo rutas, tiempo y distancia de viajes con Open Source Routing Machine</h1> 
+                    </div>
+
+                    
+                    
+                    
+                    
+
+                    
+                    <div class="article-post">
+                        
+
+
+<p><em>Agradecemos a <a href="https://www.linkedin.com/in/mar%C3%ADa-de-los-%C3%A1ngeles-scetta-b7b82a80/">Angie Scetta</a>, arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar <code>OSRM</code>: el paquete de R que permite estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo.</em></p>
+<p><em>Angie se especializa en análisis de datos urbanos. Trabaja en el Gobierno de la Ciudad de Buenos Aires analizando el impacto de proyectos de diversas áreas de gobierno, y como profesora asistente en la materia Ciencia de Datos para Ciudades en la Universidad Torcuato Di Tella</em></p>
+<div id="analizando-recorridos-y-distancias-en-la-ciudad" class="section level3">
+<h3><em>Analizando recorridos y distancias en la Ciudad</em></h3>
+<div class="text-justify">
+<p>A continuación vamos a ver un ejemplo de aplicación del servicio de ruteo de “OSRM” (<a href="http://project-osrm.org/" class="uri">http://project-osrm.org/</a>), un paquete de uso libre, basado en datos de OpenStreetMap, que es muy útil a la hora de calcular distancias (km) y tiempos de viaje (minutos) entre 2 o más puntos georreferenciados.</p>
+<p>El paquete se compone de 4 funciones que son:</p>
+<ul>
+<li>osrmTable(): matriz de tiempos de viaje entre puntos.</li>
+<li>osrmRoute(): camino más corto entre 2 puntos.</li>
+<li>osrmTrip(): viaje entre múltiples puntos.</li>
+<li>osrmIsochrone(): polígonos de isocronas.</li>
+</ul>
+<p>En este caso vamos a calcular el camino más corto entre 2 puntos con la función osrmRoute().</p>
+<p>Para comenzar, vamos a cargar las librerías requeridas: “tidyverse”, “sf”, “leaflet” y obviamente, “osrm”.</p>
+</div>
+<pre class="r"><code>library(tidyverse)
+library(sf)
+library(leaflet)
+library(osrm)</code></pre>
+<div class="text-justify">
+<p>Lo siguiente que debemos hacer es elegir cuáles serán nuestros puntos de origen y de destino. Para esto vamos a aprovechar los dataset disponibles en el Portal de Datos Abiertos de la Ciudad <a href="http://https://data.buenosaires.gob.ar/" class="uri">http://https://data.buenosaires.gob.ar/</a> utilizando la ubicación de hospitales públicos (formato CSV) y los polígonos de los barrios de la Ciudad (formato geoJSON). Como ambos archivos tienen información geográfica vamos a poder ubicarlos en el espacio y calcular las distancias entre ellos.</p>
+</div>
+<pre class="r"><code>barrios &lt;- st_read(&quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/barrios/barrios.geojson&quot;)
+hospitales &lt;- read.csv(&quot;http://cdn.buenosaires.gob.ar/datosabiertos/datasets/hospitales/hospitales.csv&quot;,
+                       encoding=&quot;UTF-8&quot;) %&gt;%
+                       mutate(nombre=as.character(nombre))</code></pre>
+<div class="text-justify">
+<p>¿Cómo podemos calcular la distancia y tiempo de viaje que hay entre los barrios de la Ciudad y los hospitales públicos?
+Para simplificar la tarea, tomemos 2 barrios como ejemplo: uno céntrico como Palermo y otro más periférico como Villa Lugano y calculemos la distancia y tiempo de viaje (en auto) que existe entre estos y cada hospital.
+Entonces, nuestros puntos de origen serán los centroides de ambos barrios y los de destino la ubicación exacta de los 36 hospitales.</p>
+<p>Los centroides podemos calcularlos fácilmente con la función st_centroid() del paquete sf y la geometría podemos transformarla en coordenadas X e Y a partir de st_coordinates(). Esta última operación es necesaria para el posterior ruteo.</p>
+</div>
+<pre class="r"><code>barrios_centroides &lt;- barrios %&gt;%
+  st_centroid() %&gt;%
+  filter(barrio==&quot;PALERMO&quot; | barrio==&quot;VILLA LUGANO&quot;) %&gt;%
+  mutate(ubicacion=if_else(barrio==&quot;PALERMO&quot;, &quot;CENTRO&quot;, &quot;PERIFERIA&quot;))
+
+barrios_centroides &lt;- cbind(barrios_centroides, st_coordinates(barrios_centroides)) %&gt;%
+                      st_set_geometry(NULL) %&gt;% 
+                      rename(LON_ORIGEN=X,
+                             LAT_ORIGEN=Y)</code></pre>
+<p><strong>Mapa 1.</strong></p>
+<pre class="r"><code>hospitales %&gt;% 
+  group_by(barrio) %&gt;% 
+  summarise(cantidad=n()) %&gt;%
+  mutate(barrio=toupper(barrio)) %&gt;% 
+  left_join(barrios, by=&quot;barrio&quot;) %&gt;%
+  ungroup() %&gt;% 
+ggplot()+
+  geom_sf(data=barrios, fill=&quot;gray90&quot;, color=&quot;white&quot;)+
+  geom_sf(aes(fill=cantidad, geometry = geometry), color=&quot;white&quot;)+
+  geom_point(data=barrios_centroides, aes(x=LON_ORIGEN, y=LAT_ORIGEN, color=ubicacion), shape=4, stroke=2, size=2)+
+  geom_point(data=hospitales, aes(x=long, y=lat), size=1.5)+
+  scale_fill_gradient(low=&quot;gold&quot;, high= &quot;deeppink4&quot;)+
+  scale_color_manual(values = c(&quot;turquoise4&quot;, &quot;magenta4&quot;))+
+  labs(title = &quot;Hospitales públicos por barrio&quot;,
+         fill=&quot;&quot;,
+         color=&quot;&quot;,
+          x=&quot;&quot;,
+          y=&quot;&quot;,
+         caption= &quot;Fuente: Elaboración propia en base a datos de BAData&quot;)+
+  theme(panel.background = element_rect(fill = &quot;gray100&quot;, colour = &quot;gray100&quot;, size = 2, linetype = &quot;solid&quot;),
+        panel.grid.major = element_line(size = 0.5, linetype = &quot;dashed&quot;, colour = &quot;gray80&quot;),
+        title=element_text(size=10, face = &quot;bold&quot;), plot.title = element_text(hjust = 0.5),
+        legend.key.size = unit(0.6, &quot;cm&quot;), legend.key.width = unit(0.5,&quot;cm&quot;),
+        legend.text=element_text(size=7),
+        plot.caption=element_text(face = &quot;italic&quot;, colour = &quot;gray35&quot;,size=6),
+        axis.text = element_blank(), axis.ticks = element_blank())</code></pre>
+<p><img src="/post/2019-10-25-obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="text-justify">
+<p>En el Mapa 1 podemos ver como se distribuyen los hospitales de la Ciudad (más de la mitad de los barrios no poseen hospitales) y donde se localizan los 2 centroides a analizar.</p>
+<p>Ahora sí, para los ruteos, vamos a necesitar crear una función con osrmRoute() que haga los cálculos entre nuestros puntos de origen (centroides de los 2 barrios) y los de destino (hospitales).</p>
+<p>ATENCIÓN: Como estamos usando 2 orígenes pero múltiples destinos, es necesario que creemos una función que haga los múltiples ruteos a la vez. Sino deberíamos hacer uno por uno a mano y sería muy engorroso.</p>
+</div>
+<p><strong>Generemos la función de ruteo</strong></p>
+<div class="text-justify">
+<p>En la función vamos a calcular las 2 nuevas variables que nos interesan: distancias y duración de viajes. Para esto ajustamos algunos argumentos como “returnclass” que hace referencia al tipo de objeto que queremos que nos devuelva la función, en este caso, un objeto espacial “sf”; y “overview” que hace referencia a la calidad con la que se genera la nueva geometría, en este caso utilizaremos la de mayor precisión que es “full”.</p>
+</div>
+<pre class="r"><code>ruteo_hospitales &lt;- function(o_nombre, o_x, o_y, d_nombre, d_x, d_y) {
+  ruta &lt;- osrmRoute(src = c(o_nombre, o_x, o_y),
+                    dst = c(d_nombre, d_x, d_y), 
+                    returnclass = &quot;sf&quot;,
+                    overview = &quot;full&quot;)
+  
+  cbind(ORIGEN = o_nombre, DESTINO = d_nombre, ruta)
+}</code></pre>
+<div class="text-justify">
+<p>Ahora si, solo nos falta un paso para que la función creada se ejecute bien: Generar un dataframe para cada barrio que contenga las variables NOMBRE_ORIGEN, LON_ORIGEN, LAT_ORIGEN, NOMBRE_DESTINO, LON_DESTINO y LAT_DESTINO.
+Como verán, ya tenemos todos estos datos, así que es solo cuestión de organizarlos.</p>
+</div>
+<div id="barrio-centrico-palermo" class="section level4">
+<h4><strong>Barrio Céntrico: PALERMO</strong></h4>
+<pre class="r"><code>h_palermo &lt;- hospitales %&gt;%
+  mutate(NOMBRE_ORIGEN=&quot;PALERMO&quot;) %&gt;%
+  left_join(barrios_centroides, by=c(&quot;NOMBRE_ORIGEN&quot;=&quot;barrio&quot;)) %&gt;%
+  rename(NOMBRE_DESTINO=nombre,
+         LON_DESTINO=long,
+         LAT_DESTINO=lat) %&gt;%
+  select(NOMBRE_ORIGEN, LON_ORIGEN, LAT_ORIGEN, NOMBRE_DESTINO, LON_DESTINO, LAT_DESTINO)
+
+head(h_palermo)</code></pre>
+<pre><code>##   NOMBRE_ORIGEN LON_ORIGEN LAT_ORIGEN
+## 1       PALERMO  -58.42234  -34.57386
+## 2       PALERMO  -58.42234  -34.57386
+## 3       PALERMO  -58.42234  -34.57386
+## 4       PALERMO  -58.42234  -34.57386
+## 5       PALERMO  -58.42234  -34.57386
+## 6       PALERMO  -58.42234  -34.57386
+##                                             NOMBRE_DESTINO LON_DESTINO
+## 1              HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE   -58.37755
+## 2              HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ   -58.41207
+## 3 HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL)   -58.40273
+## 4                  HOSPITAL DE SALUD MENTAL BRAULIO MOYANO   -58.38516
+## 5                 HOSPITAL DE GASTROENTEROLOGIA B. UDAONDO   -58.39131
+## 6                         INSTITUTO DE ZOONOSIS L. PASTEUR   -58.43494
+##   LAT_DESTINO
+## 1   -34.62885
+## 2   -34.59419
+## 3   -34.58453
+## 4   -34.63940
+## 5   -34.63415
+## 6   -34.60847</code></pre>
+<p><strong>A RUTEAR!</strong></p>
+<pre class="r"><code>ruteo_palermo &lt;- list(h_palermo$NOMBRE_ORIGEN, h_palermo$LON_ORIGEN,h_palermo$LAT_ORIGEN,
+                   h_palermo$NOMBRE_DESTINO, h_palermo$LON_DESTINO,h_palermo$LAT_DESTINO)
+
+ruteo_centrico &lt;- pmap(ruteo_palermo, ruteo_hospitales) %&gt;% 
+  reduce(rbind)</code></pre>
+<p>Ya tenemos los primeros datos de Palermo. Revisemos los resultados.</p>
+<pre class="r"><code>ruteo_centrico %&gt;% 
+summary()</code></pre>
+<pre><code>##      ORIGEN  
+##  PALERMO:36  
+##              
+##              
+##              
+##              
+##              
+##              
+##                                                      DESTINO  
+##  HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE             : 1  
+##  HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ             : 1  
+##  HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL): 1  
+##  HOSPITAL DE SALUD MENTAL BRAULIO MOYANO                 : 1  
+##  HOSPITAL DE GASTROENTEROLOGIA B. UDAONDO                : 1  
+##  INSTITUTO DE ZOONOSIS L. PASTEUR                        : 1  
+##  (Other)                                                 :30  
+##       src    
+##  PALERMO:36  
+##              
+##              
+##              
+##              
+##              
+##              
+##                                                        dst    
+##  HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE             : 1  
+##  HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ             : 1  
+##  HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL): 1  
+##  HOSPITAL DE SALUD MENTAL BRAULIO MOYANO                 : 1  
+##  HOSPITAL DE GASTROENTEROLOGIA B. UDAONDO                : 1  
+##  INSTITUTO DE ZOONOSIS L. PASTEUR                        : 1  
+##  (Other)                                                 :30  
+##     duration        distance               geometry 
+##  Min.   :10.48   Min.   : 2.816   LINESTRING   :36  
+##  1st Qu.:19.32   1st Qu.: 5.869   epsg:4326    : 0  
+##  Median :24.68   Median :10.982   +proj=long...: 0  
+##  Mean   :24.24   Mean   :10.648                     
+##  3rd Qu.:27.66   3rd Qu.:13.477                     
+##  Max.   :40.96   Max.   :30.527                     
+## </code></pre>
+<div class="text-justify">
+<p>Efectivamente, se agregaron 2 nuevos campos llamados duration y distance. Podemos ver que:</p>
+<ul>
+<li>La duración promedio de los viajes es de 24 minutos, mientras que la distancia promedio es de 10,6 km.</li>
+<li>El hospital más cercano está a 2,8 km y el más lejano a 30,5 km.</li>
+<li>El Hospital al que se accede en menor tiempo de viaje es en 10,5 minutos y el de mayor es 41 min.</li>
+</ul>
+</div>
+<p>¿Cuál es el Hospital más cercano al centro de Palermo?</p>
+<pre class="r"><code>filter(ruteo_centrico, distance == min(distance))$DESTINO</code></pre>
+<pre><code>## [1] HOSPITAL GENERAL DE AGUDOS DR. J. A. FERNANDEZ
+## 36 Levels: HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE ...</code></pre>
+<p>¿Cuáles son los 10 hospitales que tienen los recorridos de menor distancia?</p>
+<pre class="r"><code>ruteo_centrico &lt;- ruteo_centrico %&gt;% 
+  arrange(distance) %&gt;% 
+  head(10) %&gt;% 
+  left_join(h_palermo, by=c(&quot;DESTINO&quot;=&quot;NOMBRE_DESTINO&quot;)) %&gt;% 
+  mutate(RUTA = paste(&quot;Desde&quot;, ORIGEN,&quot;hasta&quot;, DESTINO))
+
+ruteo_centrico$DESTINO</code></pre>
+<pre><code>##  [1] &quot;HOSPITAL GENERAL DE AGUDOS DR. J. A. FERNANDEZ&quot;          
+##  [2] &quot;HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ&quot;             
+##  [3] &quot;HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL)&quot;
+##  [4] &quot;HOSPITAL GENERAL DE AGUDOS B. RIVADAVIA&quot;                 
+##  [5] &quot;INSTITUTO DE REHABILITACION PSICOFISICA (I.R.E.P.)&quot;      
+##  [6] &quot;HOSPITAL MUNICIPAL DE ONCOLOGIA MARIE CURIE&quot;             
+##  [7] &quot;INSTITUTO DE ZOONOSIS L. PASTEUR&quot;                        
+##  [8] &quot;HOSPITAL OFTALMOLOGICO DR. PEDRO LAGLEYZE&quot;               
+##  [9] &quot;HOSPITAL GENERAL DE AGUDOS DR. C. DURAND&quot;                
+## [10] &quot;HOSPITAL GENERAL DE AGUDOS J. M. RAMOS MEJIA&quot;</code></pre>
+<p>LISTO! Ya logramos lo que queríamos, y podemos decir a que distancia y tiempo de viaje está cada hospital. Pero, no nos conformemos con esto. Aprovechemos la magia de leaflet() para ver toda está información en un lindo mapa interactivo.</p>
+<p><strong>Mapa 2.</strong> <em>Rutas calculadas desde Palermo hasta los 10 hospitales públicos de la Ciudad más cercanos</em></p>
+<pre class="r"><code>paleta &lt;- c(low=&quot;gold&quot;, high= &quot;deeppink4&quot;)
+
+icons_d &lt;- awesomeIcons(icon = &quot;hospital-o&quot;,
+                      iconColor = &quot;black&quot;,
+                      library = &quot;fa&quot;,
+                      markerColor = &quot;red&quot;)
+
+icons_o &lt;- awesomeIcons(icon = &quot;whatever&quot;,
+                      iconColor = &quot;black&quot;,
+                      library = &quot;fa&quot;,
+                      markerColor = &quot;gray&quot;)
+
+labels &lt;- sprintf(
+  &quot;&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%g km &lt;br/&gt;%g min&quot;,
+  ruteo_centrico$RUTA, round(ruteo_centrico$distance, 2), round(ruteo_centrico$duration, 0)
+) %&gt;% lapply(htmltools::HTML)
+
+mapa1 &lt;- leaflet(ruteo_centrico) %&gt;%
+  addTiles() %&gt;%
+  addProviderTiles(providers$CartoDB) %&gt;%
+  addPolylines(color = ~colorNumeric(paleta, ruteo_centrico$distance)(distance),
+               weight = 6,
+               label = labels,
+    labelOptions = labelOptions(
+      style = list(&quot;font-weight&quot; = &quot;normal&quot;, padding = &quot;2px 5px&quot;),
+      textsize = &quot;10px&quot;,
+      direction = &quot;top&quot;),
+              highlight = highlightOptions(weight = 8,
+                                           bringToFront = TRUE)) %&gt;% 
+  addLegend(&quot;bottomright&quot;, pal = colorNumeric(paleta, ruteo_centrico$distance), values = ~distance,
+            title = &quot;Distancia&quot;,
+            labFormat = labelFormat(suffix = &quot;km&quot;),
+            opacity = 0.75) %&gt;%
+  addAwesomeMarkers(~LON_DESTINO, ~LAT_DESTINO, popup = ~DESTINO, icon=icons_d)%&gt;%
+  addAwesomeMarkers(~LON_ORIGEN, ~LAT_ORIGEN, popup = ~ORIGEN, icon=icons_o)</code></pre>
+<pre class="r"><code>mapa1</code></pre>
+<iframe height="400" width="1200" src="/widgets/angie_mapa_palermo.html">
+</iframe>
+<p><strong>Ahora repitamos el proceso con Villa Lugano a ver que ocurre</strong></p>
+</div>
+<div id="barrio-periferico-villa-lugano" class="section level4">
+<h4><strong>Barrio Periférico: VILLA LUGANO</strong></h4>
+<pre class="r"><code>h_lugano &lt;- hospitales %&gt;%
+  mutate(NOMBRE_ORIGEN=&quot;VILLA LUGANO&quot;) %&gt;%
+  left_join(barrios_centroides, by=c(&quot;NOMBRE_ORIGEN&quot;=&quot;barrio&quot;)) %&gt;%
+  rename(NOMBRE_DESTINO=nombre,
+         LON_DESTINO=long,
+         LAT_DESTINO=lat) %&gt;%
+  select(NOMBRE_ORIGEN, LON_ORIGEN, LAT_ORIGEN, NOMBRE_DESTINO, LON_DESTINO, LAT_DESTINO)
+
+head(h_lugano)</code></pre>
+<pre><code>##   NOMBRE_ORIGEN LON_ORIGEN LAT_ORIGEN
+## 1  VILLA LUGANO  -58.47617  -34.67499
+## 2  VILLA LUGANO  -58.47617  -34.67499
+## 3  VILLA LUGANO  -58.47617  -34.67499
+## 4  VILLA LUGANO  -58.47617  -34.67499
+## 5  VILLA LUGANO  -58.47617  -34.67499
+## 6  VILLA LUGANO  -58.47617  -34.67499
+##                                             NOMBRE_DESTINO LON_DESTINO
+## 1              HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE   -58.37755
+## 2              HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ   -58.41207
+## 3 HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL)   -58.40273
+## 4                  HOSPITAL DE SALUD MENTAL BRAULIO MOYANO   -58.38516
+## 5                 HOSPITAL DE GASTROENTEROLOGIA B. UDAONDO   -58.39131
+## 6                         INSTITUTO DE ZOONOSIS L. PASTEUR   -58.43494
+##   LAT_DESTINO
+## 1   -34.62885
+## 2   -34.59419
+## 3   -34.58453
+## 4   -34.63940
+## 5   -34.63415
+## 6   -34.60847</code></pre>
+<pre class="r"><code>ruteo_lugano &lt;- list(h_lugano$NOMBRE_ORIGEN, h_lugano$LON_ORIGEN,h_lugano$LAT_ORIGEN,
+                   h_lugano$NOMBRE_DESTINO, h_lugano$LON_DESTINO,h_lugano$LAT_DESTINO)
+
+ruteo_periferico &lt;- pmap(ruteo_lugano, ruteo_hospitales) %&gt;% 
+  reduce(rbind)</code></pre>
+<pre class="r"><code>ruteo_periferico %&gt;% 
+  summary()</code></pre>
+<pre><code>##           ORIGEN  
+##  VILLA LUGANO:36  
+##                   
+##                   
+##                   
+##                   
+##                   
+##                   
+##                                                      DESTINO  
+##  HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE             : 1  
+##  HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ             : 1  
+##  HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL): 1  
+##  HOSPITAL DE SALUD MENTAL BRAULIO MOYANO                 : 1  
+##  HOSPITAL DE GASTROENTEROLOGIA B. UDAONDO                : 1  
+##  INSTITUTO DE ZOONOSIS L. PASTEUR                        : 1  
+##  (Other)                                                 :30  
+##            src    
+##  VILLA LUGANO:36  
+##                   
+##                   
+##                   
+##                   
+##                   
+##                   
+##                                                        dst    
+##  HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE             : 1  
+##  HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ             : 1  
+##  HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL): 1  
+##  HOSPITAL DE SALUD MENTAL BRAULIO MOYANO                 : 1  
+##  HOSPITAL DE GASTROENTEROLOGIA B. UDAONDO                : 1  
+##  INSTITUTO DE ZOONOSIS L. PASTEUR                        : 1  
+##  (Other)                                                 :30  
+##     duration        distance               geometry 
+##  Min.   : 7.61   Min.   : 2.672   LINESTRING   :36  
+##  1st Qu.:17.63   1st Qu.:10.515   epsg:4326    : 0  
+##  Median :19.93   Median :12.027   +proj=long...: 0  
+##  Mean   :22.01   Mean   :12.891                     
+##  3rd Qu.:25.70   3rd Qu.:14.732                     
+##  Max.   :36.96   Max.   :28.180                     
+## </code></pre>
+<div class="text-justify">
+<p>En este caso podemos ver que:
+<em>La duración promedio de los viajes es de 22 minutos, mientras que la distancia promedio es de 12,9 km.
+</em> El hospital más cercano está a 2,67 km y el más lejano a 28,18 km.
+* El Hospital al que se accede en menor tiempo de viaje es en 7,6 minutos y el de mayor es 37 minutos.</p>
+</div>
+<p>¿Cuál es el Hospital más cercano al centro de Villa Lugano?</p>
+<pre class="r"><code>filter(ruteo_periferico, distance == min(distance))$DESTINO</code></pre>
+<pre><code>## [1] HOSPITAL CECILIA GRIERSON
+## 36 Levels: HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE ...</code></pre>
+<p>¿Cuáles son los 10 hospitales que tienen los recorridos de menor distancia?</p>
+<pre class="r"><code>ruteo_periferico &lt;- ruteo_periferico %&gt;% 
+  arrange(distance) %&gt;% 
+  head(10) %&gt;% 
+  left_join(h_lugano, by=c(&quot;DESTINO&quot;=&quot;NOMBRE_DESTINO&quot;)) %&gt;% 
+  mutate(RUTA = paste(&quot;Desde&quot;, ORIGEN,&quot;hasta&quot;, DESTINO))
+
+ruteo_periferico$DESTINO</code></pre>
+<pre><code>##  [1] &quot;HOSPITAL CECILIA GRIERSON&quot;                        
+##  [2] &quot;HOSPITAL GENERAL DE AGUDOS P. PIÑERO&quot;             
+##  [3] &quot;HOSPITAL GENERAL DE AGUDOS DR. T. ALVAREZ&quot;        
+##  [4] &quot;HOSPITAL DE QUEMADOS DR. ARTURO UMBERTO ILLIA&quot;    
+##  [5] &quot;HOSPITAL GENERAL DE AGUDOS DONACION F. SANTOJANNI&quot;
+##  [6] &quot;HOSPITAL GENERAL DE AGUDOS D. VELEZ SARSFIELD&quot;    
+##  [7] &quot;HOSPITAL DE ODONTOLOGIA  JOSE DUEÑAS&quot;             
+##  [8] &quot;HOSPITAL OFTALMOLOGICO DR. PEDRO LAGLEYZE&quot;        
+##  [9] &quot;HOSPITAL DE REHABILITACION M. ROCCA&quot;              
+## [10] &quot;HOSPITAL GENERAL DE AGUDOS DR. C. DURAND&quot;</code></pre>
+<p><strong>Mapa 3.</strong> <em>Rutas calculadas desde Villa Lugano hasta los 10 hospitales públicos de la Ciudad más cercanos</em></p>
+<pre class="r"><code>labels &lt;- sprintf(
+  &quot;&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%g km &lt;br/&gt;%g min&quot;,
+  ruteo_periferico$RUTA, round(ruteo_periferico$distance, 2), round(ruteo_periferico$duration, 0)
+) %&gt;% lapply(htmltools::HTML)
+
+mapa2 &lt;- leaflet(ruteo_periferico) %&gt;%
+  addTiles() %&gt;%
+  addProviderTiles(providers$CartoDB) %&gt;%
+  addPolylines(color = ~colorNumeric(paleta, ruteo_periferico$distance)(distance),
+              label = labels,
+    labelOptions = labelOptions(
+      style = list(&quot;font-weight&quot; = &quot;normal&quot;, padding = &quot;2px 5px&quot;),
+      textsize = &quot;10px&quot;,
+      direction = &quot;top&quot;)) %&gt;% 
+  addLegend(&quot;bottomright&quot;, pal = colorNumeric(paleta, ruteo_periferico$distance), values = ~distance,
+            title = &quot;Distancia&quot;,
+            labFormat = labelFormat(suffix = &quot;km&quot;),
+            opacity = 0.75)%&gt;%
+  addAwesomeMarkers(~LON_DESTINO, ~LAT_DESTINO, popup = ~DESTINO, icon=icons_d)%&gt;%
+  addAwesomeMarkers(~LON_ORIGEN, ~LAT_ORIGEN, popup = ~ORIGEN, icon=icons_o)</code></pre>
+<pre class="r"><code>mapa2</code></pre>
+<iframe height="400" width="1200" src="/widgets/angie_mapa_lugano.html">
+</iframe>
+<div class="text-justify">
+<p><strong>LISTO! Objetivo cumplido. Hicimos la función de ruteo y la ejecutamos entre 2 barrios de la Ciudad y los 36 hospitales públicos.</strong></p>
+</div>
+</div>
+</div>
+
+                    </div>
+                    
+                    
+                    <div class="after-post-tags">
+                        <ul class="tags">
+                        
+                        <li>
+                        <a href="/tags/osrm">osrm</a>
+                        </li>
+                        
+                        <li>
+                        <a href="/tags/ruteo">ruteo</a>
+                        </li>
+                        
+                        </ul>
+                    </div>
+                    
+                    
+                    
+                    <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
+                    
+                    
+                        <a class="d-block col-md-6 text-lg-right" href="https://elradar.github.io/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/">¿Existen suficientes vacantes escolares para los niños de la Villa 21-24? &raquo;</a>
+                    
+                    <div class="clearfix"></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+<div class="container">
+    <div id="comments" class="row justify-content-center mb-5">
+        <div class="col-md-8">              
+                           
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+            </div>
+<div class="jumbotron fortags">
+	<div class="d-md-flex h-100">
+		<div class="col-md-4 transpdark align-self-center text-center h-100">
+			<div class="d-md-flex align-items-center justify-content-center h-100">
+				<h2 class="d-md-block d-none align-self-center py-1 font-weight-light"> Ver también <span class="d-none d-md-inline">→</span></h2>
+			</div>
+		</div>
+		<div class="col-md-8 p-5 align-self-center text-center">
+			
+			<a class="mt-1 mb-1" href="/tags/data-wrangling">data-wrangling</a>
+			
+			<a class="mt-1 mb-1" href="/tags/educaci%C3%B3n">educación</a>
+			
+			<a class="mt-1 mb-1" href="/tags/eph">eph</a>
+			
+			<a class="mt-1 mb-1" href="/tags/etl">etl</a>
+			
+			<a class="mt-1 mb-1" href="/tags/genero">genero</a>
+			
+			<a class="mt-1 mb-1" href="/tags/inequidad">inequidad</a>
+			
+			<a class="mt-1 mb-1" href="/tags/janitor">janitor</a>
+			
+			<a class="mt-1 mb-1" href="/tags/limpieza">limpieza</a>
+			
+			<a class="mt-1 mb-1" href="/tags/osrm">osrm</a>
+			
+			<a class="mt-1 mb-1" href="/tags/ruteo">ruteo</a>
+			
+			<a class="mt-1 mb-1" href="/tags/transformacion">transformacion</a>
+			
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 text-center text-lg-left">
+                &copy; Copyright equipo el radaR
+            </div>
+            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
+                Mediumish Theme por WowThemes.net
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        </div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<script src="/js/mediumish.js"></script>
+
+    </body>
+</html>

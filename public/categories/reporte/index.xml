@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>reporte on el radaR</title>
-    <link>/categories/reporte/</link>
+    <link>https://elradar.github.io/categories/reporte/</link>
     <description>Recent content in reporte on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Mon, 21 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/reporte/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://elradar.github.io/categories/reporte/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>¿Existen suficientes vacantes escolares para los niños de la Villa 21-24?</title>
-      <link>/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</link>
+      <link>https://elradar.github.io/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</guid>
+      <guid>https://elradar.github.io/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</guid>
       <description>Presentamos el análisis (aún en proceso) desarrollado por Demian Zayat, abogado e investigador que se especializa en temas de igualdad y no discriminación, violencia institucional y discriminación hacia migrantes.</description>
     </item>
     

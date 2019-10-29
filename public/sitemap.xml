@@ -3,117 +3,132 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://elradar.github.io/categories/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/2019/10/25/obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/tags/osrm/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/categories/paquetes/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/post/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/tags/ruteo/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/tags/</loc>
+    <lastmod>2019-10-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://elradar.github.io/tags/educaci%C3%B3n/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/educaci%C3%B3n/</loc>
+    <loc>https://elradar.github.io/tags/inequidad/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://elradar.github.io/categories/reporte/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/inequidad/</loc>
+    <loc>https://elradar.github.io/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</loc>
     <lastmod>2019-10-21T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/post/</loc>
-    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/reporte/</loc>
-    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/</loc>
-    <lastmod>2019-10-21T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/autores/</loc>
+    <loc>https://elradar.github.io/categories/autores/</loc>
     <lastmod>2019-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/eph/</loc>
+    <loc>https://elradar.github.io/tags/eph/</loc>
     <lastmod>2019-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2019/10/20/eph-y-genero/</loc>
+    <loc>https://elradar.github.io/2019/10/20/eph-y-genero/</loc>
     <lastmod>2019-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/genero/</loc>
+    <loc>https://elradar.github.io/tags/genero/</loc>
     <lastmod>2019-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/proyectos/</loc>
+    <loc>https://elradar.github.io/categories/proyectos/</loc>
     <lastmod>2019-10-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/bibliotecas/</loc>
+    <loc>https://elradar.github.io/categories/bibliotecas/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/data-wrangling/</loc>
+    <loc>https://elradar.github.io/tags/data-wrangling/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/etl/</loc>
+    <loc>https://elradar.github.io/tags/etl/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/janitor/</loc>
+    <loc>https://elradar.github.io/tags/janitor/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/limpieza/</loc>
+    <loc>https://elradar.github.io/tags/limpieza/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/paquetes/</loc>
+    <loc>https://elradar.github.io/tags/transformacion/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/transformacion/</loc>
+    <loc>https://elradar.github.io/2019/10/19/un-cran-a-la-vez-janitor/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/2019/10/19/un-cran-a-la-vez-janitor/</loc>
+    <loc>https://elradar.github.io/categories/uncranalavez/</loc>
     <lastmod>2019-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/uncranalavez/</loc>
-    <lastmod>2019-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/about/</loc>
+    <loc>https://elradar.github.io/about/</loc>
     <lastmod>2016-05-05T21:48:51-07:00</lastmod>
   </url>
   
