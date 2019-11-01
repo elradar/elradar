@@ -50,7 +50,7 @@ Entonces, nuestros puntos de origen serán los centroides de ambos barrios y los
 <pre class="r"><code>barrios_centroides &lt;- barrios %&gt;%
   st_centroid() %&gt;%
   filter(barrio==&quot;PALERMO&quot; | barrio==&quot;VILLA LUGANO&quot;) %&gt;%
-  mutate(ubicacion=if_else(barrio==&quot;PALERMO&quot;, &quot;CENTRO&quot;, &quot;PERIFERIA&quot;))
+  mutate(ubicacion=if_else(barrio==&quot;PALERMO&quot;, &quot;NORTE&quot;, &quot;SUR&quot;))
 
 barrios_centroides &lt;- cbind(barrios_centroides, st_coordinates(barrios_centroides)) %&gt;%
                       st_set_geometry(NULL) %&gt;% 
