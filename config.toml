@@ -55,7 +55,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   title = "el radaR"
   subtitle = "detectando los paquetes y proyectos en R que tenés que conocer"
   mdtext = '''
-  Usamos este sitio como plataforma para mostrar los recursos de R que no te podés perder y la forma de contactarte con sus autores.<br/>
-  Nos podés [seguir en Twitter](https://www.twitter.com/_elradar_) y escribirnos a [plataformaelradar@gmail.com](mailto:plataformaelradar@gmail.com).<br/>
+  Usamos este sitio como plataforma para mostrar los recursos de R que no te podés perder y la forma de contactarte con sus autores.<br/><br/>
+  **[Suscribite a nuestra lewsletter mensual](https://tinyletter.com/elradar)**
+  <br/><br/>
+  seguinos en [Twitter](https://www.twitter.com/_elradar_)<br/> 
+  escribinos a [plataformaelradar@gmail.com](mailto:plataformaelradar@gmail.com)
 '''
   alertbar = false
