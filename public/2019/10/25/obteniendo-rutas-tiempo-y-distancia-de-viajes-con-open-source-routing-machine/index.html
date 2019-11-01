@@ -253,10 +253,10 @@ head(h_palermo)</code></pre>
 <pre class="r"><code>ruteo_palermo &lt;- list(h_palermo$NOMBRE_ORIGEN, h_palermo$LON_ORIGEN,h_palermo$LAT_ORIGEN,
                    h_palermo$NOMBRE_DESTINO, h_palermo$LON_DESTINO,h_palermo$LAT_DESTINO)
 
-ruteo_centrico &lt;- pmap(ruteo_palermo, ruteo_hospitales) %&gt;% 
+ruteo_norte &lt;- pmap(ruteo_palermo, ruteo_hospitales) %&gt;% 
   reduce(rbind)</code></pre>
 <p>Ya tenemos los primeros datos de Palermo. Revisemos los resultados.</p>
-<pre class="r"><code>ruteo_centrico %&gt;% 
+<pre class="r"><code>ruteo_norte %&gt;% 
 summary()</code></pre>
 <pre><code>##      ORIGEN  
 ##  PALERMO:36  
@@ -307,17 +307,17 @@ summary()</code></pre>
 </ul>
 </div>
 <p>¿Cuál es el Hospital más cercano al centro de Palermo?</p>
-<pre class="r"><code>filter(ruteo_centrico, distance == min(distance))$DESTINO</code></pre>
+<pre class="r"><code>filter(ruteo_norte, distance == min(distance))$DESTINO</code></pre>
 <pre><code>## [1] HOSPITAL GENERAL DE AGUDOS DR. J. A. FERNANDEZ
 ## 36 Levels: HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE ...</code></pre>
 <p>¿Cuáles son los 10 hospitales que tienen los recorridos de menor distancia?</p>
-<pre class="r"><code>ruteo_centrico &lt;- ruteo_centrico %&gt;% 
+<pre class="r"><code>ruteo_norte &lt;- ruteo_norte %&gt;% 
   arrange(distance) %&gt;% 
   head(10) %&gt;% 
   left_join(h_palermo, by=c(&quot;DESTINO&quot;=&quot;NOMBRE_DESTINO&quot;)) %&gt;% 
   mutate(RUTA = paste(&quot;Desde&quot;, ORIGEN,&quot;hasta&quot;, DESTINO))
 
-ruteo_centrico$DESTINO</code></pre>
+ruteo_norte$DESTINO</code></pre>
 <pre><code>##  [1] &quot;HOSPITAL GENERAL DE AGUDOS DR. J. A. FERNANDEZ&quot;          
 ##  [2] &quot;HOSPITAL GENERAL DE NIÑOS RICARDO GUTIERREZ&quot;             
 ##  [3] &quot;HOSPITAL DE ODONTOLOGIA DR. RAMON CARRILLO (EX NACIONAL)&quot;
@@ -344,13 +344,13 @@ icons_o &lt;- awesomeIcons(icon = &quot;whatever&quot;,
 
 labels &lt;- sprintf(
   &quot;&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%g km &lt;br/&gt;%g min&quot;,
-  ruteo_centrico$RUTA, round(ruteo_centrico$distance, 2), round(ruteo_centrico$duration, 0)
+  ruteo_norte$RUTA, round(ruteo_norte$distance, 2), round(ruteo_norte$duration, 0)
 ) %&gt;% lapply(htmltools::HTML)
 
-mapa1 &lt;- leaflet(ruteo_centrico) %&gt;%
+mapa1 &lt;- leaflet(ruteo_norte) %&gt;%
   addTiles() %&gt;%
   addProviderTiles(providers$CartoDB) %&gt;%
-  addPolylines(color = ~colorNumeric(paleta, ruteo_centrico$distance)(distance),
+  addPolylines(color = ~colorNumeric(paleta, ruteo_norte$distance)(distance),
                weight = 6,
                label = labels,
     labelOptions = labelOptions(
@@ -359,7 +359,7 @@ mapa1 &lt;- leaflet(ruteo_centrico) %&gt;%
       direction = &quot;top&quot;),
               highlight = highlightOptions(weight = 8,
                                            bringToFront = TRUE)) %&gt;% 
-  addLegend(&quot;bottomright&quot;, pal = colorNumeric(paleta, ruteo_centrico$distance), values = ~distance,
+  addLegend(&quot;bottomright&quot;, pal = colorNumeric(paleta, ruteo_norte$distance), values = ~distance,
             title = &quot;Distancia&quot;,
             labFormat = labelFormat(suffix = &quot;km&quot;),
             opacity = 0.75) %&gt;%
@@ -405,9 +405,9 @@ head(h_lugano)</code></pre>
 <pre class="r"><code>ruteo_lugano &lt;- list(h_lugano$NOMBRE_ORIGEN, h_lugano$LON_ORIGEN,h_lugano$LAT_ORIGEN,
                    h_lugano$NOMBRE_DESTINO, h_lugano$LON_DESTINO,h_lugano$LAT_DESTINO)
 
-ruteo_periferico &lt;- pmap(ruteo_lugano, ruteo_hospitales) %&gt;% 
+ruteo_sur &lt;- pmap(ruteo_lugano, ruteo_hospitales) %&gt;% 
   reduce(rbind)</code></pre>
-<pre class="r"><code>ruteo_periferico %&gt;% 
+<pre class="r"><code>ruteo_sur %&gt;% 
   summary()</code></pre>
 <pre><code>##           ORIGEN  
 ##  VILLA LUGANO:36  
@@ -456,17 +456,17 @@ ruteo_periferico &lt;- pmap(ruteo_lugano, ruteo_hospitales) %&gt;%
 * El Hospital al que se accede en menor tiempo de viaje es en 7,6 minutos y el de mayor es 37 minutos.</p>
 </div>
 <p>¿Cuál es el Hospital más cercano al centro de Villa Lugano?</p>
-<pre class="r"><code>filter(ruteo_periferico, distance == min(distance))$DESTINO</code></pre>
+<pre class="r"><code>filter(ruteo_sur, distance == min(distance))$DESTINO</code></pre>
 <pre><code>## [1] HOSPITAL CECILIA GRIERSON
 ## 36 Levels: HOSPITAL GENERAL DE NIÑOS PEDRO DE ELIZALDE ...</code></pre>
 <p>¿Cuáles son los 10 hospitales que tienen los recorridos de menor distancia?</p>
-<pre class="r"><code>ruteo_periferico &lt;- ruteo_periferico %&gt;% 
+<pre class="r"><code>ruteo_sur &lt;- ruteo_sur %&gt;% 
   arrange(distance) %&gt;% 
   head(10) %&gt;% 
   left_join(h_lugano, by=c(&quot;DESTINO&quot;=&quot;NOMBRE_DESTINO&quot;)) %&gt;% 
   mutate(RUTA = paste(&quot;Desde&quot;, ORIGEN,&quot;hasta&quot;, DESTINO))
 
-ruteo_periferico$DESTINO</code></pre>
+ruteo_sur$DESTINO</code></pre>
 <pre><code>##  [1] &quot;HOSPITAL CECILIA GRIERSON&quot;                        
 ##  [2] &quot;HOSPITAL GENERAL DE AGUDOS P. PIÑERO&quot;             
 ##  [3] &quot;HOSPITAL GENERAL DE AGUDOS DR. T. ALVAREZ&quot;        
@@ -480,19 +480,19 @@ ruteo_periferico$DESTINO</code></pre>
 <p><strong>Mapa 3.</strong> <em>Rutas calculadas desde Villa Lugano hasta los 10 hospitales públicos de la Ciudad más cercanos</em></p>
 <pre class="r"><code>labels &lt;- sprintf(
   &quot;&lt;strong&gt;%s&lt;/strong&gt;&lt;br/&gt;%g km &lt;br/&gt;%g min&quot;,
-  ruteo_periferico$RUTA, round(ruteo_periferico$distance, 2), round(ruteo_periferico$duration, 0)
+  ruteo_sur$RUTA, round(ruteo_sur$distance, 2), round(ruteo_sur$duration, 0)
 ) %&gt;% lapply(htmltools::HTML)
 
-mapa2 &lt;- leaflet(ruteo_periferico) %&gt;%
+mapa2 &lt;- leaflet(ruteo_sur) %&gt;%
   addTiles() %&gt;%
   addProviderTiles(providers$CartoDB) %&gt;%
-  addPolylines(color = ~colorNumeric(paleta, ruteo_periferico$distance)(distance),
+  addPolylines(color = ~colorNumeric(paleta, ruteo_sur$distance)(distance),
               label = labels,
     labelOptions = labelOptions(
       style = list(&quot;font-weight&quot; = &quot;normal&quot;, padding = &quot;2px 5px&quot;),
       textsize = &quot;10px&quot;,
       direction = &quot;top&quot;)) %&gt;% 
-  addLegend(&quot;bottomright&quot;, pal = colorNumeric(paleta, ruteo_periferico$distance), values = ~distance,
+  addLegend(&quot;bottomright&quot;, pal = colorNumeric(paleta, ruteo_sur$distance), values = ~distance,
             title = &quot;Distancia&quot;,
             labFormat = labelFormat(suffix = &quot;km&quot;),
             opacity = 0.75)%&gt;%
