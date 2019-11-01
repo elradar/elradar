@@ -1,0 +1,109 @@
+---
+title: Obteniendo rutas, tiempo y distancia de viajes con Open Source Routing Machine
+author: ''
+date: '2019-10-25'
+slug: obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine
+categories:
+  - paquetes
+tags:
+  - osrm
+  - ruteo
+publishdate: '2019-10-25T22:00:29-03:00'
+comments: yes
+---
+
+_Agradecemos a [Angie Scetta](https://www.linkedin.com/in/mar%C3%ADa-de-los-%C3%A1ngeles-scetta-b7b82a80/), arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar `OSRM`: el paquete de R que permite estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo._
+
+_Angie se especializa en análisis de datos urbanos. Trabaja en el Gobierno de la Ciudad de Buenos Aires analizando el impacto de proyectos de diversas áreas de gobierno, y como profesora asistente en la materia Ciencia de Datos para Ciudades en la Universidad Torcuato Di Tella_
+
+### *Analizando recorridos y distancias en la Ciudad*
+
+<div class=text-justify>
+
+A continuación vamos a ver un ejemplo de aplicación del servicio de ruteo de "OSRM" (http://project-osrm.org/), un paquete de uso libre, basado en datos de OpenStreetMap, que es muy útil a la hora de calcular distancias (km) y tiempos de viaje (min) entre 2 o más puntos georreferenciados.
+
+El paquete se compone de 4 funciones que son:
+
+* osrmTable(): matriz de tiempos de viaje entre puntos.
+* osrmRoute(): camino más corto entre 2 puntos.
+* osrmTrip(): viaje entre múltiples puntos.
+* osrmIsochrone(): polígono de isocronas.
+
+En este caso vamos a calcular el camino más corto entre 2 puntos con la función osrmRoute().
+
+Para comenzar, vamos a cargar las librerías requeridas: "tidyverse", "sf", "leaflet" y obviamente, "osrm".
+
+</div>
+
+```{r warning=FALSE, results="hide", error=FALSE, message=FALSE}
+library(tidyverse)
+library(sf)
+library(leaflet)
+library(osrm)
+```
+
+<div class=text-justify>
+
+Lo siguiente que debemos hacer es elegir cuáles serán nuestros puntos de origen y de destino. Para esto vamos a aprovechar los dataset disponibles en el Portal de Datos Abiertos de la Ciudad http://https://data.buenosaires.gob.ar/ utilizando la ubicación de hospitales públicos (formato CSV) y los polígonos de los barrios de la Ciudad (formato geoJSON). Como ambos archivos tienen información geográfica vamos a poder ubicarlos en el espacio y calcular las distancias entre ellos.
+
+</div>
+
+```{r warning=FALSE, results="hide", error=FALSE, message=FALSE}
+barrios <- st_read("http://cdn.buenosaires.gob.ar/datosabiertos/datasets/barrios/barrios.geojson")
+hospitales <- read.csv("http://cdn.buenosaires.gob.ar/datosabiertos/datasets/hospitales/hospitales.csv",
+                       encoding="UTF-8") %>%
+                       mutate(nombre=as.character(nombre))
+```
+
+<div class=text-justify>
+
+¿Cómo podemos calcular la distancia y tiempo de viaje que hay entre los barrios de la Ciudad y los hospitales públicos?
+Para simplificar la tarea, tomemos 2 barrios como ejemplo: uno ubicado al Norte como Palermo y otro al Sur como Villa Lugano y calculemos la distancia y tiempo de viaje (en auto) que existe entre estos y cada hospital.
+Entonces, nuestros puntos de origen serán los centroides de ambos barrios y los de destino la ubicación exacta de los 36 hospitales. Cabe destacar que, el Centro Asistencial Cecilia Grierson, incluido como un hospital en el dataset descargado, no brinda los mismos servicios (de complejidad) que el resto.
+
+Los centroides podemos calcularlos fácilmente con la función st_centroid() del paquete sf y la geometría podemos transformarla en coordenadas X e Y a partir de st_coordinates(). Esta última operación es necesaria para el posterior ruteo.
+
+</div>
+
+```{r warning=FALSE, results="hide", error=FALSE, message=FALSE}
+barrios_centroides <- barrios %>%
+  st_centroid() %>%
+  filter(barrio=="PALERMO" | barrio=="VILLA LUGANO") %>%
+  mutate(ubicacion=if_else(barrio=="PALERMO", "NORTE", "SUR"))
+
+barrios_centroides <- cbind(barrios_centroides, st_coordinates(barrios_centroides)) %>%
+                      st_set_geometry(NULL) %>% 
+                      rename(LON_ORIGEN=X,
+                             LAT_ORIGEN=Y)
+```
+
+__Mapa 1.__ _Ubicación de los hospitales públicos de la Ciudad_
+```{r warning=FALSE, error=FALSE, message=FALSE}
+hospitales %>% 
+  group_by(barrio) %>% 
+  summarise(cantidad=n()) %>%
+  mutate(barrio=toupper(barrio)) %>% 
+  left_join(barrios, by="barrio") %>%
+  ungroup() %>% 
+ggplot()+
+  geom_sf(data=barrios, fill="gray90", color="white")+
+  geom_sf(aes(fill=cantidad, geometry = geometry), color="white")+
+  geom_point(data=barrios_centroides, aes(x=LON_ORIGEN, y=LAT_ORIGEN, color=ubicacion), shape=4, stroke=2, size=2)+
+  geom_point(data=hospitales, aes(x=long, y=lat), size=1.5)+
+  scale_fill_gradient(low="gold", high= "deeppink4")+
+  scale_color_manual(values = c("turquoise4", "magenta4"))+
+  labs(title = "Hospitales públicos por barrio",
+         fill="",
+         color="",
+          x="",
+          y="",
+         caption= "Fuente: Elaboración propia en base a datos de BAData")+
+  theme(panel.background = element_rect(fill = "gray100", colour = "gray100", size = 2, linetype = "solid"),
+        panel.grid.major = element_line(size = 0.5, linetype = "dashed", colour = "gray80"),
+        title=element_text(size=10, face = "bold"), plot.title = element_text(hjust = 0.5),
+        legend.key.size = unit(0.6, "cm"), legend.key.width = unit(0.5,"cm"),
+        legend.text=element_text(size=7),
+        plot.caption=element_text(face = "italic", colour = "gray35",size=6),
+        axis.text = element_blank(), axis.ticks = element_blank())
+```
+

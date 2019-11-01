@@ -2,67 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on el radaR</title>
-    <link>https://elradar.github.io/categories/</link>
+    <link>/categories/</link>
     <description>Recent content in Categories on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Fri, 25 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://elradar.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>paquetes</title>
-      <link>https://elradar.github.io/categories/paquetes/</link>
+      <link>/categories/paquetes/</link>
       <pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/categories/paquetes/</guid>
+      <guid>/categories/paquetes/</guid>
       <description></description>
     </item>
     
     <item>
       <title>reporte</title>
-      <link>https://elradar.github.io/categories/reporte/</link>
+      <link>/categories/reporte/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/categories/reporte/</guid>
+      <guid>/categories/reporte/</guid>
       <description></description>
     </item>
     
     <item>
       <title>autores</title>
-      <link>https://elradar.github.io/categories/autores/</link>
+      <link>/categories/autores/</link>
       <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/categories/autores/</guid>
+      <guid>/categories/autores/</guid>
       <description></description>
     </item>
     
     <item>
       <title>proyectos</title>
-      <link>https://elradar.github.io/categories/proyectos/</link>
+      <link>/categories/proyectos/</link>
       <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/categories/proyectos/</guid>
+      <guid>/categories/proyectos/</guid>
       <description></description>
     </item>
     
     <item>
       <title>bibliotecas</title>
-      <link>https://elradar.github.io/categories/bibliotecas/</link>
+      <link>/categories/bibliotecas/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/categories/bibliotecas/</guid>
+      <guid>/categories/bibliotecas/</guid>
       <description></description>
     </item>
     
     <item>
       <title>uncranalavez</title>
-      <link>https://elradar.github.io/categories/uncranalavez/</link>
+      <link>/categories/uncranalavez/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/categories/uncranalavez/</guid>
+      <guid>/categories/uncranalavez/</guid>
       <description></description>
     </item>
     

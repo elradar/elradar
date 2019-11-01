@@ -17,7 +17,7 @@
 	<meta property="og:title" content="Obteniendo rutas, tiempo y distancia de viajes con Open Source Routing Machine" />
 <meta property="og:description" content="Agradecemos a Angie Scetta, arquitecta (UBA) y maestranda en Economía Urbana (UTDT), que nos muestra cómo usar OSRM: el paquete de R que permite estimar trayectos, tiempos y distancias de viaje a través de la grilla de calles de cualquier parte del mundo." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://elradar.github.io/2019/10/25/obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine/" />
+<meta property="og:url" content="/2019/10/25/obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine/" />
 <meta property="article:published_time" content="2019-10-25T22:00:29-03:00" />
 <meta property="article:modified_time" content="2019-10-25T00:00:00+00:00" />
 
@@ -78,19 +78,19 @@
     <p>Compartir</p>
     <ul>
         <li class="ml-1 mr-1">
-        <a target="_blank" href="https://twitter.com/intent/tweet?text=Obteniendo%20rutas%2c%20tiempo%20y%20distancia%20de%20viajes%20con%20Open%20Source%20Routing%20Machine&url=https%3a%2f%2felradar.github.io%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
+        <a target="_blank" href="https://twitter.com/intent/tweet?text=Obteniendo%20rutas%2c%20tiempo%20y%20distancia%20de%20viajes%20con%20Open%20Source%20Routing%20Machine&url=%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'twitter-share', 'width=550,height=435');return false;">
         <i class="fab fa-twitter"></i>
         </a>
         </li>
         
         <li class="ml-1 mr-1">
-        <a target="_blank" href="https://facebook.com/sharer.php?u=https%3a%2f%2felradar.github.io%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
+        <a target="_blank" href="https://facebook.com/sharer.php?u=%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
         <i class="fab fa-facebook-f"></i>
         </a>
         </li>
 
         <li class="ml-1 mr-1">
-        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=https%3a%2f%2felradar.github.io%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
+        <a target="_blank" href="https://www.xing.com/spi/shares/new?url=%2f2019%2f10%2f25%2fobteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine%2f" onclick="window.open(this.href, 'xing-share', 'width=550,height=435');return false;">
         <i class="fab fa-xing"></i>
         </a>
         </li>        
@@ -155,8 +155,8 @@ hospitales &lt;- read.csv(&quot;http://cdn.buenosaires.gob.ar/datosabiertos/data
                        mutate(nombre=as.character(nombre))</code></pre>
 <div class="text-justify">
 <p>¿Cómo podemos calcular la distancia y tiempo de viaje que hay entre los barrios de la Ciudad y los hospitales públicos?
-Para simplificar la tarea, tomemos 2 barrios como ejemplo: uno céntrico como Palermo y otro más periférico como Villa Lugano y calculemos la distancia y tiempo de viaje (en auto) que existe entre estos y cada hospital.
-Entonces, nuestros puntos de origen serán los centroides de ambos barrios y los de destino la ubicación exacta de los 36 hospitales.</p>
+Para simplificar la tarea, tomemos 2 barrios como ejemplo: uno ubicado al Norte como Palermo y otro al Sur como Villa Lugano y calculemos la distancia y tiempo de viaje (en auto) que existe entre estos y cada hospital.
+Entonces, nuestros puntos de origen serán los centroides de ambos barrios y los de destino la ubicación exacta de los 36 hospitales. Cabe destacar que, el Centro Asistencial Cecilia Grierson, incluido como un hospital en el dataset descargado, no brinda los mismos servicios (de complejidad) que el resto.</p>
 <p>Los centroides podemos calcularlos fácilmente con la función st_centroid() del paquete sf y la geometría podemos transformarla en coordenadas X e Y a partir de st_coordinates(). Esta última operación es necesaria para el posterior ruteo.</p>
 </div>
 <pre class="r"><code>barrios_centroides &lt;- barrios %&gt;%
@@ -197,7 +197,7 @@ ggplot()+
         axis.text = element_blank(), axis.ticks = element_blank())</code></pre>
 <p><img src="/post/2019-10-25-obteniendo-rutas-tiempo-y-distancia-de-viajes-con-open-source-routing-machine_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <div class="text-justify">
-<p>En el Mapa 1 podemos ver como se distribuyen los hospitales de la Ciudad (más de la mitad de los barrios no poseen hospitales) y donde se localizan los 2 centroides a analizar.</p>
+<p>En el Mapa 1 podemos ver como se distribuyen los hospitales de la Ciudad y donde se localizan los 2 centroides a analizar. Vale aclarar que la ausencia de hospitales en algunos barrios no quiere decir que estos no tengan establecimientos de salud pública ya que puede haber otros tipos de establecimientos que no son tenidos en cuenta en este análisis como los CeSAC, CEMAR o los Centros Medicinales Barriales.</p>
 <p>Ahora sí, para los ruteos, vamos a necesitar crear una función con osrmRoute() que haga los cálculos entre nuestros puntos de origen (centroides de los 2 barrios) y los de destino (hospitales).</p>
 <p>ATENCIÓN: Como estamos usando 2 orígenes pero múltiples destinos, es necesario que creemos una función que haga los múltiples ruteos a la vez. Sino deberíamos hacer uno por uno a mano y sería muy engorroso.</p>
 </div>
@@ -218,7 +218,7 @@ ggplot()+
 Como verán, ya tenemos todos estos datos, así que es solo cuestión de organizarlos.</p>
 </div>
 <div id="barrio-centrico-palermo" class="section level4">
-<h4><strong>Barrio Céntrico: PALERMO</strong></h4>
+<h4><strong>Barrio del Norte: PALERMO</strong></h4>
 <pre class="r"><code>h_palermo &lt;- hospitales %&gt;%
   mutate(NOMBRE_ORIGEN=&quot;PALERMO&quot;) %&gt;%
   left_join(barrios_centroides, by=c(&quot;NOMBRE_ORIGEN&quot;=&quot;barrio&quot;)) %&gt;%
@@ -371,7 +371,7 @@ mapa1 &lt;- leaflet(ruteo_centrico) %&gt;%
 <p><strong>Ahora repitamos el proceso con Villa Lugano a ver que ocurre</strong></p>
 </div>
 <div id="barrio-periferico-villa-lugano" class="section level4">
-<h4><strong>Barrio Periférico: VILLA LUGANO</strong></h4>
+<h4><strong>Barrio del Sur: VILLA LUGANO</strong></h4>
 <pre class="r"><code>h_lugano &lt;- hospitales %&gt;%
   mutate(NOMBRE_ORIGEN=&quot;VILLA LUGANO&quot;) %&gt;%
   left_join(barrios_centroides, by=c(&quot;NOMBRE_ORIGEN&quot;=&quot;barrio&quot;)) %&gt;%
@@ -529,7 +529,7 @@ mapa2 &lt;- leaflet(ruteo_periferico) %&gt;%
                     <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
                     
                     
-                        <a class="d-block col-md-6 text-lg-right" href="https://elradar.github.io/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/">¿Existen suficientes vacantes escolares para los niños de la Villa 21-24? &raquo;</a>
+                        <a class="d-block col-md-6 text-lg-right" href="/2019/10/21/existen-suficientes-vacantes-escolares-para-los-ni%C3%B1os-de-la-villa-21-24/">¿Existen suficientes vacantes escolares para los niños de la Villa 21-24? &raquo;</a>
                     
                     <div class="clearfix"></div>
                     </div>
