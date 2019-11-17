@@ -18,7 +18,7 @@
       <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>/2019/11/16/stringr/</guid>
-      <description>Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud.</description>
+      <description>Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, tidytext, stringr y wordcloud.</description>
     </item>
     
   </channel>

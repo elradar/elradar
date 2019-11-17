@@ -12,10 +12,10 @@
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Introducción al análisis de texto"/>
-<meta name="twitter:description" content="Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud."/>
+<meta name="twitter:description" content="Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, tidytext, stringr y wordcloud."/>
 
 	<meta property="og:title" content="Introducción al análisis de texto" />
-<meta property="og:description" content="Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud." />
+<meta property="og:description" content="Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, tidytext, stringr y wordcloud." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2019/11/16/stringr/" />
 <meta property="article:published_time" content="2019-11-16T20:35:12-03:00" />
@@ -126,7 +126,7 @@
                         
 
 
-<p>Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud.</p>
+<p>Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, tidytext, stringr y wordcloud.</p>
 <div id="modelo-tidy-en-datos-de-texto" class="section level3">
 <h3>Modelo tidy en datos de texto</h3>
 <p>Los datos no estructurados se definen como datos que no tienen estructura interna identificable. Es un conglomerado masivo y desorganizado de varios objetos que no tienen valor hasta que se identifican y almacenan de manera organizada.</p>
@@ -229,7 +229,7 @@
 </div>
 <div id="tokenizar" class="section level3">
 <h3>Tokenizar</h3>
-<p>Arranquemos! Vamos a trabajar con un bello poema de Tamara Grosso, editada por el sello Santos Locos.</p>
+<p>¡Arranquemos! Vamos a trabajar con un bello poema de Tamara Grosso, editada por el sello Santos Locos.</p>
 <pre class="r"><code># Tamara Grosso @tamaraestaloca cuando todo refugio se vuelve hostil @santoslocospoesia
 poema &lt;- c(&#39;ADVERTENCIA:&#39;,
                  &#39;No se decirte&#39;,
@@ -255,8 +255,6 @@ poema_df</code></pre>
 ## 7     7 de uno de los peores     
 ## 8     8 dias de tu vida</code></pre>
 <p>Ahora vamos a usar una funcion para tokenizar nuestro texto. En este caso el analisis lo podriamos pensar sobre palabras por separado, que en principio podrian ser nuestra unidad significativa de texto. ¿Podríamos usar los versos? La funcion que vamos a usar es unnest_tokens() de la biblioteca ‘tidytext’. Su uso más simple es usar los pipes de magrittr para pasarle el data frame como primer parámetro implícito, luego el nombre que queremos que la columna de tokens tenga y por último el nombre de la columna de origen donde deberia buscar el texto a tokenizar.</p>
-<pre class="r"><code>library(tidytext)</code></pre>
-<pre><code>## Warning: package &#39;tidytext&#39; was built under R version 3.5.1</code></pre>
 <pre class="r"><code>texto_tokenizado &lt;- poema_df %&gt;%
   unnest_tokens(palabra_poema,texto)
 texto_tokenizado</code></pre>
@@ -274,7 +272,7 @@ texto_tokenizado</code></pre>
 ##  9     3 mejorar      
 ## 10     4 pero         
 ## # ... with 21 more rows</code></pre>
-<p>Veamos poner la lupa en un par de cositas bellas que nos dejo la función. En principio vemos que cada palabra quedo en una fila, estaríamos ahora en condiciones de afirmar que cada observacion esta contenida en un registro diferente. Luego vemos que para facilitar el manejo nos transformó todos los tokens a minusúculas; en el caso de no querer esto, podemos pasarle a la funcion como parametro to_lower = FALSE de la siguiente manera.</p>
+<p>Veamos poner la lupa en un par de cositas bellas que nos dejo la función. En principio vemos que cada palabra quedo en una fila, estaríamos ahora en condiciones de afirmar que cada observacion está contenida en un registro diferente. Luego vemos que para facilitar el manejo nos transformó todos los tokens a minusúculas; en el caso de no querer esto, podemos pasarle a la funcion como parametro to_lower = FALSE de la siguiente manera.</p>
 <pre class="r"><code>poema_df %&gt;%
   unnest_tokens(palabra_poema,texto, to_lower = FALSE)</code></pre>
 <pre><code>## # A tibble: 31 x 2
@@ -311,7 +309,7 @@ texto_tokenizado</code></pre>
 ##  9 ENTRE NOSOTROS:             
 ## 10 Quisiera saber si alguna vez
 ## # ... with 13 more rows</code></pre>
-<p>Vamos de nuevo a tokenizar este df, como ya habíamos visto anteriormente y vamos a proceder a armar una visualizacion. Usaremos count() para que nos cuente cuantas ocurrencia de cada token hay, simplemente debemos decirle en qué columna se encuentra lo que queremos cuantificar. Usamos la funcion reorder(), para que luego el gráfico nos muestre las barras ordenadas. Por ultimo usarmos ggplot2.</p>
+<p>Vamos de nuevo a tokenizar este df, como ya habíamos visto anteriormente y vamos a proceder a armar una visualizacion. Usaremos count() para que nos cuente cuantas ocurrencia de cada token hay, simplemente debemos decirle en qué columna se encuentra lo que queremos cuantificar. Usamos la funcion reorder(), para que luego el gráfico nos muestre las barras ordenadas. Por último usaremos ggplot2.</p>
 <pre class="r"><code>library(ggplot2)
 
 varios_poemas_tokenizados &lt;- varios_poemas %&gt;% 
@@ -325,7 +323,7 @@ varios_poemas_tokenizados%&gt;%
     geom_col() +
     coord_flip()</code></pre>
 <p><img src="/post/2019-11-16-texto-con-stringr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>Otra biblioteca bastante útil para visualizar de manera rpida ocurrencia de tokens (palabras) es wordcloud. Vamos a usar la funcion de base with(), para poder aplicarlo en nuestro formato con pipes de magrittr. Tenemos que tener cuidado que por defecto la mínima frecuencia de aparicion es 3.</p>
+<p>Otra biblioteca bastante útil para visualizar de manera rápida ocurrencia de tokens (palabras) es wordcloud. Vamos a usar la funcion de base with(), para poder aplicarlo en nuestro formato con pipes de magrittr. Tenemos que tener cuidado que por defecto la mínima frecuencia de aparicion es 3.</p>
 <pre class="r"><code>library(wordcloud)
 
 varios_poemas_tokenizados %&gt;%
@@ -348,7 +346,7 @@ varios_poemas_tokenizados %&gt;%
 </div>
 <div id="stringr" class="section level3">
 <h3>Stringr</h3>
-<p>En este punto vamos a presentar otra herramienta muy potente llamada <em>stringr</em>. Este paquete nos propociona un conjunto de funciones para recuperar de manera sencilla informacion de texto. Esta esta construida sobre stringi, otra biblioteca mas extensa. Para explotar más su uso y si se quedan con ganas, siempre es buena idea explorar el cheatsheet que tiene.</p>
+<p>En este punto vamos a presentar otra herramienta muy potente llamada <em>stringr</em>. Este paquete nos propociona un conjunto de funciones para recuperar de manera sencilla informacion de texto. Esta está construida sobre stringi, otra biblioteca mas extensa. Para explotar más su uso y si se quedan con ganas, siempre es buena idea explorar el cheatsheet que tiene.</p>
 <p><a href="https://rstudio.com/resources/cheatsheets/" class="uri">https://rstudio.com/resources/cheatsheets/</a></p>
 <p>Vamos entonces a ver un vistazo por algunas funciones. Comencemos con algo simple, contemos cuántos caracteres tiene cada verso.</p>
 <pre class="r"><code>library(stringr)

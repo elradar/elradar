@@ -13,10 +13,12 @@ comments: yes
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(wordcloud)
+library(tidytext)
+
 
 ```
 
-Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud.
+Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, tidytext, stringr y wordcloud.
 
 
 ### Modelo tidy en datos de texto
@@ -53,7 +55,7 @@ Así como vimos, el modelo tidy de los datos nos permite manejar de manera mas s
 
 ### Tokenizar
 
-Arranquemos! Vamos a trabajar con un bello poema de Tamara Grosso, editada por el sello Santos Locos.
+¡Arranquemos! Vamos a trabajar con un bello poema de Tamara Grosso, editada por el sello Santos Locos.
 
 ```{r, include=FALSE}
 poema2 <- c('ENTRE NOSOTROS:',
@@ -106,7 +108,6 @@ Ahora vamos a usar una funcion para tokenizar nuestro texto. En este caso el ana
 La funcion que vamos a usar es unnest_tokens() de la biblioteca 'tidytext'. Su uso más simple es usar los pipes de magrittr para pasarle el data frame como primer parámetro implícito, luego el nombre que queremos que la columna de tokens tenga y por último el nombre de la columna de origen donde deberia buscar el texto a tokenizar.
 
 ```{r}
-library(tidytext)
 
 texto_tokenizado <- poema_df %>%
   unnest_tokens(palabra_poema,texto)
@@ -114,7 +115,7 @@ texto_tokenizado
 
 ```
 
-Veamos poner la lupa en un par de cositas bellas que nos dejo la función. En principio vemos que cada palabra quedo en una fila, estaríamos ahora en condiciones de afirmar que cada observacion esta contenida en un registro diferente. Luego vemos que para facilitar el manejo nos transformó todos los tokens a minusúculas; en el caso de no querer esto, podemos pasarle a la funcion como parametro to_lower = FALSE de la siguiente manera.
+Veamos poner la lupa en un par de cositas bellas que nos dejo la función. En principio vemos que cada palabra quedo en una fila, estaríamos ahora en condiciones de afirmar que cada observacion está contenida en un registro diferente. Luego vemos que para facilitar el manejo nos transformó todos los tokens a minusúculas; en el caso de no querer esto, podemos pasarle a la funcion como parametro to_lower = FALSE de la siguiente manera.
 
 ```{r}
 poema_df %>%
@@ -136,7 +137,7 @@ varios_poemas
 ```
 
 
-Vamos de nuevo a tokenizar este df, como ya habíamos visto anteriormente y vamos a proceder a armar una visualizacion. Usaremos count() para que nos cuente cuantas ocurrencia de cada token hay, simplemente debemos decirle en qué columna se encuentra lo que queremos cuantificar. Usamos la funcion reorder(), para que luego el gráfico nos muestre las barras ordenadas. Por ultimo usarmos ggplot2.
+Vamos de nuevo a tokenizar este df, como ya habíamos visto anteriormente y vamos a proceder a armar una visualizacion. Usaremos count() para que nos cuente cuantas ocurrencia de cada token hay, simplemente debemos decirle en qué columna se encuentra lo que queremos cuantificar. Usamos la funcion reorder(), para que luego el gráfico nos muestre las barras ordenadas. Por último usaremos ggplot2.
 
 ```{r}
 library(ggplot2)
@@ -153,7 +154,7 @@ varios_poemas_tokenizados%>%
     coord_flip()
 ```
 
-Otra biblioteca bastante útil para visualizar de manera rpida ocurrencia de tokens (palabras) es wordcloud. Vamos a usar la funcion de base with(), para poder aplicarlo en nuestro formato con pipes de magrittr. Tenemos que tener cuidado que por defecto la mínima frecuencia de aparicion es 3. 
+Otra biblioteca bastante útil para visualizar de manera rápida ocurrencia de tokens (palabras) es wordcloud. Vamos a usar la funcion de base with(), para poder aplicarlo en nuestro formato con pipes de magrittr. Tenemos que tener cuidado que por defecto la mínima frecuencia de aparicion es 3. 
 
 ```{r}
 library(wordcloud)
@@ -183,7 +184,7 @@ varios_poemas_tokenizados %>%
 
 ### Stringr
 
-En este punto vamos a presentar otra herramienta muy potente llamada *stringr*. Este paquete nos propociona un conjunto de funciones para recuperar de manera sencilla informacion de texto. Esta esta construida sobre stringi, otra biblioteca mas extensa. Para explotar más su uso y si se quedan con ganas, siempre es buena idea explorar el cheatsheet que tiene.
+En este punto vamos a presentar otra herramienta muy potente llamada *stringr*. Este paquete nos propociona un conjunto de funciones para recuperar de manera sencilla informacion de texto. Esta está construida sobre stringi, otra biblioteca mas extensa. Para explotar más su uso y si se quedan con ganas, siempre es buena idea explorar el cheatsheet que tiene.
 
 https://rstudio.com/resources/cheatsheets/
 
