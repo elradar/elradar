@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>uncranalavez on el radaR</title>
-    <link>https://elradar.github.io/categories/uncranalavez/</link>
+    <link>/categories/uncranalavez/</link>
     <description>Recent content in uncranalavez on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Sat, 19 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://elradar.github.io/categories/uncranalavez/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/uncranalavez/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Un CRAN a la vez: janitor</title>
-      <link>https://elradar.github.io/2019/10/19/un-cran-a-la-vez-janitor/</link>
+      <link>/2019/10/19/un-cran-a-la-vez-janitor/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/2019/10/19/un-cran-a-la-vez-janitor/</guid>
+      <guid>/2019/10/19/un-cran-a-la-vez-janitor/</guid>
       <description>Así damos inicio a la sección dada a llamar Un CRAN a la vez (inspirada en este proyecto de la gran Danielle Navarro), mostrando lo que hace una simpática biblioteca llamada janitor, hecha por Sam Firke y subida aqui, en conjunción con nuestro querido, y ya clásico, tidyverse.</description>
     </item>
     
