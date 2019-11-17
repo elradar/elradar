@@ -12,10 +12,10 @@
 
 	<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Introducción al análisis de texto"/>
-<meta name="twitter:description" content="Iván Recalde, ingeniero en sistemas de la UTN, actualmente analista de datos en el Área de Gestión de Información Estadística en Salud (AGISE) hace una introducción muy clara a la visualización y procesamiento de texto libre usando tidyverse, stringr y wordcloud."/>
+<meta name="twitter:description" content="Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud."/>
 
 	<meta property="og:title" content="Introducción al análisis de texto" />
-<meta property="og:description" content="Iván Recalde, ingeniero en sistemas de la UTN, actualmente analista de datos en el Área de Gestión de Información Estadística en Salud (AGISE) hace una introducción muy clara a la visualización y procesamiento de texto libre usando tidyverse, stringr y wordcloud." />
+<meta property="og:description" content="Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/2019/11/16/stringr/" />
 <meta property="article:published_time" content="2019-11-16T20:35:12-03:00" />
@@ -126,10 +126,10 @@
                         
 
 
-<p>Iván Recalde, ingeniero en sistemas de la UTN, actualmente analista de datos en el Área de Gestión de Información Estadística en Salud (AGISE) hace una introducción muy clara a la visualización y procesamiento de texto libre usando tidyverse, stringr y wordcloud.</p>
+<p>Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, stringr y wordcloud.</p>
 <div id="modelo-tidy-en-datos-de-texto" class="section level3">
 <h3>Modelo tidy en datos de texto</h3>
-<p>Los datos no estructurados generalmente son datos que no tienen estructura interna identificable. Es un conglomerado masivo y desorganizado de varios objetos que no tienen valor hasta que se identifican y almacenan de manera organizada.</p>
+<p>Los datos no estructurados se definen como datos que no tienen estructura interna identificable. Es un conglomerado masivo y desorganizado de varios objetos que no tienen valor hasta que se identifican y almacenan de manera organizada.</p>
 <p>Una vez que se organizan, los elementos que conforman su contenido pueden ser buscados y categorizados (al menos hasta cierto punto) para obtener información.</p>
 <table>
 <thead>
@@ -158,7 +158,7 @@
 </tr>
 </tbody>
 </table>
-<p>Hadley Wickham nos legó el concepto de datos en formato Tidy, cuando estos estan dispuestos con variables en las columnas y observaciones en las filas, sin que queden ni filas ni columnas con valores en blanco.</p>
+<p>Cuando estos están dispuestos de forma tal que variables en las columnas y observaciones en las filas, sin que queden ni filas ni columnas con valores en blanco, podemos decir que se encuentran en formato Tidy y eso ya es un gran avance hacia su procesamiento.</p>
 <table>
 <thead>
 <tr class="header">
@@ -200,7 +200,7 @@
 </tr>
 </tbody>
 </table>
-<p>Esto nos permite trabajar de manera eficiente y facilmente acomodable a las funciones de… Sí, tidyverse! Nos permite saber que cada fila va a ser una observacion y que no vamos a tener una tabla con infinitas columnas. Si bien esto es excelente, el problema es que muchas veces los datos de entrada a nuestros scripts/algoritmos no vienen en tidy, sino que los encontramos de la siguiente manera.</p>
+<p>Este formato nos permite trabajar de manera eficiente y fácilmente acomodable a las funciones de… Sí, tidyverse! Nos permite saber que cada fila va a ser una observación y que no vamos a tener una tabla con infinitas columnas. El problema es que muchas veces los datos de entrada a nuestros scripts/algoritmos no vienen en tidy, sino que los encontramos de la siguiente manera.</p>
 <table>
 <thead>
 <tr class="header">
@@ -225,13 +225,11 @@
 </tr>
 </tbody>
 </table>
-<p>Este modelo de representacion de los datos no es peor ni mejor, como se daran cuenta suele a veces hasta ser mas rapido para visualizar observaciones en un data frame.</p>
-<p>Teniendo estos conceptos en mente vamos a analizar texto libre.</p>
-<p>En paralelo tal y como el modelo tidy de los datos nos permitia manejar de manera mas facil y efectiva los datos, lo mismo pasa con los datos de texto. En donde se busca que cada registro tenga uno y solo un token. Cuando hablamos de token nos referimos a lo que para nosotros es una unidad significativa de texto, en la mayoria de los casos basicos vamos a hablar de token como palabras individuales pero es importante saber que cuando el analisis es mas complejo podriamos buscar que nuestros token sean frases o parrafos enteros e intentar identifcar significado estos. Pero como pasaba con los datos estructurados normalmente no los encontramos en formato tidy, por eso una primer herramienta que vamos a ver es la ‘Tokenizacion’ de estos campos de texto.</p>
+<p>Así como vimos, el modelo tidy de los datos nos permite manejar de manera mas sencilla y efectiva los datos, incluidos los datos de texto. En este caso para empezar la visualización buscamos que cada fila tenga un solo token: cuando hablamos de token nos referimos a lo que para nuestro problema significa una unidad significativa de texto. En la mayoría de los casos básicos vamos a hablar de token como palabras individuales pero es importante saber que cuando el análisis es más complejo podriamos buscar que nuestros token sean frases o párrafos enteros e intentar identifcar significado de ello.</p>
 </div>
 <div id="tokenizar" class="section level3">
 <h3>Tokenizar</h3>
-<p>Arranquemos! Vamos a trabajar con un bello poema de Tamara Grosso</p>
+<p>Arranquemos! Vamos a trabajar con un bello poema de Tamara Grosso, editada por el sello Santos Locos.</p>
 <pre class="r"><code># Tamara Grosso @tamaraestaloca cuando todo refugio se vuelve hostil @santoslocospoesia
 poema &lt;- c(&#39;ADVERTENCIA:&#39;,
                  &#39;No se decirte&#39;,
@@ -241,7 +239,7 @@ poema &lt;- c(&#39;ADVERTENCIA:&#39;,
                  &#39;te cayo despues&#39;,
                  &#39;de uno de los peores&#39;,
                  &#39;dias de tu vida&#39;)</code></pre>
-<p>En este caso tenemos un vector de datos en formato character, un primer paso util seria pasarlo a un data frame, de esta manera lo traemos a un formato con el que estamos mas acostumbradxs a trabajar.</p>
+<p>En este caso tenemos un vector de datos en formato character, un primer paso útil sería pasarlo a un data frame, de esta manera lo traemos a un formato con el que estamos mas acostumbradxs a trabajar.</p>
 <pre class="r"><code>poema_df &lt;- tibble(linea = 1:8, texto = poema)
 
 poema_df</code></pre>
@@ -256,7 +254,7 @@ poema_df</code></pre>
 ## 6     6 te cayo despues          
 ## 7     7 de uno de los peores     
 ## 8     8 dias de tu vida</code></pre>
-<p>Ahora vamos a usar una funcion para tokenizar nuestro texto. En este caso el analisis lo podriamos pensar sobre palabras por separado, que en principio podrian ser nuestra unidad significativa de texto. Podriamos usar los versos? La funcion que vamos a usar es unnest_tokens() de la biblioteca ‘tidytext’. Su uso mas simple es usar los pipes de magrittr para pasarle el data frame como primer parametro implicito, luego el nombre que queremos que la columna de tokens tenga y por ultimo el nombre de la columna de origen donde deberia buscar el texto a tokenizar.</p>
+<p>Ahora vamos a usar una funcion para tokenizar nuestro texto. En este caso el analisis lo podriamos pensar sobre palabras por separado, que en principio podrian ser nuestra unidad significativa de texto. ¿Podríamos usar los versos? La funcion que vamos a usar es unnest_tokens() de la biblioteca ‘tidytext’. Su uso más simple es usar los pipes de magrittr para pasarle el data frame como primer parámetro implícito, luego el nombre que queremos que la columna de tokens tenga y por último el nombre de la columna de origen donde deberia buscar el texto a tokenizar.</p>
 <pre class="r"><code>library(tidytext)</code></pre>
 <pre><code>## Warning: package &#39;tidytext&#39; was built under R version 3.5.1</code></pre>
 <pre class="r"><code>texto_tokenizado &lt;- poema_df %&gt;%
@@ -276,7 +274,7 @@ texto_tokenizado</code></pre>
 ##  9     3 mejorar      
 ## 10     4 pero         
 ## # ... with 21 more rows</code></pre>
-<p>Veamos poner la lupa en un par de cositas bellas que nos dejo la funcion. En principio vemos que cada palabra quedo en una fila, estariamos ahora en condiciones de afirmar que cada observacion esta contenida en un registro diferente? Luego vemos que para facilitar el manejo nos transformo todos los tokens a minusculas; en el caso de no querer esto, podemos pasarle a la funcion como parametro to_lower = FALSE de la siguiente manera.</p>
+<p>Veamos poner la lupa en un par de cositas bellas que nos dejo la función. En principio vemos que cada palabra quedo en una fila, estaríamos ahora en condiciones de afirmar que cada observacion esta contenida en un registro diferente. Luego vemos que para facilitar el manejo nos transformó todos los tokens a minusúculas; en el caso de no querer esto, podemos pasarle a la funcion como parametro to_lower = FALSE de la siguiente manera.</p>
 <pre class="r"><code>poema_df %&gt;%
   unnest_tokens(palabra_poema,texto, to_lower = FALSE)</code></pre>
 <pre><code>## # A tibble: 31 x 2
@@ -296,7 +294,7 @@ texto_tokenizado</code></pre>
 </div>
 <div id="completemos-un-circuito-basico-de-analisis-y-armemos-unas-visualizaciones" class="section level3">
 <h3>Completemos un circuito basico de analisis y armemos unas visualizaciones</h3>
-<p>Vamos entonces a imaginar que tenemos varios textos consecutivos (poemas en nuestro caso). Para hacer un poco mas divertido el analisis.</p>
+<p>Vamos entonces a imaginar que tenemos varios textos consecutivos (poemas en nuestro caso) para hacer un poco más divertido el análisis.</p>
 <pre class="r"><code>varios_poemas &lt;- poema_df %&gt;% 
     bind_rows(poema2_df, poema3_df, poema4_df)</code></pre>
 <pre><code>## # A tibble: 23 x 1
@@ -313,7 +311,7 @@ texto_tokenizado</code></pre>
 ##  9 ENTRE NOSOTROS:             
 ## 10 Quisiera saber si alguna vez
 ## # ... with 13 more rows</code></pre>
-<p>Vamos de nuevo a tokenizar este df, como ya habiamos visto anteriormente y vamos a proceder a armar una visualizacion. Vamos a usar count() para que nos cuente cuantas ocurrencia de cada token hay, simplemente debemos decirle en que columna se encuentra. Usamos la funcion reorder(), para que luego el grafico nos muestre las barras ordenadas. Por ultimo usamos ggplot.</p>
+<p>Vamos de nuevo a tokenizar este df, como ya habíamos visto anteriormente y vamos a proceder a armar una visualizacion. Usaremos count() para que nos cuente cuantas ocurrencia de cada token hay, simplemente debemos decirle en qué columna se encuentra lo que queremos cuantificar. Usamos la funcion reorder(), para que luego el gráfico nos muestre las barras ordenadas. Por ultimo usarmos ggplot2.</p>
 <pre class="r"><code>library(ggplot2)
 
 varios_poemas_tokenizados &lt;- varios_poemas %&gt;% 
@@ -327,7 +325,7 @@ varios_poemas_tokenizados%&gt;%
     geom_col() +
     coord_flip()</code></pre>
 <p><img src="/post/2019-11-16-texto-con-stringr_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>Otra biblioteca bastante util para visualizar de manera rapida ocurrencia de tokens (palabras), es wordcloud. Vamos a usar la funcion de base with(), para poder aplicarlo en nuestro formato con pipes de magrittr. Tenemos que tener cuidado que por defecto la minima frecuencia de aparicion es 3.</p>
+<p>Otra biblioteca bastante útil para visualizar de manera rpida ocurrencia de tokens (palabras) es wordcloud. Vamos a usar la funcion de base with(), para poder aplicarlo en nuestro formato con pipes de magrittr. Tenemos que tener cuidado que por defecto la mínima frecuencia de aparicion es 3.</p>
 <pre class="r"><code>library(wordcloud)
 
 varios_poemas_tokenizados %&gt;%
@@ -335,11 +333,11 @@ varios_poemas_tokenizados %&gt;%
   count(palabra_poema) %&gt;%
   with(wordcloud(palabra_poema, n,min.freq = 0))</code></pre>
 <p><img src="/post/2019-11-16-texto-con-stringr_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Como vemos hay una linea comentada, que es un antijoin con stop_words, que es stop_words?</p>
+<p>Como vemos hay una linea comentada, que es un antijoin con stop_words, pero, ¿qué son stop_words?</p>
 <pre><code>##  [1] &quot;de&quot;   &quot;la&quot;   &quot;que&quot;  &quot;el&quot;   &quot;en&quot;   &quot;y&quot;    &quot;a&quot;    &quot;los&quot;  &quot;del&quot;  &quot;se&quot;  
 ## [11] &quot;las&quot;  &quot;por&quot;  &quot;un&quot;   &quot;para&quot; &quot;con&quot;  &quot;no&quot;   &quot;una&quot;  &quot;su&quot;   &quot;al&quot;   &quot;lo&quot;  
 ## [21] &quot;como&quot; &quot;más&quot;  &quot;pero&quot; &quot;sus&quot;  &quot;le&quot;</code></pre>
-<p>Es un vector de palabras tipicas usadas en algun lenguaje que le pasemos por parametro, pero que no aportan significado al texto en la mayoria de las ocasiones. Esto sirve para que las palabras con mas ocurrencias no sean siempre las mismas sino que sean palabras significativas que aporten valor del mensaje. No lo usamos porque nuestro ejemplo tenia una cantidad muy baja de palabras y haberlo usado hubiese eliminado casi todas las palabras con mas de una ocurrencia como vemos abajo. Lo importante de todas formas es tener presente la existencia de estas colecciones de palabras.</p>
+<p>Se trata un vector de palabras típicas usadas en algún lenguaje que le pasemos por parametro, pero que no aportan significado al texto en la mayoria de las ocasiones. Esto sirve para que las palabras con más ocurrencias no sean siempre las mismas sino que sean palabras significativas que aporten valor del mensaje. No lo usamos porque nuestro ejemplo tenia una cantidad muy baja de palabras y haberlo usado hubiese eliminado casi todas las palabras con mas de una ocurrencia como vemos abajo. Lo importante de todas formas es tener presente la existencia de estas colecciones de palabras.</p>
 <pre class="r"><code>library(wordcloud)
 
 varios_poemas_tokenizados %&gt;%
@@ -350,9 +348,9 @@ varios_poemas_tokenizados %&gt;%
 </div>
 <div id="stringr" class="section level3">
 <h3>Stringr</h3>
-<p>Vamos a presentar otra herramienta muy potente Stringr. Este paquete nos propociona un conjunto de funciones para recuperar de manera sencilla informacion de texto. Esta esta construida sobre stringi, otra biblioteca mas extensa. Para explotar mas su uso y si se quedan con ganas, siempre esta bueno explorar el cheatsheet que tiene.</p>
+<p>En este punto vamos a presentar otra herramienta muy potente llamada <em>stringr</em>. Este paquete nos propociona un conjunto de funciones para recuperar de manera sencilla informacion de texto. Esta esta construida sobre stringi, otra biblioteca mas extensa. Para explotar más su uso y si se quedan con ganas, siempre es buena idea explorar el cheatsheet que tiene.</p>
 <p><a href="https://rstudio.com/resources/cheatsheets/" class="uri">https://rstudio.com/resources/cheatsheets/</a></p>
-<p>Vamos entonces a ver un vistazo por algunas funciones. Comencemos con algo simple, contemos cuanto caracteres tiene cada verso.</p>
+<p>Vamos entonces a ver un vistazo por algunas funciones. Comencemos con algo simple, contemos cuántos caracteres tiene cada verso.</p>
 <pre class="r"><code>library(stringr)
 
 poema_df %&gt;% 
@@ -368,7 +366,7 @@ poema_df %&gt;%
 ## 6     6 te cayo despues                            15
 ## 7     7 de uno de los peores                       20
 ## 8     8 dias de tu vida                            15</code></pre>
-<p>Quedemonos ahora solo con una parte del texto, en este caso los primeros 5 caracteres. Veamos que a nivel grafico nos muestra el resultado con comillas para denotar que quedo un espacio [‘’], al principio o al final.</p>
+<p>Quedemonos ahora solo con una parte del texto, en este caso los primeros 5 caracteres. Veamos que a nivel gráfico nos muestra el resultado con comillas para denotar que quedó un espacio [‘’], al principio o al final.</p>
 <pre class="r"><code>poema_df %&gt;% 
     mutate(solo_primeros_cinco = str_sub(texto,1,5)) </code></pre>
 <pre><code>## # A tibble: 8 x 3
@@ -382,7 +380,7 @@ poema_df %&gt;%
 ## 6     6 te cayo despues           te ca              
 ## 7     7 de uno de los peores      de un              
 ## 8     8 dias de tu vida           &quot;dias &quot;</code></pre>
-<p>Las posiciones son relativas al largo del texto, podemos entonces decirle que agarre los ultimos 5 caracteres de la siguiente manera</p>
+<p>Las posiciones son relativas al largo del texto, podemos entonces decirle que tome los últimos 5 caracteres de la siguiente manera</p>
 <pre class="r"><code>poema_df %&gt;% 
     mutate(solo_primeros_cinco = str_sub(texto,-5,-1)) </code></pre>
 <pre><code>## # A tibble: 8 x 3
@@ -396,7 +394,7 @@ poema_df %&gt;%
 ## 6     6 te cayo despues           spues              
 ## 7     7 de uno de los peores      eores              
 ## 8     8 dias de tu vida           &quot; vida&quot;</code></pre>
-<p>Otro uso tipico es querer modificar todo a minusculas, pero como sobre gustos no hay nada definido tambien nos permite modificar todo a mayusculas.</p>
+<p>Otro uso tipico es querer modificar todo a minusculas, pero como sobre gustos no hay nada definido también podríamos modificar todo a mayusculas.</p>
 <pre class="r"><code>poema_df %&gt;% 
     mutate(mayusculas = str_to_upper(texto),
            minusculas = str_to_lower(texto)) </code></pre>
@@ -438,7 +436,7 @@ poema_df %&gt;%
 ## 2     6 te cayo despues     
 ## 3     7 de uno de los peores
 ## 4     8 dias de tu vida</code></pre>
-<p>Volvamos ahora al caso donde teniamos todos los poemas juntos, seria posible identificar de alguna manera cada poema por separado?</p>
+<p>Volvamos ahora al caso donde teniamos todos los poemas juntos, ¿sería posible identificar de alguna manera cada poema por separado?</p>
 <pre><code>## # A tibble: 23 x 1
 ##    texto                       
 ##    &lt;chr&gt;                       
@@ -453,7 +451,7 @@ poema_df %&gt;%
 ##  9 ENTRE NOSOTROS:             
 ## 10 Quisiera saber si alguna vez
 ## # ... with 13 more rows</code></pre>
-<p>Busquemos entonces generar un corte cada vez que encuentre los ‘:’, que es en este caso por lo menos lo que nos indica que hay un titulo. Una funcion que nos podria servir es cumsum(), que nos va a mantener un contador cada vez que se cumpla una condicion que le pasemos por parametro.</p>
+<p>Busquemos entonces generar un corte cada vez que encuentre los ‘:’, que es en este caso por lo menos lo que nos indica que hay un titulo. Una funcion que nos podria servir es cumsum(), que nos va a mantener un contador como suma acumulada cada vez que se cumpla una condicion que le pasemos por parametro.</p>
 <pre class="r"><code>poemas_separados &lt;- varios_poemas %&gt;%
   mutate(poema = cumsum(str_detect(texto, &#39;:&#39;)))
 
@@ -472,11 +470,11 @@ poemas_separados</code></pre>
 ##  9 ENTRE NOSOTROS:                  2
 ## 10 Quisiera saber si alguna vez     2
 ## # ... with 13 more rows</code></pre>
-<p>Excelente, esto nos permitira abstraernos de la cantidad de registros que tengamos tokenizados por cada archivo de texto original.</p>
+<p>Excelente, esto nos permitirá abstraernos de la cantidad de registros que tengamos tokenizados por cada archivo de texto original.</p>
 </div>
 <div id="como-recuperar-lo-que-partimos-lo-rompi" class="section level3">
 <h3>Como recuperar lo que partimos? [lo rompi?]</h3>
-<p>Una vez que aprendimos a separar [romper] algo, estaria buenisimo tambien saber volverlo a armar, verdad? Vamos a usar la funcion paste() y le vamos a pasar por parametro collapse, para definirle que queremos que nos deje en el medio de cada verso del poema en este caso.</p>
+<p>Una vez que aprendimos a separar [romper] algo, estaría buenisimo tambien saber volverlo a armar, ¿verdad? Vamos a usar la funcion paste() y le vamos a pasar por parametro collapse, para definirle que queremos qué nos deje en el medio de cada verso del poema en este caso.</p>
 <pre class="r"><code>poemas_unidos &lt;- poemas_separados %&gt;% 
     group_by(poema) %&gt;% 
     mutate(poema_entero = paste(texto,
@@ -496,7 +494,7 @@ poemas_unidos</code></pre>
 </div>
 <div id="proximos-pasos---str_extract-y-regex" class="section level3">
 <h3>Proximos pasos -&gt; str_extract() y regex()</h3>
-<p>Para ir finalizando con estas herramientas basicas, volvamos al ejemplo original que usamos para ver como podiamos encontrarnos la informacion no estructurada</p>
+<p>Para ir finalizando con estas herramientas baáicas, volvamos al ejemplo original que usamos para ver como podíamos encontrarnos la informacion no estructurada</p>
 <table>
 <thead>
 <tr class="header">
@@ -524,7 +522,7 @@ poemas_unidos</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Vamos a usar str_extract para obtener la informacion que esta perdida dentro del campo libre, pero para que esta funcion realmente explote su potencia va a necesitar que le agreguemos expresiones regulares. Las expresiones pueden ir desde algo muy simple, hasta algo super complejo, podemos ayudarnos del cheatsheet y de paginas como <a href="https://regex101.com/" class="uri">https://regex101.com/</a> que nos permiten en tiempo real ir probando nuestras expresiones. Vamos a ver como a priori este caso se resuelve con expresiones bastante amigables</p>
+<p>Vamos a usar str_extract para obtener la informacion que esta perdida dentro del campo libre, pero para que esta función realmente explote su potencia va a necesitar que le agreguemos expresiones regulares. Las expresiones pueden ir desde algo muy simple, hasta algo super complejo, podemos ayudarnos del cheatsheet y de paginas como <a href="https://regex101.com/" class="uri">https://regex101.com/</a> que nos permiten en tiempo real ir probando nuestras expresiones. Vamos a ver como a priori este caso se resuelve con expresiones bastante amigables</p>
 <pre class="r"><code>tabla_valores_no_estructurada %&gt;% 
     mutate(n = str_extract(detalle, regex(&#39;[0-9]+&#39;)), #uno o mas numeros
            tipo = str_extract(detalle, regex(&#39;[ABC] &#39;)), #letras en mayuscula A, B o C
@@ -538,11 +536,11 @@ poemas_unidos</code></pre>
 ## 4 se realizaron 32 observaciones del tipo A en el anio 2~ 32    &quot;A &quot;  2018 
 ## 5 se realizaron 63 observaciones del tipo B en el anio 2~ 63    &quot;B &quot;  2018 
 ## 6 se realizaron 19 observaciones del tipo C en el anio 2~ 19    &quot;C &quot;  2018</code></pre>
-<p>Algo interesante a tener en cuenta es observar como la primera expresion regular no trae el anio ademas del n. Esto se debe a que salvo que le indiquemos lo contrario str_extract(), nos trae solo lo primero que encuentra. Entonces una vez que encuentra uno o mas numeros seguidos, deja de mirar el texto.</p>
+<p>Algo interesante a tener en cuenta es observar como la primera expresión regular no trae el año además del n. Esto se debe a que salvo que le indiquemos lo contrario str_extract(), nos trae solo lo primero que encuentra. Entonces una vez que encuentra uno o mas numeros seguidos, deja de mirar el texto.</p>
 </div>
 <div id="conclusion" class="section level3">
 <h3>Conclusion</h3>
-<p>Este pequeño tutorial tiene como finalidad presentar un vistazo rapido por bastantes herramientas para el analisis de texto. Ojala sirva como disparador para investigar mas!</p>
+<p>Este pequeño tutorial tiene como finalidad presentar un vistazo rapido por bastantes herramientas para el analisis de texto. ¡Ojalá sirva como disparador para investigar más!</p>
 </div>
 
                     </div>
