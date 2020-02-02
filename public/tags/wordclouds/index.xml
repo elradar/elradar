@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>wordclouds on el radaR</title>
-    <link>/tags/wordclouds/</link>
+    <link>https://elradar.github.io/tags/wordclouds/</link>
     <description>Recent content in wordclouds on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/wordclouds/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://elradar.github.io/tags/wordclouds/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Introducción al análisis de texto</title>
-      <link>/2019/11/16/stringr/</link>
+      <link>https://elradar.github.io/2019/11/16/stringr/</link>
       <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/11/16/stringr/</guid>
+      <guid>https://elradar.github.io/2019/11/16/stringr/</guid>
       <description>Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, tidytext, stringr y wordcloud.</description>
     </item>
     

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>caret on el radaR</title>
+    <link>https://elradar.github.io/tags/caret/</link>
+    <description>Recent content in caret on el radaR</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-ar</language>
+    <copyright>equipo el radaR</copyright>
+    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://elradar.github.io/tags/caret/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introducción (simple) a caret</title>
+      <link>https://elradar.github.io/2020/02/02/introducci%C3%B3n-simple-a-caret/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://elradar.github.io/2020/02/02/introducci%C3%B3n-simple-a-caret/</guid>
+      <description>Agradecemos a German Rosati, experto en Machine Learning en el contexto de las Ciencias Sociales, por este tutorial que explica como podemos realizar Aprendizaje Automático en forma organizada y sucinta utilizando caret, el tradicional paquete de R para producir modelos predictivos.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,130 +2,139 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on el radaR</title>
-    <link>/tags/</link>
+    <link>https://elradar.github.io/tags/</link>
     <description>Recent content in Tags on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el radaR</copyright>
-    <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Feb 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://elradar.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>caret</title>
+      <link>https://elradar.github.io/tags/caret/</link>
+      <pubDate>Sun, 02 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://elradar.github.io/tags/caret/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>stringr</title>
-      <link>/tags/stringr/</link>
+      <link>https://elradar.github.io/tags/stringr/</link>
       <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/stringr/</guid>
+      <guid>https://elradar.github.io/tags/stringr/</guid>
       <description></description>
     </item>
     
     <item>
       <title>wordclouds</title>
-      <link>/tags/wordclouds/</link>
+      <link>https://elradar.github.io/tags/wordclouds/</link>
       <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/wordclouds/</guid>
+      <guid>https://elradar.github.io/tags/wordclouds/</guid>
       <description></description>
     </item>
     
     <item>
       <title>osrm</title>
-      <link>/tags/osrm/</link>
+      <link>https://elradar.github.io/tags/osrm/</link>
       <pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/osrm/</guid>
+      <guid>https://elradar.github.io/tags/osrm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ruteo</title>
-      <link>/tags/ruteo/</link>
+      <link>https://elradar.github.io/tags/ruteo/</link>
       <pubDate>Fri, 25 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ruteo/</guid>
+      <guid>https://elradar.github.io/tags/ruteo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>educación</title>
-      <link>/tags/educaci%C3%B3n/</link>
+      <link>https://elradar.github.io/tags/educaci%C3%B3n/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/educaci%C3%B3n/</guid>
+      <guid>https://elradar.github.io/tags/educaci%C3%B3n/</guid>
       <description></description>
     </item>
     
     <item>
       <title>inequidad</title>
-      <link>/tags/inequidad/</link>
+      <link>https://elradar.github.io/tags/inequidad/</link>
       <pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/inequidad/</guid>
+      <guid>https://elradar.github.io/tags/inequidad/</guid>
       <description></description>
     </item>
     
     <item>
       <title>EPH</title>
-      <link>/tags/eph/</link>
+      <link>https://elradar.github.io/tags/eph/</link>
       <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/eph/</guid>
+      <guid>https://elradar.github.io/tags/eph/</guid>
       <description></description>
     </item>
     
     <item>
       <title>genero</title>
-      <link>/tags/genero/</link>
+      <link>https://elradar.github.io/tags/genero/</link>
       <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/genero/</guid>
+      <guid>https://elradar.github.io/tags/genero/</guid>
       <description></description>
     </item>
     
     <item>
       <title>data-wrangling</title>
-      <link>/tags/data-wrangling/</link>
+      <link>https://elradar.github.io/tags/data-wrangling/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/data-wrangling/</guid>
+      <guid>https://elradar.github.io/tags/data-wrangling/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ETL</title>
-      <link>/tags/etl/</link>
+      <link>https://elradar.github.io/tags/etl/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/etl/</guid>
+      <guid>https://elradar.github.io/tags/etl/</guid>
       <description></description>
     </item>
     
     <item>
       <title>janitor</title>
-      <link>/tags/janitor/</link>
+      <link>https://elradar.github.io/tags/janitor/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/janitor/</guid>
+      <guid>https://elradar.github.io/tags/janitor/</guid>
       <description></description>
     </item>
     
     <item>
       <title>limpieza</title>
-      <link>/tags/limpieza/</link>
+      <link>https://elradar.github.io/tags/limpieza/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/limpieza/</guid>
+      <guid>https://elradar.github.io/tags/limpieza/</guid>
       <description></description>
     </item>
     
     <item>
       <title>transformacion</title>
-      <link>/tags/transformacion/</link>
+      <link>https://elradar.github.io/tags/transformacion/</link>
       <pubDate>Sat, 19 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/transformacion/</guid>
+      <guid>https://elradar.github.io/tags/transformacion/</guid>
       <description></description>
     </item>
     

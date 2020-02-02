@@ -38,7 +38,15 @@ Puede notarse que se trata de un problema bastante amigable, por así decirlo, a
 
 ### 0. Preprocesar los datos
 
-Lo primero que tenemos que hacer es importar las librerías con las que vamos a trabajar:
+Lo primero que tenemos que hacer es importar las librerías con las que vamos a trabajar: `tidyverse` y `caret`. 
+
+Si aún no las tenemos disponibles, las podemos instalar con:
+
+```{r eval = FALSE}
+install.packages("tidyverse")
+install.packages("caret")
+```
+
 
 ```{r message=FALSE, warning=FALSE}
 library(caret)
