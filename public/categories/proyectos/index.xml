@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>proyectos on el radaR</title>
-    <link>https://elradar.github.io/categories/proyectos/</link>
+    <link>/categories/proyectos/</link>
     <description>Recent content in proyectos on el radaR</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ar</language>
     <copyright>equipo el radaR</copyright>
     <lastBuildDate>Sun, 20 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://elradar.github.io/categories/proyectos/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/proyectos/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>EPH y género</title>
-      <link>https://elradar.github.io/2019/10/20/eph-y-genero/</link>
+      <link>/2019/10/20/eph-y-genero/</link>
       <pubDate>Sun, 20 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://elradar.github.io/2019/10/20/eph-y-genero/</guid>
+      <guid>/2019/10/20/eph-y-genero/</guid>
       <description>Este genial proyecto sobre inequidades de género según datos de la EPH fue hecho por la gran Natsumi Shokida y está alojado en su página de RPubs, desde donde se puede descargar el código en formato .</description>
     </item>
     
