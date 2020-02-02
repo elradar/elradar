@@ -1,0 +1,296 @@
+---
+title: Introducción al análisis de texto
+author: Ivan Recalde
+date: '2019-11-16'
+slug: stringr
+categories: [texto, visualizacion]
+tags: [stringr, wordclouds]
+publishdate: '2019-11-16T20:35:12-03:00'
+comments: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(wordcloud)
+library(tidytext)
+
+
+```
+
+Iván Recalde, ingeniero en sistemas de la UTN, se desempeña actualmente como Data Analyst en el Área de Gestión de Información Estadística en Salud (AGISE) del Ministerio de Salud CABA y hace aquí una introducción muy clara a la visualización y el procesamiento de texto libre usando tidyverse, tidytext, stringr y wordcloud.
+
+
+### Modelo tidy en datos de texto
+
+Los datos no estructurados se definen como datos que no tienen estructura interna identificable. Es un conglomerado masivo y desorganizado de varios objetos que no tienen valor hasta que se identifican y almacenan de manera organizada.
+
+Una vez que se organizan, los elementos que conforman su contenido pueden ser buscados y categorizados (al menos hasta cierto punto) para obtener información.
+
+```{r, echo=FALSE}
+tabla_valores_no_estructurada <- dplyr::tibble(detalle = c('se realizaron 45 observaciones del tipo A en el anio 2017','se realizaron 60 observaciones del tipo B en el anio 2017','se realizaron 23 observaciones del tipo C en el anio 2017','se realizaron 32 observaciones del tipo A en el anio 2018','se realizaron 63 observaciones del tipo B en el anio 2018','se realizaron 19 observaciones del tipo C en el anio 2018'))
+knitr::kable(head(tabla_valores_no_estructurada))
+
+```
+
+
+Cuando estos están dispuestos de forma tal que variables en las columnas y observaciones en las filas, sin que queden ni filas ni columnas con valores en blanco, podemos decir que se encuentran en formato Tidy y eso ya es un gran avance hacia su procesamiento.
+
+```{r, echo=FALSE}
+tabla_estructurada <- dplyr::tibble(anio=c('2017','2017','2017','2018','2018','2018'), tipo = c('A','B','C','A','B','C'), n = c('45','60','23','32','63','19'))
+knitr::kable(head(tabla_estructurada))
+```
+
+Este formato nos permite trabajar de manera eficiente y fácilmente acomodable a las funciones de... Sí, tidyverse! Nos permite saber que cada fila va a ser una observación y que no vamos a tener una tabla con infinitas columnas. El problema es que muchas veces los datos de entrada a nuestros scripts/algoritmos no vienen en  tidy, sino que los encontramos de la siguiente manera.
+
+```{r untidy example, echo=FALSE}
+tabla_no_tidy <- dplyr::tibble(anio=c('2017','2018'), tipo_a = c('45','32'), tipo_b = c('60','63'),
+                               tipo_c=c('23','19'))
+
+knitr::kable(head(tabla_no_tidy))
+```
+
+
+Así como vimos, el modelo tidy de los datos nos permite manejar de manera mas sencilla y efectiva los datos, incluidos los datos de texto. En este caso para empezar la visualización buscamos que cada fila tenga un solo token: cuando hablamos de token nos referimos a lo que para nuestro problema significa una unidad significativa de texto. En la mayoría de los casos básicos vamos a hablar de token como palabras individuales pero es importante saber que cuando el análisis es más complejo podriamos buscar que nuestros token sean frases o párrafos enteros e intentar identifcar significado de ello. 
+
+### Tokenizar
+
+¡Arranquemos! Vamos a trabajar con un bello poema de Tamara Grosso, editada por el sello Santos Locos.
+
+```{r, include=FALSE}
+poema2 <- c('ENTRE NOSOTROS:',
+                    'Quisiera saber si alguna vez',
+                    'se van a poder leer las mentes',
+                    'Para averiguar lo que de verdad pasó entre nosotros',
+                    'En tu versión del desamor')
+poema2_df <- tibble(linea = 1:5, texto = poema2)
+
+
+poema3 <- c('LOOP:',
+            'Todavía me parece',
+            'Que vas a venir un día',
+            'Y me vas a decir lo que ya no quiero')
+poema3_df <- tibble(linea = 1:4, texto = poema3)
+
+poema4 <- c('VARIACIONES SOBRE LA TRISTEZA:',
+            'Meter la mano en el cajón de las aspirinas',
+            'y sólo encontrar el blister vacío.',
+            'Un nuevo descubrimiento',
+            'ni vos mismo, en el pasado,',
+            'te interesaste por lo que te pasa ahora.')
+poema4_df <- tibble(linea = 1:6, texto = poema4)
+
+
+```
+
+```{r}
+# Tamara Grosso @tamaraestaloca cuando todo refugio se vuelve hostil @santoslocospoesia
+poema <- c('ADVERTENCIA:',
+                 'No se decirte',
+                 'si todo va a mejorar',
+                 'pero seguro la ficha',
+                 'que te hizo ser quien sos',
+                 'te cayo despues',
+                 'de uno de los peores',
+                 'dias de tu vida')
+```
+
+En este caso tenemos un vector de datos en formato character, un primer paso útil sería pasarlo a un data frame, de esta manera lo traemos a un formato con el que estamos mas acostumbradxs a trabajar.
+
+```{r pressure}
+poema_df <- tibble(linea = 1:8, texto = poema)
+
+poema_df
+```
+
+
+Ahora vamos a usar una funcion para tokenizar nuestro texto. En este caso el analisis lo podriamos pensar sobre palabras por separado, que en principio podrian ser nuestra unidad significativa de texto. ¿Podríamos usar los versos?
+La funcion que vamos a usar es unnest_tokens() de la biblioteca 'tidytext'. Su uso más simple es usar los pipes de magrittr para pasarle el data frame como primer parámetro implícito, luego el nombre que queremos que la columna de tokens tenga y por último el nombre de la columna de origen donde deberia buscar el texto a tokenizar.
+
+```{r}
+
+texto_tokenizado <- poema_df %>%
+  unnest_tokens(palabra_poema,texto)
+texto_tokenizado
+
+```
+
+Veamos poner la lupa en un par de cositas bellas que nos dejo la función. En principio vemos que cada palabra quedo en una fila, estaríamos ahora en condiciones de afirmar que cada observacion está contenida en un registro diferente. Luego vemos que para facilitar el manejo nos transformó todos los tokens a minusúculas; en el caso de no querer esto, podemos pasarle a la funcion como parametro to_lower = FALSE de la siguiente manera.
+
+```{r}
+poema_df %>%
+  unnest_tokens(palabra_poema,texto, to_lower = FALSE)
+```
+
+### Completemos un circuito basico de analisis y armemos unas visualizaciones
+
+Vamos entonces a imaginar que tenemos varios textos consecutivos (poemas en nuestro caso) para hacer un poco más divertido el análisis.
+
+```{r}
+varios_poemas <- poema_df %>% 
+    bind_rows(poema2_df, poema3_df, poema4_df)
+```
+```{r, echo=FALSE}
+varios_poemas <- varios_poemas %>% 
+  select(-linea)
+varios_poemas
+```
+
+
+Vamos de nuevo a tokenizar este df, como ya habíamos visto anteriormente y vamos a proceder a armar una visualizacion. Usaremos count() para que nos cuente cuantas ocurrencia de cada token hay, simplemente debemos decirle en qué columna se encuentra lo que queremos cuantificar. Usamos la funcion reorder(), para que luego el gráfico nos muestre las barras ordenadas. Por último usaremos ggplot2.
+
+```{r}
+library(ggplot2)
+
+varios_poemas_tokenizados <- varios_poemas %>% 
+    unnest_tokens(palabra_poema,texto)
+
+varios_poemas_tokenizados%>%
+    count(palabra_poema) %>%
+    filter(n > 1) %>% 
+    mutate(palabra_poema = reorder(palabra_poema, n)) %>%
+    ggplot(aes(palabra_poema, n)) +
+    geom_col() +
+    coord_flip()
+```
+
+Otra biblioteca bastante útil para visualizar de manera rápida ocurrencia de tokens (palabras) es wordcloud. Vamos a usar la funcion de base with(), para poder aplicarlo en nuestro formato con pipes de magrittr. Tenemos que tener cuidado que por defecto la mínima frecuencia de aparicion es 3. 
+
+```{r}
+library(wordcloud)
+
+varios_poemas_tokenizados %>%
+  # filter(!palabra_poema %in% stopwords::stopwords(language = 'spanish')) %>% 
+  count(palabra_poema) %>%
+  with(wordcloud(palabra_poema, n,min.freq = 0))
+```
+
+Como vemos hay una linea comentada, que es un antijoin con stop_words, pero, ¿qué son stop_words?
+
+```{r, echo=FALSE}
+stopwords::stopwords(language = 'spanish')[1:25]
+```
+
+Se trata un vector de palabras típicas usadas en algún lenguaje que le pasemos por parametro, pero que no aportan significado al texto en la mayoria de las ocasiones. Esto sirve para que las palabras con más ocurrencias no sean siempre las mismas sino que sean palabras significativas que aporten valor del mensaje. No lo usamos porque nuestro ejemplo tenia una cantidad muy baja de palabras y haberlo usado hubiese eliminado casi todas las palabras con mas de una ocurrencia como vemos abajo. Lo importante de todas formas es tener presente la existencia de estas colecciones de palabras.
+
+```{r, warning=FALSE}
+library(wordcloud)
+
+varios_poemas_tokenizados %>%
+  filter(!palabra_poema %in% stopwords::stopwords(language = 'spanish')) %>%
+  count(palabra_poema) %>%
+  with(wordcloud(palabra_poema, n,min.freq = 0))
+```
+
+### Stringr
+
+En este punto vamos a presentar otra herramienta muy potente llamada *stringr*. Este paquete nos propociona un conjunto de funciones para recuperar de manera sencilla informacion de texto. Esta está construida sobre stringi, otra biblioteca mas extensa. Para explotar más su uso y si se quedan con ganas, siempre es buena idea explorar el cheatsheet que tiene.
+
+https://rstudio.com/resources/cheatsheets/
+
+Vamos entonces a ver un vistazo por algunas funciones. Comencemos con algo simple, contemos cuántos caracteres tiene cada verso.
+
+```{r}
+library(stringr)
+
+poema_df %>% 
+    mutate(cantidad_caracteres = str_count(texto)) 
+```
+
+Quedemonos ahora solo con una parte del texto, en este caso los primeros 5 caracteres. Veamos que a nivel gráfico nos muestra el resultado con comillas para denotar que quedó un espacio [' '], al principio o al final.
+
+```{r}
+poema_df %>% 
+    mutate(solo_primeros_cinco = str_sub(texto,1,5)) 
+```
+
+Las posiciones son relativas al largo del texto, podemos entonces decirle que tome los últimos 5 caracteres de la siguiente manera
+
+```{r}
+poema_df %>% 
+    mutate(solo_primeros_cinco = str_sub(texto,-5,-1)) 
+```
+
+Otro uso tipico es querer modificar todo a minusculas, pero como sobre gustos no hay nada definido también podríamos modificar todo a mayusculas.
+
+```{r}
+poema_df %>% 
+    mutate(mayusculas = str_to_upper(texto),
+           minusculas = str_to_lower(texto)) 
+```
+
+### str_detect()
+
+Veamos ahora como identificar patrones dentro del texto libre desde su manera mas sencilla y veamos algunos ejemplos que pueden servir como disparadores. 
+Generemos una columna nueva que nos diga si este patron estaba en el texto de cada registro.
+
+```{r}
+poema_df %>% 
+    mutate(tengo_de = str_detect(texto, 'de')) 
+```
+
+Podriamos tambien querer filtrar y quedarnos solo con las ocurrencias de este patron.
+
+```{r}
+poema_df %>% 
+    filter(str_detect(texto, 'de')) 
+```
+
+Volvamos ahora al caso donde teniamos todos los poemas juntos, ¿sería posible identificar de alguna manera cada poema por separado?
+
+```{r, echo=FALSE}
+varios_poemas
+```
+
+Busquemos entonces generar un corte cada vez que encuentre los ':', que es en este caso por lo menos lo que nos indica que hay un titulo. Una funcion que nos podria servir es cumsum(), que nos va a mantener un contador como suma acumulada cada vez que se cumpla una condicion que le pasemos por parametro.
+
+```{r}
+
+poemas_separados <- varios_poemas %>%
+  mutate(poema = cumsum(str_detect(texto, ':')))
+
+poemas_separados
+```
+
+Excelente, esto nos permitirá abstraernos de la cantidad de registros que tengamos tokenizados por cada archivo de texto original.
+
+### Como recuperar lo que partimos? [lo rompi?]
+
+Una vez que aprendimos a separar [romper] algo, estaría buenisimo tambien saber volverlo a armar, ¿verdad?
+Vamos a usar la funcion paste() y le vamos a pasar por parametro collapse, para definirle que queremos qué nos deje en el medio de cada verso del poema en este caso.
+
+```{r}
+poemas_unidos <- poemas_separados %>% 
+    group_by(poema) %>% 
+    mutate(poema_entero = paste(texto,
+                           collapse = ' ')) %>% 
+    slice(1) %>% 
+    ungroup() %>% 
+    select(poema_entero)
+
+poemas_unidos
+```
+
+### Proximos pasos -> str_extract() y regex()
+
+Para ir finalizando con estas herramientas baáicas, volvamos al ejemplo original que usamos para ver como podíamos encontrarnos la informacion no estructurada
+
+```{r, echo=FALSE}
+knitr::kable(head(tabla_valores_no_estructurada))
+
+```
+
+Vamos a usar str_extract para obtener la informacion que esta perdida dentro del campo libre, pero para que esta función realmente explote su potencia va a necesitar que le agreguemos expresiones regulares. Las expresiones pueden ir desde algo muy simple, hasta algo super complejo, podemos ayudarnos del cheatsheet y de paginas como https://regex101.com/ que nos permiten en tiempo real ir probando nuestras expresiones. Vamos a ver como a priori este caso se resuelve con expresiones bastante amigables
+
+```{r}
+tabla_valores_no_estructurada %>% 
+    mutate(n = str_extract(detalle, regex('[0-9]+')), #uno o mas numeros
+           tipo = str_extract(detalle, regex('[ABC] ')), #letras en mayuscula A, B o C
+           anio = str_extract(detalle, regex('[0-9]+$'))) #uno o mas numeros y fin de texto
+```
+
+Algo interesante a tener en cuenta es observar como la primera expresión regular no trae el año además del n. Esto se debe a que salvo que le indiquemos lo contrario str_extract(), nos trae solo lo primero que encuentra. Entonces una vez que encuentra uno o mas numeros seguidos, deja de mirar el texto.
+
+### Conclusion
+
+Este pequeño tutorial tiene como finalidad presentar un vistazo rapido por bastantes herramientas para el analisis de texto. ¡Ojalá sirva como disparador para investigar más! 
