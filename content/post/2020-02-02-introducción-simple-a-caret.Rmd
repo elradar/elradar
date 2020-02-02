@@ -56,7 +56,7 @@ library(tidyverse)
 Luego, cargamos los datos y formateamos un poco algunas etiquetas:
 
 ```{r}
-load('https://elradar.github.io/data/intro_caret/EPH_2015_II.RData')
+data <- read.csv('https://elradar.github.io/data/intro_caret/EPH_2015_II.csv')
 
 data$pp03i<-factor(data$pp03i, labels=c('1-SI', '2-No', '9-NS'))
 
@@ -92,9 +92,7 @@ Tenemos codificados como `imp_inglab1==1` a los que no contestaron ingresos en l
 df <- data %>%
         filter(imp_inglab1==0) %>%
         select(-imp_inglab1) %>%
-        mutate(p21 = case_when(
-                        p21==0 ~ 100,
-                        TRUE ~ p21))
+        mutate(p21 = ifelse(p21==0, 100, p21))
 
 ```
 
@@ -306,8 +304,8 @@ cart_p21
 
 Podemos persistir  el modelo en disco (si quisiéramos):
 
-```{r}
-saveRDS(cart_p21, '../models/p21_cart.rds')
+```{r eval=FALSE}
+saveRDS(cart_p21, 'p21_cart.rds')
 ```
 
 
