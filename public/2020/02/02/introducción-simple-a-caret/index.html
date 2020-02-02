@@ -304,9 +304,9 @@ lm_p21</code></pre>
 ## 
 ## Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
 <p>Los modelos de machine learning tienen ciertos parámetros que deben ser seleccionados antes de estimar el modelo, propiamente dicho: se llaman <a href="https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)"><strong>hiperparámetros</strong></a>. Si bien la regresión lineal no es estrictamente hablando un modelo de machine learning (aunque muches lo consideran como tal) sí tiene algo que se le parece bastante a un hiperparámetro… la existencia de un intercepto. En efecto, nosotros estimamos un modelo de la siguiente forma:</p>
-<p>$ y_{i} = <em>{0} + </em>{p=1}^P <em>{p} X</em>{i} $</p>
+<p><img src="https://elradar.github.io/images/intro_caret/eq1.png" /></p>
 <p>Pero podríamos haber estimado</p>
-<p>$ y_{i} = <em>{p=1}^P </em>{p} X_{i} $</p>
+<p><img src="https://elradar.github.io/images/intro_caret/eq2.png" /></p>
 <p>Más allá de la discusión sobre si la regresión es ML o no, lo interesante es ver que la decisión sobre el entrenamiento de un modelo lineal con intercepto o no, es una decisión que se toma antes de entrenar el modelo propiamente dicho.</p>
 <p>Ahora bien, vamos a buscar otro modelo con mejores hiperparámetros para tunear: un árbol de decisión. Si bien, no vamos a profundizar en sus detalles técnicos, podemos revisar su implementación en caret.</p>
 <div id="tuneando-hiperparámetros" class="section level3">
@@ -587,13 +587,6 @@ sqrt(mean((y_preds_cart - df_test$p21)**2))</code></pre>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 
 <script src="/js/mediumish.js"></script>
-
-<script src="//yihui.name/js/math-code.js"></script>
-<script async
-src="//https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
 
     </body>
 </html>
