@@ -228,11 +228,11 @@ lm_p21_b
 
 Los modelos de machine learning tienen ciertos parámetros que deben ser seleccionados antes de estimar el modelo, propiamente dicho: se llaman [__hiperparámetros__](https://en.wikipedia.org/wiki/Hyperparameter_(machine_learning)). Si bien la regresión lineal no es estrictamente hablando un modelo de machine learning (aunque muches lo consideran como tal) sí tiene algo que se le parece bastante a un hiperparámetro... la existencia de un intercepto. En efecto, nosotros estimamos un modelo de la siguiente forma:
 
-$y_{i} = \beta_{0} + \sum_{p=1}^P \beta_{p} X_{i}$
+$ y_{i} = \beta_{0} + \sum_{p=1}^P \beta_{p} X_{i} $
 
 Pero podríamos haber estimado
 
-$y_{i} = \sum_{p=1}^P \beta_{p} X_{i}$
+$ y_{i} = \sum_{p=1}^P \beta_{p} X_{i} $
 
 Más allá de la discusión sobre si la regresión es ML o no, lo interesante es ver que la decisión sobre el entrenamiento de un modelo lineal con intercepto o no, es una decisión que se toma antes de entrenar el modelo propiamente dicho.
 
